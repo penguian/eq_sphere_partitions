@@ -55,6 +55,9 @@ function uninstall_eq_toolbox(arg)
 % INSTALL_EQ_TOOLBOX, PATHDEF, PATH, Toolbox Installer 2.2.
 
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
+% Revsion 1.11 Copyright 2013 Paul Leopardi
+% $Revision 1.11 $ $Date 2013-01-11 $
+% Remove 'ver' output argument from calls to fileparts()
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Clearly distinguish between info and error messages
 % Documentation files renamed
@@ -65,7 +68,7 @@ function uninstall_eq_toolbox(arg)
 % For revision history, see CHANGELOG.
 
 command = mfilename;
-[command_dir name ext ver] = fileparts(mfilename('fullpath'));
+[command_dir name ext] = fileparts(mfilename('fullpath'));
 wd = pwd;
 if ~strcmp(command_dir,wd)
     error(['Please run ' command ' from toolbox directory, eg. ' command_dir])

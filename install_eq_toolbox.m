@@ -67,6 +67,9 @@ function install_eq_toolbox(arg)
 % UNINSTALL_EQ_TOOLBOX, PATHDEF, PATH, Toolbox Installer 2.2
 
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
+% Revsion 1.11 Copyright 2013 Paul Leopardi
+% $Revision 1.11 $ $Date 2013-01-11 $
+% Remove 'ver' output argument from calls to fileparts()
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Partial overhaul
 % o Restructure tests for existing pathdef.m file and guesses for pathdef_dir
@@ -86,7 +89,7 @@ if (nargin == 1) && strcmp(arg,'-')
 end
 
 command = mfilename;
-[command_dir name ext ver] = fileparts(mfilename('fullpath'));
+[command_dir name ext] = fileparts(mfilename('fullpath'));
 wd = pwd;
 if ~strcmp(command_dir,wd)
     error(['Please run ' command ' from toolbox directory, eg. ' command_dir]);
@@ -134,7 +137,7 @@ if pathdef_exists
         % Guess that we should use pathdef.m in the same directory.
         %
         startup_name = which('startup');
-        [pathdef_dir name ext ver] = fileparts(startup_name);
+        [pathdef_dir name ext] = fileparts(startup_name);
         pathdef_name = fullfile(pathdef_dir,'pathdef.m');
     else
         %
@@ -157,7 +160,7 @@ if pathdef_exists
             pathdef_name = fullfile(matlabroot,'toolbox','local','pathdef.m');
         end
     end
-    [pathdef_dir name ext ver] = fileparts(pathdef_name);
+    [pathdef_dir name ext] = fileparts(pathdef_name);
 end
 
 if strcmp(pathdef_name, current_pathdef_name)
@@ -198,7 +201,7 @@ if strcmp(pathdef_name, current_pathdef_name)
         return;
     end
     pathdef_name = fullfile(pname,'pathdef.m');
-    [pathdef_dir name ext ver] = fileparts(pathdef_name);
+    [pathdef_dir name ext] = fileparts(pathdef_name);
 end
 %
 % Determine if Matlab thinks that pathdef_name already exists as a file.
@@ -224,7 +227,7 @@ pathdef_dir_exists = (exist(pathdef_dir) == 7);
 % Even if Matlab says that pathdef_dir exists, it might not exist as a directory.
 % Try to create it anyway. This should not hurt if it really does exist.
 %
-[parent dirname ext ver] = fileparts(pathdef_dir);
+[parent dirname ext] = fileparts(pathdef_dir);
 [status message] = mkdir(parent,dirname);
 if status < 0
     created_pathdef_dir = false;
