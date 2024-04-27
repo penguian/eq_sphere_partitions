@@ -121,7 +121,7 @@ if gopt.show_points
     hold on
     if nargout > 0
         movie_frame(frame_no) = getframe(gcf);
-        frame_no = frame_no + 1;
+        % frame_no = frame_no + 1;
     end
 end
 
@@ -156,7 +156,7 @@ n = 21;
 delta = 1/(n-1);
 h = 0:delta:1;
 t_to_b = zeros(dim,n);
-b_to_t = t_to_b;
+% b_to_t = t_to_b;
 r = sqrt(1/N)/12;
 for k = 1:dim
     if ~pseudo || k < 2

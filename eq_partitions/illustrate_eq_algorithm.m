@@ -111,7 +111,7 @@ case 2
     project_s2_partition(N,opt_args{:});
 case 3
     opt_args = option_arguments(popt,gopt);
-    [s,m] = eq_caps(dim,N);
+    [~,m] = eq_caps(dim,N);
     max_collar = min(4,size(m,2)-2);
     for k = 1:max_collar
         subn = 9+2*k-mod(k-1,2);
@@ -132,7 +132,7 @@ gdefault.show_title =    true;
 gdefault.long_title =    false;
 
 gopt = illustration_options(gdefault, varargin{:});
-h = [0:1/90:1];
+h = 0:1/90:1;
 % Plot a circle to represent dth coordinate of S^d
 Phi = h*2*pi;
 plot(sin(Phi),cos(Phi),'k','LineWidth',1)
@@ -140,7 +140,7 @@ axis equal;axis off;hold on
 
 c_polar = polar_colat(dim,N);
 
-k = [-1:1/20:1];
+k = -1:1/20:1;
 j = ones(size(k));
 
 % Plot the bounding parallels of the polar caps
@@ -193,7 +193,7 @@ gdefault.long_title =    false;
 
 gopt = illustration_options(gdefault, varargin{:});
 
-h = [0:1/90:1];
+h = 0:1/90:1;
 Phi = h*2*pi;
 plot(sin(Phi),cos(Phi),'k','LineWidth',1)
 axis equal;axis off;hold on
@@ -203,7 +203,7 @@ n_collars = num_collars(N,c_polar,ideal_collar_angle(dim,N));
 r_regions = ideal_region_list(dim,N,c_polar,n_collars);
 s_cap = cap_colats(dim,N,c_polar,r_regions);
 
-k = [-1:1/20:1];
+k = -1:1/20:1;
 j = ones(size(k));
 plot(sin(c_polar)*k, cos(c_polar)*j,'r','LineWidth',2);
 
@@ -245,7 +245,7 @@ gdefault.long_title =    false;
 
 gopt = illustration_options(gdefault, varargin{:});
 
-h = [0:1/90:1];
+h = 0:1/90:1;
 Phi = h*2*pi;
 plot(sin(Phi),cos(Phi),'k','LineWidth',1)
 axis equal;axis off;hold on
@@ -256,7 +256,7 @@ r_regions = ideal_region_list(dim,N,c_polar,n_collars);
 n_regions = round_to_naturals(N,r_regions);
 s_cap = cap_colats(dim,N,c_polar,n_regions);
 
-k = [-1:1/20:1];
+k = -1:1/20:1;
 j = ones(size(k));
 plot(sin(c_polar)*k, cos(c_polar)*j,'r','LineWidth',2);
 
@@ -361,6 +361,6 @@ if isfield(gopt,'show_surfaces')
     else
         arg{k+1} = 'hide';
     end
-    k = k+2;
+    % k = k+2;
 end    
 
