@@ -54,10 +54,12 @@ function uninstall_eq_toolbox(arg)
 %See also
 % INSTALL_EQ_TOOLBOX, PATHDEF, PATH, Toolbox Installer 2.2.
 
-% Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
-% Revsion 1.11 Copyright 2013 Paul Leopardi
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-28 $
+% Copyright 2013 Paul Leopardi
 % $Revision 1.11 $ $Date 2013-01-11 $
 % Remove 'ver' output argument from calls to fileparts()
+% Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Clearly distinguish between info and error messages
 % Documentation files renamed
@@ -68,7 +70,7 @@ function uninstall_eq_toolbox(arg)
 % For revision history, see CHANGELOG.
 
 command = mfilename;
-[command_dir name ext] = fileparts(mfilename('fullpath'));
+[command_dir, ~, ~] = fileparts(mfilename('fullpath'));
 wd = pwd;
 if ~strcmp(command_dir,wd)
     error(['Please run ' command ' from toolbox directory, eg. ' command_dir])
@@ -87,7 +89,7 @@ istr = 'Info: ';
 was_not_uninstalled_msg = 'Uninstaller cannot continue.';
 need_to_specify_msg     = 'You will need to specify the directory for pathdef.m';
 
-pathdef_exists = (exist('pathdef') == 2);
+pathdef_exists = (exist('pathdef','file') == 2);
 if pathdef_exists
     pathdef_name = which('pathdef');
     pathdefid = fopen(pathdef_name,'a');

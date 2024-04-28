@@ -125,6 +125,7 @@ axis off
 
 pause(0);
 if nargout > 0
+    movie_frame = cell(N);
     movie_frame(1) = getframe(gcf);
 end
 
@@ -173,7 +174,7 @@ function project_s3_region(region, N, stereo, show_surfaces, rot_matrix)
 %
 % The default is to use stereographic projection
 % If the optional second argument, stereo is false,
-% then use a equal area projection.
+% then use an equal area projection.
 
 if nargin < 3
     stereo = true;
@@ -235,7 +236,7 @@ for k = 1:dim
                 'FaceAlpha',(t(dim)/pi)/2,'FaceColor','interp','FaceLighting','phong','EdgeColor','none')
         end
         axis equal; hold on
-        camlight right
+        %camlight right
         b_to_t(j(1),:,:) = b(j(1))-(b(j(1))-t(j(1)))*h1;
         b_to_t(j(2),:,:) = b(j(2))-(b(j(2))-t(j(2)))*h2;
         b_to_t(j(3),:,:) = b(j(3))*ones(n,n);
@@ -255,7 +256,7 @@ for k = 1:dim
         if show_surfaces && k < 2
             surf(squeeze(s(1,:,:)),squeeze(s(2,:,:)),squeeze(s(3,:,:)),t(3)*ones(n,n),...
                 'FaceAlpha',(t(dim)/pi)/2,'FaceColor','interp','FaceLighting','phong','EdgeColor','none')
-            camlight right
+            %camlight right
         end
     end
 end

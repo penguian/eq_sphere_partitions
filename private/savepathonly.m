@@ -16,11 +16,10 @@ function result = savepathonly(outputfile)
 %   There are a few exceptional cases, which are not handled by SAVEPATH or
 %   PATH2RC but should be.
 %   1. The output of PATHDEF, MATLABPATH and PATH includes the directories
-%   listed by USERPATH. SAVEPATH (or PATH2RC) does not check and remove
-%   these directories. When the path is saved, SAVEPATH (or PATH2RC) adds
-%   these extra directories (if any) to the pathdef.m file. The result when
-%   Matlab is next started is that there are duplicate directories in the
-%   path.
+%   listed by USERPATH. SAVEPATH does not check and remove these 
+%   directories. When the path is saved, SAVEPATH adds these extra 
+%   directories (if any) to the pathdef.m file. The result when Matlab is 
+%   next started is that there are duplicate directories in the path.
 %   2. On Unix, if the directory "$HOME/matlab" is in the current MATLAB
 %   path, then SAVEPATH (or PATH2RC) adds this directory to the pathdef.m
 %   file, along with all the others in the Matlab path. This also results
@@ -34,25 +33,16 @@ function result = savepathonly(outputfile)
 %   SAVEPATHONLY deals with these exceptional cases by removing the exceptional
 %   directories from the path before calling SAVEPATH (or PATH2RC).
 %
-%   See also SAVEPATH (Matlab 7 or greater) or PATH2RC (Matlab 6.X).
+%   See also SAVEPATH.
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-28 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-05-31 $
 % Initialize cell array removed{} as size 0 rather than size 1
 % On Windows, do not remove [getenv('USERPROFILE') '\matlab'] directory
 % $Revision 1.00 $ $Date 2005-02-03 $
 
-%
-% We will call call SAVEPATH (or PATH2RC) depending on Matlab version
-%
-matlab_ver = version;
-if matlab_ver(1) >= '7'
-    verge7 = true;
-    savefn = @savepath;
-else
-    verge7 = false;
-    savefn = @path2rc;
-end
 %
 % Before version 7, only Unix has case sensitive path names
 %
@@ -75,11 +65,11 @@ end
 %
 matlab_dir = '';
 if isunix
-    [status,dir_str] = system('echo $HOME');
+    [~,dir_str] = system('echo $HOME');
     home_dir = deblank(dir_str);
     matlab_dir = fullfile(home_dir,'matlab');
 end
-if (~isempty(matlab_dir)) && isempty(strfind(u,[matlab_dir pathsep]))
+if (~isempty(matlab_dir)) && ~contains(u,[matlab_dir pathsep])
     u = [matlab_dir pathsep u];
     if ~casesen
         u = lower(u);
@@ -93,15 +83,16 @@ removed = cell(0);
 % Remove directories from the path
 %
 k = 1;
-while any(u)
+dirnames = split(u, pathsep);
+for d = 1:length(dirnames)
     %
     % Get the next directory name from U and remove if necessary
     %
-    [dirname u] = strtok(u, pathsep);
+    dirname = dirnames{d};
     if ~casesen
         dirname = lower(dirname);
     end
-    if ~isempty(dirname) && ~isempty(strfind(p,[dirname pathsep]));
+    if ~isempty(dirname) && contains(p,[dirname pathsep])
         % disp(['removing "' dirname '"']);
         rmpath(dirname);
         removed{k} = dirname;
@@ -111,7 +102,7 @@ end
 %
 % Now that we have cleaned up the path we can safely call SAVEPATH (or PATH2RC)
 %
-result = feval(savefn,outputfile);
+result = savepath(outputfile);
 %
 % We now add the paths back in
 %
