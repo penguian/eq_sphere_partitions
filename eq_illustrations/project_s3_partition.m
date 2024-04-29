@@ -180,9 +180,9 @@ if nargin < 3
     stereo = true;
 end
 if stereo
-    projection = 'x2stereo';
+    projection = @(x) x2stereo(x);
 else
-    projection = 'x2eqarea';
+    projection = @(x) x2eqarea(x);
 end
 if nargin < 4
     show_surfaces = true;
@@ -210,9 +210,10 @@ h = 0:delta:1;
 t_to_b = zeros(dim,n,n);
 b_to_t = t_to_b;
 r = N^(-1/3)/32;
+L = 1:dim;
+j = zeros(1,dim);
 for k = 1:dim
     if ~pseudo || k < 3
-        L = 1:dim;
         j(L) = mod(k+L,dim)+1;
         t_to_b(j(1),:,:) = t(j(1))+(b(j(1))-t(j(1)))*h1;
         t_to_b(j(2),:,:) = t(j(2))+(b(j(2))-t(j(2)))*h2;
@@ -223,7 +224,7 @@ for k = 1:dim
         else
             t_to_b_x = polar2cart(t_to_b_v);
         end
-        s = reshape(feval(projection,t_to_b_x),dim,n,n);
+        s = reshape(projection(t_to_b_x),dim,n,n);
         degenerate = (norm(s(:,1,1)-s(:,1,2)) < tol);
         if ~degenerate && (~pseudo || k > 1)
             [X,Y,Z] = fatcurve(squeeze(s(:,1,:)),r);
@@ -246,7 +247,7 @@ for k = 1:dim
         else
             b_to_t_x = polar2cart(b_to_t_v);
         end
-        s = reshape(feval(projection,b_to_t_x),dim,n,n);
+        s = reshape(projection(b_to_t_x),dim,n,n);
         degenerate = (norm(s(:,1,1)-s(:,1,2)) < tol);
         if ~degenerate && (~pseudo || (k > 1 && abs(b(2)-pi) > tol))
             [X,Y,Z] = fatcurve(squeeze(s(:,1,:)),r);
