@@ -38,6 +38,8 @@ function density = calc_packing_density(dim,N,min_euclidean_dist)
 %See also
 % EQ_MIN_DIST, AREA_OF_CAP, AREA_OF_SPHERE, EQ_PACKING_DENSITY
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-29 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -52,7 +54,7 @@ function density = calc_packing_density(dim,N,min_euclidean_dist)
 %
 % Check number of arguments
 %
-error(nargchk(3,3,nargin));
+narginchk(3,3);
 %
 s_cap = euc2sph_dist(min_euclidean_dist)/2;
 %

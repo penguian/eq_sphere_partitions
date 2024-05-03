@@ -54,6 +54,8 @@ function [movie_frame] = project_s3_partition(N,varargin)
 %See also
 % MOVIE, PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, PROJECT_S2_PARTITION
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-29 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Function changed name from s2x to polar2cart
@@ -180,9 +182,9 @@ if nargin < 3
     stereo = true;
 end
 if stereo
-    projection = @(x) x2stereo(x);
+    projection = @x2stereo;
 else
-    projection = @(x) x2eqarea(x);
+    projection = @x2eqarea;
 end
 if nargin < 4
     show_surfaces = true;
@@ -237,7 +239,7 @@ for k = 1:dim
                 'FaceAlpha',(t(dim)/pi)/2,'FaceColor','interp','FaceLighting','phong','EdgeColor','none')
         end
         axis equal; hold on
-        %camlight right
+
         b_to_t(j(1),:,:) = b(j(1))-(b(j(1))-t(j(1)))*h1;
         b_to_t(j(2),:,:) = b(j(2))-(b(j(2))-t(j(2)))*h2;
         b_to_t(j(3),:,:) = b(j(3))*ones(n,n);
@@ -257,7 +259,6 @@ for k = 1:dim
         if show_surfaces && k < 2
             surf(squeeze(s(1,:,:)),squeeze(s(2,:,:)),squeeze(s(3,:,:)),t(3)*ones(n,n),...
                 'FaceAlpha',(t(dim)/pi)/2,'FaceColor','interp','FaceLighting','phong','EdgeColor','none')
-            %camlight right
         end
     end
 end

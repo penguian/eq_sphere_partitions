@@ -38,6 +38,8 @@ function coeff = calc_dist_coeff(dim,N,min_euclidean_dist)
 %See also
 % EQ_MIN_DIST, EQ_DIST_COEFF
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-29 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -50,7 +52,7 @@ function coeff = calc_dist_coeff(dim,N,min_euclidean_dist)
 %
 % Check number of arguments
 %
-error(nargchk(3,3,nargin));
+narginchk(3,3);
 %
 % dim is the number of dimensions
 % N is the number of regions

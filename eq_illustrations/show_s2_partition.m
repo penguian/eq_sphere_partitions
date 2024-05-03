@@ -50,6 +50,8 @@ function [movie_frame] = show_s2_partition(N,varargin)
 %See also
 % MOVIE, PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, PROJECT_S2_PARTITION
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-30 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Function changed name from s2x to polar2cart
@@ -158,6 +160,7 @@ h = 0:delta:1;
 t_to_b = zeros(dim,n);
 % b_to_t = t_to_b;
 r = sqrt(1/N)/12;
+j = zeros(1,dim);
 for k = 1:dim
     if ~pseudo || k < 2
         L = 1:dim;

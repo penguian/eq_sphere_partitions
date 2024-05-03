@@ -29,20 +29,10 @@ if is_octave
     idx = lookup(table, y);
   end
 else
-  idx = zeros(size(y));
   if table(end) >= table(1)
   % We have an nondecreasing table.
-    m = length(y);
-    n = length(table);
-    for i = 1:m
-      if y(i) < table(1)
-        idx(i) = 0;
-      elseif y(i) > table(n)
-        idx(i) = n;
-      else
-        idx(i) = find(histc(y(i), table));
-      end
-    end
+    maximum = max([table, y])+1;
+    idx = arrayfun(@(x)find(x < [table, maximum], 1)-1, y);
   else
    fprintf('MYLOOKUP: Decreasing case is not yet implemented\n');
   end

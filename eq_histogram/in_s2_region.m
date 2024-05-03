@@ -1,5 +1,7 @@
 function result=in_s2_region(s_point,region)
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-30 $
 % Copyright 2012 Paul Leopardi
 % $Revision 1.11 $ $Date 2012-01-20 $
 %
@@ -14,18 +16,18 @@ for p_idx=1:n_points
  longitude=s_point(1,p_idx);
  min_long=region(1,1);
  max_long=region(1,2);
- if min_long < longitude & longitude <= max_long
+ if min_long < longitude && longitude <= max_long
   result(p_idx)=true;
  else
-  longitude+=2*pi;
-  if min_long < longitude & longitude <= max_long
+  longitude=longitude + 2*pi;
+  if min_long < longitude && longitude <= max_long
    result(p_idx)=true;
   end
  end
  colatitude=s_point(2,p_idx);
  min_colat=region(2,1);
  max_colat=region(2,2);
- if min_colat >= colatitude | colatitude > max_colat
+ if min_colat >= colatitude || colatitude > max_colat
    result(p_idx)=false;
  end
 end

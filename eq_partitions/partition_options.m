@@ -42,6 +42,8 @@ function popt = partition_options(pdefault, varargin)
 % popt =
 %     extra_offset: 0
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-29 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -75,19 +77,19 @@ if nargs == 1
 end
 
 nopts = floor(nargs/2);
-opt_args = {varargin{1:2:2*nopts-1}};
+opt_args = varargin(1:2:2*nopts-1);
 for k=1:nopts
     if ~ischar([opt_args{k}])
         fprintf('Option names must be character strings\n');
         option_error(varargin{:});
     end
 end    
-opt_vals = {varargin{2:2:2*nopts}};
+opt_vals = varargin(2:2:2*nopts);
 
 option_name = 'offset';
-pos = strmatch(option_name,opt_args,'exact');
+pos = find(strcmp(option_name,opt_args));
 if ~isempty(pos)
-    if (length(pos) == 1)
+    if (isscalar(pos))
         value = opt_vals{pos};
     else
         duplicate_error(option_name,varargin{:});

@@ -1,5 +1,7 @@
 function r_idx=lookup_s2_region(s_point,s_regions,s_cap,c_regions)
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-30 $
 % Copyright 2012 Paul Leopardi
 % $Revision 1.11 $ $Date 2012-01-20 $
 %
@@ -23,7 +25,7 @@ n_points=size(s_point,2);
 r_idx=zeros(1,n_points);
 for p_idx=1:n_points
  c_idx=mylookup(s_cap,s_point(2,p_idx));
- if c_idx>0 & c_idx<n_caps-1
+ if c_idx>0 && c_idx<n_caps-1
   min_r_idx=c_regions(c_idx)+1;
   max_r_idx=c_regions(c_idx+1);
   s_longs=squeeze(s_regions(1,:,min_r_idx:max_r_idx));

@@ -51,6 +51,8 @@ function [movie_frame] = project_s2_partition(N,varargin)
 % MOVIE, PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, SHOW_S2_PARTITION,
 % PROJECT_S3_PARTITION
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-30 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Function changed name from s2x to polar2cart
@@ -75,7 +77,7 @@ gopt = illustration_options(gdefault, varargin{:});
 
 dim = 2;
 
-Phi = 2*pi*[0:1/40:1];
+Phi = 2*pi*(0:1/40:1);
 X = cos(Phi);
 Y = sin(Phi);
 if gopt.stereo
@@ -152,9 +154,9 @@ if nargin < 2
     stereo = true;
 end
 if stereo
-    projection = 'x2stereo';
+    projection = @x2stereo;
 else
-    projection = 'x2eqarea';
+    projection = @x2eqarea;
 end
 
 tol = eps*2^5;
@@ -175,6 +177,7 @@ delta = 1/(n-1);
 h = 0:delta:1;
 t_to_b = zeros(dim,n);
 b_to_t = t_to_b;
+j = zeros(1,dim);
 for k = 1:dim
     if ~pseudo || k < 2
         L = 1:dim;
@@ -182,7 +185,7 @@ for k = 1:dim
         t_to_b(j(1),:) = t(j(1))+(b(j(1))-t(j(1)))*h;
         t_to_b(j(2),:) = t(j(2))*ones(1,n);
         t_to_b_x = polar2cart(t_to_b);
-        s = feval(projection,t_to_b_x);
+        s = projection(t_to_b_x);
         plot(s(1,:),s(2,:),'k');
         axis equal; hold on
         if pseudo
@@ -190,7 +193,7 @@ for k = 1:dim
             b_to_t(j(1),:,:) = b(j(1))-(b(j(1))-t(j(1)))*h;
             b_to_t(j(2),:,:) = b(j(2))*ones(1,n);
             b_to_t_x = polar2cart(b_to_t);
-            s = feval(projection,b_to_t_x);
+            s = projection(b_to_t_x);
             plot(s(1,:),s(2,:),'k');
         end
     end
