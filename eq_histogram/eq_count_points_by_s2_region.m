@@ -39,6 +39,8 @@ function count_v = eq_count_points_by_s2_region(s_point,N)
 %See also
 % EQ_FIND_S2_REGION
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-05-05 $
 % Copyright 2012 Paul Leopardi
 % $Revision 1.11 $ $Date 2012-01-20 $
 %
@@ -47,4 +49,4 @@ function count_v = eq_count_points_by_s2_region(s_point,N)
 % For revision history, see CHANGELOG.
 
 r_idx = eq_find_s2_region(s_point,N);
-count_v = histc(r_idx,1:N);
+count_v = histcounts(r_idx,1:N+1);

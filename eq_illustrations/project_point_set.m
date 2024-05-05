@@ -46,7 +46,7 @@ function project_point_set(points,varargin)
 % ILLUSTRATION_OPTIONS
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-29 $
+% $Revision 1.12 $ $Date 2024-05-05 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -103,7 +103,6 @@ case 3
         limit = 2*pi;
     end
     s = (r+1)/(limit*10);
-    sphere_detail = ceil(20/log(N+1));
     [X,Y,Z] = sphere;
 
     for k = 1:size(t,2)
