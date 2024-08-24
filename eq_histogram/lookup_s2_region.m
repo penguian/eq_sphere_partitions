@@ -24,7 +24,7 @@ end
 n_points=size(s_point,2);
 r_idx=zeros(1,n_points);
 for p_idx=1:n_points
- c_idx=mylookup(s_cap,s_point(2,p_idx));
+ c_idx=lookup_table(s_cap,s_point(2,p_idx));
  if c_idx>0 && c_idx<n_caps-1
   min_r_idx=c_regions(c_idx)+1;
   max_r_idx=c_regions(c_idx+1);
@@ -33,7 +33,7 @@ for p_idx=1:n_points
     s_longs(:,1) = s_longs(:,1) - 2*pi;
   end
   n_longs=size(s_longs,2);
-  l_idx=mod(mylookup(s_longs(2,:),s_point(1,p_idx)),n_longs);
+  l_idx=mod(lookup_table(s_longs(2,:),s_point(1,p_idx)),n_longs);
   if s_point(1,p_idx) < s_longs(1,1)
    l_idx=n_longs-1;
   end

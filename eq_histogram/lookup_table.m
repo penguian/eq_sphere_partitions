@@ -1,8 +1,8 @@
-function idx = mylookup(table, y, opt)
-%MYLOOKUP Lookup values in a sorted table.  
+function idx = lookup_table(table, y, opt)
+%LOOKUP_TABLE Lookup values in a sorted table.  
 %
 %Syntax
-% IDX = mylookup (TABLE, Y, OPT)
+% IDX = lookup_table (TABLE, Y, OPT)
 %
 %Description
 % Lookup values in a sorted table.  Usually used as a prelude to interpolation.
@@ -34,7 +34,7 @@ else
     maximum = max([table, y])+1;
     idx = arrayfun(@(x)find(x < [table, maximum], 1)-1, y);
   else
-   fprintf('MYLOOKUP: Decreasing case is not yet implemented\n');
+   fprintf('LOOKUP_TABLE: Decreasing case is not yet implemented\n');
   end
 end
 
