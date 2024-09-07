@@ -18,29 +18,20 @@ function count_v = eq_count_points_by_s2_region(s_point,N)
 % N        Required number of regions, a positive integer.
 %
 %Examples
-%  > points_x=randn(3,8)
-%  points_x =
+% > points_s = eq_point_set_polar(2,8)
+% points_s =
+%         0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596         0
+%         0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708    3.1416
 %
-%    -1.500867  -0.994941  -0.466281  -2.419762  -0.027346  -0.362112   0.070776  -1.106204
-%    -0.655976  -1.022458   0.669978  -1.066180  -0.025138   2.686040   1.195864  -0.087131
-%    -0.273793  -0.965146  -1.040648   0.311548  -0.788428   1.790929   0.532415   0.919639
-%
-%  > points_s=cart2polar2(points_x)
-%  points_s =
-%
-%     3.55364   3.94063   2.17881   3.55661   3.88495   1.70480   1.51168   3.22020
-%     1.73642   2.16558   2.47645   1.45352   3.09452   0.98688   1.15258   0.87875
-%
-%  > count_v=eq_count_points_by_s2_region(points_s,5)
-%  count_v =
-%
-%     1   2   3   0   2
+% >> count_v=eq_count_points_by_s2_region(points_s,5)
+% count_v =
+%      1     2     2     2     1
 %
 %See also
 % EQ_FIND_S2_REGION
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-05-05 $
+% $Revision 1.12 $ $Date 2024-09-07 $
 % Copyright 2012 Paul Leopardi
 % $Revision 1.11 $ $Date 2012-01-20 $
 %
@@ -48,5 +39,5 @@ function count_v = eq_count_points_by_s2_region(s_point,N)
 % For references, see AUTHORS.
 % For revision history, see CHANGELOG.
 
-r_idx = eq_find_s2_region(s_point,N);
-count_v = histcounts(r_idx,1:N+1);
+r_idx = eq_find_s2_region(s_point, N);
+count_v = histcounts(r_idx, 1:N+1);
