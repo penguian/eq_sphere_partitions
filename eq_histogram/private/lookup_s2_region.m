@@ -21,23 +21,38 @@ function r_idx = lookup_s2_region(s_point, s_regions, s_cap, c_regions)
 %Examples
 % > points_s = eq_point_set_polar(2,8)
 % points_s =
-%         0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596         0
-%         0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708    3.1416
+%          0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596         0
+%          0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708    3.1416
 %
-% > s_regions = eq_regions(2,5);
-% > [s_cap, n_regions] = eq_caps(2,5)
-% s_cap =
-%    0.9273    2.2143    3.1416
-% n_regions =
-%     1     3     1
+% > count_v = eq_count_points_by_s2_region(points_s, 8)
+% count_v =
+%      1     1     1     1     1     1     1     1
 %
-% > c_regions = cumsum(n_regions)                                  
-% c_regions =
-%     1     4     5
+% > count_v = eq_count_points_by_s2_region(points_s, 5)
+% count_v =
+%      1     2     2     2     1
 %
-% > r_idx = lookup_s2_region(points_s, s_regions, s_cap, c_regions)
-% r_idx =
-%     1     2     2     3     3     4     4     5
+% > sum(count_v)
+% ans =
+%      8
+%
+% > points_s = eq_point_set_polar(2,128);
+% > count_v = eq_count_points_by_s2_region(points_s, 8)
+% count_v =
+%     19    15    14    17    15    14    15    19
+%
+% > sum(count_v)
+% ans =
+%    128
+%
+% > count_v = eq_count_points_by_s2_region(points_s, 5)
+% count_v =
+%     19    29    32    29    19
+%
+% > sum(count_v)
+% ans =
+%    128
+%
 %
 %See also
 % EQ_REGIONS, EQ_CAPS, CUMSUM, LOOKUP_TABLE
@@ -70,11 +85,11 @@ r_idx = zeros(1, n_points);
 for p_idx = 1:n_points
     % Lookup by colatitude.
     c_idx = lookup_table(s_cap, s_point(2, p_idx));
-    if c_idx > 0 && c_idx < n_caps
+    if c_idx > 0 && c_idx < n_caps - 1
         min_r_idx = c_regions(c_idx) + 1;
         max_r_idx = c_regions(c_idx + 1);
         s_longs = squeeze(s_regions(1, :, min_r_idx:max_r_idx));
-        if s_longs(2, 1) >= 2*pi
+        if s_longs(:, 1) >= 2*pi
             s_longs(:, 1) = s_longs(:, 1) - 2*pi;
         end
         n_longs = size(s_longs, 2);
@@ -86,7 +101,7 @@ for p_idx = 1:n_points
         r_idx(p_idx) = min_r_idx + l_idx;
     elseif c_idx == 0
         r_idx(p_idx) = 1;
-    elseif c_idx == n_caps
+    elseif c_idx >= n_caps - 1
         r_idx(p_idx) = n_regions;
     else
         r_idx(p_idx) = 0;
