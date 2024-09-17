@@ -24,9 +24,13 @@ function r_idx = eq_find_s2_region(s_point,N)
 %         0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596         0
 %         0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708    3.1416
 %
+% > r_idx = eq_find_s2_region(points_s,8)
+% r_idx =
+%      1     2     3     4     5     6     7     8
+%
 % > r_idx = eq_find_s2_region(points_s,5)
 % r_idx =
-%     1     2     2     3     3     4     4     5
+%      1     2     2     3     3     4     4     5
 %
 %See also
 % EQ_COUNT_POINTS_BY_S2_REGION, LOOKUP_S2_REGION
