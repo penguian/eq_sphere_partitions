@@ -8,13 +8,13 @@ function idx = lookup_table(table, y, opt)
 % Lookup values in a sorted table. Usually used as a prelude to interpolation.
 %
 % If table is strictly increasing and `idx = lookup (table, y)', then
-% `table(idx(i)) <= y(i) < table(idx(i)+1)' for all `y(i)' within the interval 
-% with minimum table(1) and maximum table(end). If `y(i) < table(1)' then 
+% `table(idx(i)) <= y(i) < table(idx(i)+1)' for all `y(i)' within the interval
+% with minimum table(1) and maximum table(end). If `y(i) < table(1)' then
 % `idx(i)' is 0. If `y(i) >= table(end)' then `idx(i)' is `end'.
 %
 % If the table is strictly decreasing, then the tests are reversed. (NOT YET IMPLEMENTED).
 % There are no guarantees for tables which are non-monotonic or are not strictly monotonic.
-% 
+%
 %Arguments
 % table    Sequence of real values, assumed to be strictly increasing or decreasing.
 % y        Sequence of real values to be looked up in table.
