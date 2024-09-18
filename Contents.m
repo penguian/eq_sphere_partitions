@@ -1,5 +1,5 @@
 % Recursive Zonal Equal Area Sphere Partitioning Toolbox.
-% Release 1.10 2005-06-26
+% Release 1.12 2024-09-18
 %
 %Functions by category
 %=====================
@@ -18,9 +18,9 @@
 %  eq_regions             Recursive zonal equal area (EQ) partition of sphere
 %
 % Point sets
-%  eq_point_set           Center points of regions of EQ partition, 
+%  eq_point_set           Center points of regions of EQ partition,
 %                             in Cartesian coordinates
-%  eq_point_set_polar     Center points of regions of an EQ partition, 
+%  eq_point_set_polar     Center points of regions of an EQ partition,
 %                             in spherical polar coordinates
 %
 % Partition options
@@ -53,7 +53,7 @@
 %  calc_energy_coeff      Coefficient of second term in expansion of energy
 %
 % Minimum distance
-%  eq_min_dist            Minimum distance between center points of an 
+%  eq_min_dist            Minimum distance between center points of an
 %                             EQ partition
 %  point_set_min_dist     Minimum distance between points of a point set
 %
@@ -62,14 +62,22 @@
 %  calc_dist_coeff        Coefficient of minimum distance
 %
 % Spherical cap packing density
-%  eq_packing_density     Density of packing given by minimum distance of 
+%  eq_packing_density     Density of packing given by minimum distance of
 %                             EQ point set
-%  point_set_packing_density  Density of packing given by minimum distance of 
+%  point_set_packing_density  Density of packing given by minimum distance of
 %                             a point set
 %  calc_packing_density   Density of packing given by minimum distance
 %
 % Hook for user-defined properties
 %  eq_point_set_property  Property of an EQ point set
+%
+%Histogram utilities for S^2
+%---------------------------
+%
+%  eq_count_points_by_s2_region  Given a set of points, count points in each of N regions of S^2
+%  eq_find_s2_region      Given a set of points, partition S^2 into N regions
+%                             and find the index of the region of containing each point
+%  in_s2_region           Test that each of a set of points on S^2 is within a given region
 %
 %Illustrations
 %-------------
@@ -81,7 +89,7 @@
 %
 % Illustration of point sets on S^2 or S^3
 %  show_r3_point_set      3D illustration of a point set
-%  project_point_set      Use projection to illustrate a point set of 
+%  project_point_set      Use projection to illustrate a point set of
 %                             S^2 or S^3
 % Illustration of a recursive zonal equal area sphere partition algorithm
 %  illustrate_eq_algorithm  Illustrate the EQ partition algorithm
@@ -119,6 +127,8 @@
 % If the previous text scrolled off the screen, try
 % more on; help eq_sphere_partitions; more off;
 
+% Copyright 2024 Paul Leopardi
+% $Revision 1.12 $ $Date 2024-09-18 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-26 $
 % Function changed name from e2s to euc2sph_dist

@@ -12,6 +12,8 @@ function [X,Y,Z] = fatcurve(c,r)
 %Examples
 % > [X,Y,Z] = fatcurve(c,r);
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-28 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Flesh out description and examples
@@ -23,6 +25,9 @@ function [X,Y,Z] = fatcurve(c,r)
 % For revision history, see CHANGELOG.
 
 dim = size(c,1);
+if dim ~= 3
+    fprintf('Error: dim == %d but should be 3.\n', dim)
+end
 n = size(c,2);
 m = 8;
 h = 0:1/m:1;
@@ -35,8 +40,8 @@ for k = 1:n-1
     M = null(u');
     if size(M,2) ~= 2
         fprintf('size(M,2) == %d\n',size(M,2));
-        M
-        c
+        disp(M);
+        disp(c);
 	return;
     end
     v = M(:,1);

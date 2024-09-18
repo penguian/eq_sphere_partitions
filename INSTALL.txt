@@ -1,5 +1,6 @@
 Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox.
-Release 1.10 2005-06-26
+Release 1.12 2024-09-18
+Copyright 2024 Paul Leopardi
 Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 INSTALL.txt
 
@@ -19,7 +20,7 @@ these directories need to be on your Matlab path every time you start Matlab.
 You will therefore need to install the toolbox before using it.
 
 To do this,
-1. You need to unzip the file eqsp-1.10.zip into the directory
+1. You need to unzip the file eqsp-1.12.zip into the directory
    where you want the toolbox to reside. This will create the subdirectory
    eq_sphere_partitions.
 
@@ -36,7 +37,7 @@ To do this,
 
 The function INSTALL_EQ_TOOLBOX adds the directories of this toolbox to your
 Matlab path by changing the contents of the Matlab file pathdef.m. Here is the
-result of HELP INSTALL_EQ_TOOLBOX. 
+result of HELP INSTALL_EQ_TOOLBOX.
 -------------------------------------------------------------------------------
  INSTALL_EQ_TOOLBOX Install using Toolbox Installer, with sensible defaults
 

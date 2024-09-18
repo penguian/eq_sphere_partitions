@@ -33,6 +33,8 @@ function property = eq_point_set_property(fhandle,dim,N,varargin)
 %See also
 % EQ_POINT_SET, FEVAL, PARTITION_OPTIONS
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-28 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -45,7 +47,7 @@ function property = eq_point_set_property(fhandle,dim,N,varargin)
 %
 % Check number of arguments
 %
-error(nargchk(3,5,nargin));
+narginchk(3,5);
 %
 % dim is the number of dimensions
 % N is the number of regions

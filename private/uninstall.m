@@ -27,6 +27,8 @@ function uninstall(pddir)
 %
 %   See also INSTALL, MAKEINSTALL, CHECKINSTALL, SAVEPATHONLY.
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-28 $
 % Revision 2005-05-28 Copyright (c) Paul Leopardi for UNSW:
 % Clearly distinguish between info and error messages
 % Revision 2005-02-01 Copyright (c) Paul Leopardi for UNSW:
@@ -42,10 +44,10 @@ istr = 'Info: ';
 if ~exist(fullfile(pwd,'info.ins'),'file')
    error('This toolbox cannot be uninstalled.')
 end
-load info.ins -mat
-%% if ~IS_INSTALLED
-%%    warning('This toolbox is already uninstalled.')
-%% end
+load('info.ins','-mat','INS_DIRS','IS_INSTALLED')
+if ~IS_INSTALLED
+   warning('This toolbox is already uninstalled.')
+end
 
 matlab_ver = version;
 verge7 = (matlab_ver(1) >= '7');
@@ -66,12 +68,12 @@ for i = 1:length(INS_DIRS)
     if ~casesen
         dirname = lower(dirname);
     end
-    if ~isempty(strfind(p,[dirname pathsep]));
+    if contains(p,[dirname pathsep])
         rmpath(dirname);
         removed_any = true;
     end
 end
-if ~isempty(strfind(p,[wd pathsep]))
+if contains(p,[wd pathsep])
     rmpath(wd);
     removed_any = true;
 end
@@ -94,5 +96,5 @@ case 2, error('Original pathdef.m was not found. Try "uninstall -".')
 case 3, error('Original pathdef.m was found but couldn''t be read. Try "uinstall -".')
 end
 disp([istr 'Uninstalled.'])
-%% IS_INSTALLED=0;
-%% save info.ins INS_DIRS IS_INSTALLED
+IS_INSTALLED=0;
+save('info.ins','INS_DIRS','IS_INSTALLED')

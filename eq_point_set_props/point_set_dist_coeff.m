@@ -39,6 +39,8 @@ function coeff = point_set_dist_coeff(points)
 %See also
 % POINT_SET_MIN_DIST, CALC_DIST_COEFF, EQ_DIST_COEFF, EQ_MIN_DIST
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-28 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -51,7 +53,7 @@ function coeff = point_set_dist_coeff(points)
 %
 % Check number of arguments
 %
-error(nargchk(1,1,nargin));
+narginchk(1,1);
 %
 % dim is the dimension of S^dim as a manifold.
 %

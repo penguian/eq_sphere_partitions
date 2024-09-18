@@ -42,6 +42,8 @@ function [bound_coeff,vertex_coeff] =  eq_diam_coeff(dim,N)
 %See also 
 % EQ_DIAM_BOUND, EQ_VERTEX_DIAM, EQ_REGIONS, EQ_VERTEX_DIAM_COEFF
  
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-28 $
 % Copyright 2004-2005 Paul Leopardi for the University of NSW.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -54,8 +56,8 @@ function [bound_coeff,vertex_coeff] =  eq_diam_coeff(dim,N)
 %
 % Check number of arguments
 %
-error(nargchk(2,2,nargin));
-error(nargoutchk(0,2,nargout));
+narginchk(2,2);
+nargoutchk(0,2);
 
 if nargout < 2
     bound_coeff = eq_diam_bound(dim,N) .* N.^(1/dim);

@@ -1,5 +1,6 @@
 Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox.
-Release 1.10 2005-06-26
+Release 1.12 2024-09-18
+Copyright 2024 Paul Leopardi
 Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 README.txt
 
@@ -9,7 +10,7 @@ For revision history, see CHANGELOG.
 
 NOTE:
 This file has lines terminated by CR-LF for use with DOS and Windows Notepad.
-On Windows, to read AUTHORS, COPYING and CHANGELOG, use another editor, such as 
+On Windows, to read AUTHORS, COPYING and CHANGELOG, use another editor, such as
 Wordpad or the Matlab editor.
 
 >> What is the Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox?
@@ -22,9 +23,10 @@ The functions are grouped into the following groups of tasks:
 1. Create EQ partitions
 2. Find properties of EQ partitions
 3. Find properties of EQ point sets
-4. Produce illustrations
-5. Test the toolbox
-6. Perform some utility function
+4. Create histograms based on EQ partitions
+5. Produce illustrations
+6. Test the toolbox
+7. Perform some utility function
 
 >> What is an EQ partition?
 
@@ -33,7 +35,7 @@ space R^(dim+1)] into a finite number of regions of equal area. The area of
 each region is defined using the Lebesgue measure inherited from R^(dim+1).
 
 The diameter of a region is the sup of the Euclidean distance between any two
-points of the region. The regions of an EQ partition have been proven to have 
+points of the region. The regions of an EQ partition have been proven to have
 small diameter, in the sense that there exists a constant C(dim) such that the
 maximum diameter of the regions of an N region EQ partition of S^dim is bounded
 above by C(dim)*N^(-1/dim).
@@ -51,13 +53,14 @@ point is defined using the center of the spherical cap.
 Release 1.00 2005-02-13 was the first version of the EQ sphere partitioning
 code to be packaged in toolbox form.
 Release 1.10 2005-06-26 is the first public release of the code.
-For details of changes from earlier versions of the EQ partitioning code, 
+Release 1.12 2024-09-18 brings the Matlab code up to date, and includes
+histogram utilities.
+For details of changes from earlier versions of the EQ partitioning code,
 and changes from 1.00 to the current release, see CHANGELOG.
 
 >> Which versions of Matlab can I use?
 
-This toolbox has been tested with Matlab versions 6.5 and 7.0.1 on Linux,
-and 6.5.1 on Windows.
+This toolbox has been tested with Matlab version R2023b Update 2 on Linux.
 
 >> How do I install the Recursive Zonal Equal Area Sphere Partitioning Toolbox?
 
@@ -66,7 +69,7 @@ these directories need to be on your Matlab path every time you start Matlab.
 You will therefore need to install the toolbox before using it.
 
 To do this,
-1. Unzip the file eqsp-1.10.zip into the directory where you
+1. Unzip the file eqsp-1.12.zip into the directory where you
    want the toolbox to reside. This will create the subdirectory
    eq_sphere_partitions.
 2. Run Matlab, change directory to eq_sphere_partitions and then run
@@ -202,7 +205,7 @@ o Use projection to illustrate the EQ partition of S^2 into N regions:
 >> Is the toolbox for use with S^2 and S^3 only? What is the maximum dimension?
 
 In principle, any function which has dim as a parameter will work for any
-integer dim >= 1. In practice, for large d, the function may be slow, 
+integer dim >= 1. In practice, for large d, the function may be slow,
 or may consume large amounts of memory.
 
 >> What is the range of the number of points, N?

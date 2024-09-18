@@ -37,6 +37,8 @@ function density = point_set_packing_density(points)
 %See also
 % CALC_PACKING_DENSITY, EQ_MIN_DIST, AREA_OF_CAP, AREA_OF_SPHERE
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-28 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -49,7 +51,7 @@ function density = point_set_packing_density(points)
 %
 % Check number of arguments
 %
-error(nargchk(1,1,nargin));
+narginchk(1,1);
 %
 % Check that points lie on the unit sphere.
 %

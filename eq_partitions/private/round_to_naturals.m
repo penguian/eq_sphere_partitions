@@ -1,4 +1,4 @@
-function n_regions = round_to_naturals(N,r_regions)
+function n_regions = round_to_naturals(~,r_regions)
 %ROUND_TO_NATURALS Round off a given list of numbers of regions
 %
 % Given N and r_regions, determine n_regions,
@@ -11,6 +11,8 @@ function n_regions = round_to_naturals(N,r_regions)
 %
 % n_regions = round_to_naturals(N,r_regions);
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-05-05 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

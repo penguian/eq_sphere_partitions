@@ -55,6 +55,8 @@ function coeff = eq_energy_coeff(dim,N,s,varargin)
 %See also
 % PARTITION_OPTIONS, EQ_ENERGY_DIST, CALC_ENERGY_COEFF
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-29 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -67,7 +69,7 @@ function coeff = eq_energy_coeff(dim,N,s,varargin)
 %
 % Check number of arguments
 %
-error(nargchk(2,5,nargin));
+narginchk(2,5);
 %
 % dim is the number of dimensions
 % N is the number of regions

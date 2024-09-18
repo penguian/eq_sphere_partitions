@@ -41,6 +41,8 @@ function density = eq_packing_density(dim,N,varargin)
 %See also
 % EQ_MIN_DIST, AREA_OF_CAP, AREA_OF_SPHERE, PARTITION_OPTIONS
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-28 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -53,7 +55,7 @@ function density = eq_packing_density(dim,N,varargin)
 %
 % Check number of arguments
 %
-error(nargchk(2,4,nargin));
+narginchk(2,4);
 %
 min_euclidean_dist = eq_min_dist(dim,N,varargin{:});
 density = calc_packing_density(dim,N,min_euclidean_dist);

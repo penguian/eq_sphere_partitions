@@ -38,6 +38,8 @@ function [total_error, max_error] = eq_area_error(dim,N)
 %See also
 % EQ_REGIONS, AREA_OF_SPHERE, AREA_OF_IDEAL_REGION
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-28 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -50,8 +52,8 @@ function [total_error, max_error] = eq_area_error(dim,N)
 %
 % Check number of arguments
 %
-error(nargchk(2,2,nargin));
-error(nargoutchk(2,2,nargout));
+narginchk(2,2);
+nargoutchk(2,2);
 
 %
 % Flatten N into a row vector.

@@ -45,6 +45,8 @@ function [energy,dist] = eq_energy_dist(dim,N,s,varargin)
 % EQ_POINT_SET, PARTITION_OPTIONS, POINT_SET_ENERGY_DIST, EUCLIDEAN_DIST, 
 % MIN_DIST
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-05-05 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -57,7 +59,7 @@ function [energy,dist] = eq_energy_dist(dim,N,s,varargin)
 %
 % Check number of arguments.
 %
-error(nargchk(2,5,nargin));
+narginchk(2,5);
 %
 if nargin < 3
     %

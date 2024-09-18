@@ -81,8 +81,8 @@ function [regions,dim_1_rot] = eq_regions(dim,N,varargin)
 %
 % Check number of arguments
 %
-error(nargchk(2,4,nargin));
-error(nargoutchk(0,2,nargout));
+narginchk(2,4);
+nargoutchk(0,2);
 %
 % If the option 'offset' is 'extra', then use experimental extra offsets
 % for S^2 and S^3 regions to try to minimize energy.

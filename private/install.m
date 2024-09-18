@@ -27,6 +27,8 @@ function install(pddir)
 %
 %   See also UNINSTALL, MAKEINSTALL, CHECKINSTALL, SAVEPATHONLY.
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-28 $
 % Revision 2005-05-28 Copyright (c) Paul Leopardi for UNSW:
 % Clearly distinguish between info and error messages
 % Check return value of uigetfile and return if 0.
@@ -40,10 +42,10 @@ istr = 'Info: ';
 if ~exist(fullfile(pwd,'info.ins'),'file')
    error('This toolbox cannot be installed.')
 end
-load info.ins -mat
-%% if IS_INSTALLED
-%%    warning('This toolbox is already installed.')
-%% end
+load('info.ins','-mat','INS_DIRS','IS_INSTALLED')
+if IS_INSTALLED
+   warning('This toolbox is already installed.')
+end
 addpath(pwd)
 for i=1:length(INS_DIRS)
    addpath(fullfile(pwd,INS_DIRS{i}))
@@ -65,5 +67,5 @@ case 2, error('Original pathdef.m was not found. Try "install -".')
 case 3, error('Original pathdef.m was found but couldn''t be read. Try "install -".')
 end
 disp([istr 'Installed.'])
-%% IS_INSTALLED=1;
-%% save info.ins INS_DIRS IS_INSTALLED
+IS_INSTALLED=1;
+save('info.ins','INS_DIRS','IS_INSTALLED')

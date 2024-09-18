@@ -43,6 +43,8 @@ function [s_cap,n_regions] = eq_caps(dim,N)
 %See also
 % EQ_REGIONS, EQ_POINT_SET_POLAR
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-29 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -55,8 +57,8 @@ function [s_cap,n_regions] = eq_caps(dim,N)
 %
 % Check number of arguments
 %
-error(nargchk(2,2,nargin));
-error(nargoutchk(2,2,nargout));
+narginchk(2,2);
+nargoutchk(2,2);
 %
 % dim is the number of dimensions
 % N is the number of regions
@@ -78,8 +80,8 @@ elseif N == 1
     %
     % We have only one region, which must be the whole sphere.
     %
-    s_cap = [pi];
-    n_regions = [1];
+    s_cap = pi;
+    n_regions = 1;
     %
 else
     %

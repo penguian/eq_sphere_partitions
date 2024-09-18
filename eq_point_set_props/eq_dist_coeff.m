@@ -44,6 +44,8 @@ function coeff = eq_dist_coeff(dim,N,varargin)
 %See also
 % PARTITION_OPTIONS, EQ_MIN_DIST
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-29 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -56,7 +58,7 @@ function coeff = eq_dist_coeff(dim,N,varargin)
 %
 % Check number of arguments
 %
-error(nargchk(2,4,nargin));
+narginchk(2,4);
 %
 % dim is the number of dimensions
 % N is the number of regions

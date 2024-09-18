@@ -3,6 +3,8 @@ function diam_bound = max_diam_bound_of_regions(regions)
 %
 % diam_bound = max_diam_bound_of_regions(regions);
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-04-28 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Function s2e changed name to sph2euc_dist
@@ -41,7 +43,6 @@ pseudo_region = pseudo_region_for_diam(region);
 dim = size(pseudo_region,1);
 top = pseudo_region(:,1);
 bot = pseudo_region(:,2);
-diam_bound = 0;
 s = bot(dim)-top(dim);
 e = sph2euc_dist(s);
 if dim == 1
