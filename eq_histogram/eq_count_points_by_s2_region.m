@@ -20,12 +20,37 @@ function count_v = eq_count_points_by_s2_region(s_point,N)
 %Examples
 % > points_s = eq_point_set_polar(2,8)
 % points_s =
-%         0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596         0
-%         0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708    3.1416
+%          0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596         0
+%          0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708    3.1416
 %
-% >> count_v=eq_count_points_by_s2_region(points_s,5)
+% > count_v = eq_count_points_by_s2_region(points_s, 8)
+% count_v =
+%      1     1     1     1     1     1     1     1
+%
+% > count_v = eq_count_points_by_s2_region(points_s, 5)
 % count_v =
 %      1     2     2     2     1
+%
+% > sum(count_v)
+% ans =
+%      8
+%
+% > points_s = eq_point_set_polar(2,128);
+% > count_v = eq_count_points_by_s2_region(points_s, 8)
+% count_v =
+%     19    15    14    17    15    14    15    19
+%
+% > sum(count_v)
+% ans =
+%    128
+%
+% > count_v = eq_count_points_by_s2_region(points_s, 5)
+% count_v =
+%     19    29    32    29    19
+%
+% > sum(count_v)
+% ans =
+%    128
 %
 %See also
 % EQ_FIND_S2_REGION
