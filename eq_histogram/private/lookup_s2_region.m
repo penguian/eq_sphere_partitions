@@ -19,46 +19,33 @@ function r_idx = lookup_s2_region(s_point, s_regions, s_cap, c_regions)
 % c_regions Sequence of the cumulative number of regions of s_regions within each cap of c_cap.
 %
 %Examples
+% > cd eq_histogram/private
 % > points_s = eq_point_set_polar(2,8)
 % points_s =
 %          0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596         0
 %          0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708    3.1416
 %
-% > count_v = eq_count_points_by_s2_region(points_s, 8)
-% count_v =
-%      1     1     1     1     1     1     1     1
+% > N = 8;
+% > s_regions = eq_regions(2, N);
+% > [s_cap, n_regions] = eq_caps(2, N);
+% > c_regions = cumsum(n_regions);
+% > r_idx = lookup_s2_region(points_s, s_regions, s_cap, c_regions)
+% r_idx =
+%      1     2     3     4     5     6     7     8
 %
-% > count_v = eq_count_points_by_s2_region(points_s, 5)
-% count_v =
-%      1     2     2     2     1
-%
-% > sum(count_v)
-% ans =
-%      8
-%
-% > points_s = eq_point_set_polar(2,128);
-% > count_v = eq_count_points_by_s2_region(points_s, 8)
-% count_v =
-%     19    15    14    17    15    14    15    19
-%
-% > sum(count_v)
-% ans =
-%    128
-%
-% > count_v = eq_count_points_by_s2_region(points_s, 5)
-% count_v =
-%     19    29    32    29    19
-%
-% > sum(count_v)
-% ans =
-%    128
-%
+% > N = 5;
+% > s_regions = eq_regions(2, N);
+% > [s_cap, n_regions] = eq_caps(2, N);
+% > c_regions = cumsum(n_regions);
+% > r_idx = lookup_s2_region(points_s, s_regions, s_cap, c_regions)
+% r_idx =
+%      1     2     2     3     3     4     4     5
 %
 %See also
 % EQ_REGIONS, EQ_CAPS, CUMSUM, LOOKUP_TABLE
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-09-07 $
+% $Revision 1.12 $ $Date 2024-09-18 $
 % Copyright 2012 Paul Leopardi
 % $Revision 1.11 $ $Date 2012-01-20 $
 %
@@ -68,14 +55,14 @@ function r_idx = lookup_s2_region(s_point, s_regions, s_cap, c_regions)
 
 n_caps = length(s_cap);
 if n_caps ~= length(c_regions)
-    msg = 'LOOKUP_S2_REGION: Mismatch between length of s_cap (==%d) and length of c_regions (==%d)\n'
+    msg = 'LOOKUP_S2_REGION: Mismatch between length of s_cap (==%d) and length of c_regions (==%d)\n';
     fprintf(msg, n_caps, length(c_regions))
     r_idx = 0;
     return
 end
 n_regions = size(s_regions, 3);
 if c_regions(n_caps) ~= n_regions
-    msg = 'LOOKUP_S2_REGION: Mismatch between c_regions(end) (==%d) and length of s_regions (==%d)\n'
+    msg = 'LOOKUP_S2_REGION: Mismatch between c_regions(end) (==%d) and length of s_regions (==%d)\n';
     fprintf(msg, c_regions(n_caps), n_regions)
     r_idx = 0;
     return
