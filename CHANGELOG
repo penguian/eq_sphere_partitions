@@ -1,10 +1,24 @@
 Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox.
+Release 1.12 2024-09-18
+Copyright 2024 Paul Leopardi
 Release 1.10 2005-06-26
 Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 CHANGELOG
 
 For licensing, see COPYING
 For references, see AUTHORS
+
+Changes between Release 1.10 and Release 1.12 as at 2024-09-18
+==============================================================
+
+1) Bring the installer up-to-date with respect to current Matlab.
+
+2) Bring the code up-to-date with respect to current Matlab.
+
+3) Complete the histogram utilities in the eq_histogram directory.
+
+* Note * The histogram utilities as at Revision 1.11 of 2012-2013
+were incomplete, untested, and incorrect.
 
 Changes between Revision 1.02 and Release 1.10 as at 2005-06-26
 ===============================================================
