@@ -41,22 +41,30 @@ function coeff = eq_energy_coeff(dim,N,s,varargin)
 % see HELP CALC_ENERGY_COEFF
 %
 %Examples
-% > coeff=eq_energy_coeff(2,10)
+%
+% >> coeff = eq_energy_coeff(2,10)
+%
 %  coeff =
+%
 %     -0.5461
-%  
-% > coeff=eq_energy_coeff(3,1:6)
+%
+% >> coeff = eq_energy_coeff(3,1:6)
+%
 %  coeff =
+%
 %     -0.5000   -0.5512   -0.5208   -0.5457   -0.5472   -0.5679
-% > coeff=eq_energy_coeff(2,1:6,0)
+%
+% >> coeff = eq_energy_coeff(2,1:6,0)
+%
 %  coeff =
+%
 %           0   -0.2213   -0.1569   -0.2213   -0.2493   -0.2569
 %
 %See also
 % PARTITION_OPTIONS, EQ_ENERGY_DIST, CALC_ENERGY_COEFF
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-29 $
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

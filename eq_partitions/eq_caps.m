@@ -28,23 +28,32 @@ function [s_cap,n_regions] = eq_caps(dim,N)
 % The sum of N_REGIONS is N.
 %
 %Examples
-% > [s_cap,n_regions] = eq_caps(2,10)
+%
+% >> [s_cap,n_regions] = eq_caps(2,10)
+%
 % s_cap =
+%
 %     0.6435    1.5708    2.4981    3.1416
+%
 % n_regions =
+%
 %      1     4     4     1
-%  
-% > [s_cap,n_regions] = eq_caps(3,6)
+%
+% >> [s_cap,n_regions] = eq_caps(3,6)
+%
 % s_cap =
+%
 %     0.9845    2.1571    3.1416
+%
 % n_regions =
+%
 %      1     4     1
 %
 %See also
 % EQ_REGIONS, EQ_POINT_SET_POLAR
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-29 $
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

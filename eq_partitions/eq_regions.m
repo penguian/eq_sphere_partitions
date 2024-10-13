@@ -43,7 +43,9 @@ function [regions,dim_1_rot] = eq_regions(dim,N,varargin)
 % For more details on options, see HELP PARTITION_OPTIONS.
 %
 %Examples
-% > regions = eq_regions(2,4)
+%
+% >> regions = eq_regions(2,4)
+%
 % regions(:,:,1) =
 %          0    6.2832
 %          0    1.0472
@@ -57,13 +59,16 @@ function [regions,dim_1_rot] = eq_regions(dim,N,varargin)
 %          0    6.2832
 %     2.0944    3.1416
 %
-% > size(regions)
+% >> size(regions)
+%
 % ans =
 %      2     2     4
 %
 %See also
 % PARTITION_OPTIONS, EQ_POINT_SET, EQ_POINT_SET_POLAR, PROJECT_S3_PARTITION
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Fix bug in assignment of dim_1_rot

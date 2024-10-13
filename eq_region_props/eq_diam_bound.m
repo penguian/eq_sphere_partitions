@@ -16,17 +16,24 @@ function diam_bound = eq_diam_bound(dim,N)
 % The result DIAM_BOUND will an array of the same size as N.
 %
 %Examples
-% > diam_bound=eq_diam_bound(2,10)
+%
+% >> diam_bound = eq_diam_bound(2,10)
+%
 %  diam_bound =
+%
 %      1.6733
-%  
-% > diam_bound=eq_diam_bound(3,1:6)
+%
+% >> diam_bound = eq_diam_bound(3,1:6)
+%
 %  diam_bound =
+%
 %       2     2     2     2     2     2
-%  
+%
 %See also
 % EQ_VERTEX_DIAM, EQ_DIAM_COEFF, EQ_REGIONS_PROPERTY
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

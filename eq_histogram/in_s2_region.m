@@ -15,18 +15,23 @@ function result = in_s2_region(s_point,region)
 % region   One region of S^2 as returned by eq_regions(2,N) for some positive integer N.
 %
 %Examples
-% > points_s = eq_point_set_polar(2,8)
+%
+% >> points_s = eq_point_set_polar(2,8)
+%
 % points_s =
+%
 %          0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596         0
 %          0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708    3.1416
 %
-% > s_regions = eq_regions(2,5);
-% > region = s_regions(:,:,3)
+% >> s_regions = eq_regions(2,5);
+% >> region = s_regions(:,:,3)
+%
 % region =
 %     2.0944    4.1888
 %     0.9273    2.2143
 %
 % >> result = in_s2_region(points_s, region)
+%
 % result =
 %      0     0     0     1     1     0     0     0
 %

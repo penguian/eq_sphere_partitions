@@ -16,7 +16,7 @@ function coeff = point_set_dist_coeff(points)
 %    where N is the number of points in POINTS.
 %
 % The argument POINTS must be an array of real numbers of size (dim+1 by N),
-% where dim and N are positive integers. 
+% where dim and N are positive integers.
 % Each column of POINTS represents a point in R^(dim+1).
 % It is assumed that point set POINTS is a subset of the unit sphere S^dim,
 % but this is not checked.
@@ -26,21 +26,26 @@ function coeff = point_set_dist_coeff(points)
 % distance, see HELP CALC_DIST-COEFF.
 %
 %Examples
-% > x
-%  x =
-%           0    0.0000   -0.0000    0.0000
-%           0    1.0000   -1.0000         0
-%      1.0000    0.0000    0.0000   -1.0000
-%  
-% > point_set_dist_coeff(x)
-%  ans =
-%      2.8284
+%
+% >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+%
+% x =
+%
+%      0     0     0     0
+%      0     1    -1     0
+%      1     0     0    -1
+%
+% >> coeff = point_set_dist_coeff(x)
+%
+% coeff =
+%
+%     2.8284
 %
 %See also
 % POINT_SET_MIN_DIST, CALC_DIST_COEFF, EQ_DIST_COEFF, EQ_MIN_DIST
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-28 $
+% $Revision 1.12 $ $Date 2024-10-12 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

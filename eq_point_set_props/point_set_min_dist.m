@@ -1,5 +1,5 @@
 function min_dist = point_set_min_dist(points)
-%POINT_SET_MIN_DIST Minimum distance between points of a point set 
+%POINT_SET_MIN_DIST Minimum distance between points of a point set
 %
 %Syntax
 % min_dist = point_set_min_dist(points);
@@ -13,24 +13,30 @@ function min_dist = point_set_min_dist(points)
 % R^M in Cartesian coordinates.
 %
 %Notes
-% Since this function is usually meant to be used for points on a unit sphere, 
+% Since this function is usually meant to be used for points on a unit sphere,
 % the value of POINT_SET_MIN_DIST for a single point is defined to be 2.
 %
 %Examples
-% > x
+%
+% >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+%
 % x =
-%          0         0    0.0000         0
-%          0         0         0         0
-%          0    1.0000   -1.0000    0.0000
-%     1.0000    0.0000    0.0000   -1.0000
-%  
-% > d=point_set_min_dist(x)
-% d =
+%
+%      0     0     0     0
+%      0     1    -1     0
+%      1     0     0    -1
+%
+% >> min_dist = point_set_min_dist(x)
+%
+% min_dist =
+%
 %     1.4142
 %
 %See also
 % EUCLIDEAN_DIST, MIN_EUCLIDEAN_DIST, POINT_SET_ENERGY_DIST
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-12 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

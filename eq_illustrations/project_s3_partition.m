@@ -43,19 +43,23 @@ function [movie_frame] = project_s3_partition(N,varargin)
 % For more detail on illustration options, see HELP ILLUSTRATION_OPTIONS.
 %
 %Examples
-% > project_s3_partition(10)
-% > frames=project_s3_partition(9,'offset','extra','proj','eqarea')
+%
+% >> project_s3_partition(10)
+% >> frames = project_s3_partition(9,'offset','extra','proj','eqarea')
+%
 % frames =
+%
 % 1x18 struct array with fields:
 %     cdata
 %     colormap
-% > project_s3_partition(99,'proj','eqarea','points','hide')
+%
+% >> project_s3_partition(99,'proj','eqarea','points','hide')
 %
 %See also
 % MOVIE, PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, PROJECT_S2_PARTITION
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-29 $
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Function changed name from s2x to polar2cart

@@ -33,19 +33,24 @@ function coeff = eq_dist_coeff(dim,N,varargin)
 % N goes to infinity.
 %
 %Examples
-% > coeff=eq_dist_coeff(2,10)
+%
+% >> coeff = eq_dist_coeff(2,10)
+%
 %  coeff =
+%
 %      3.3250
-%  
-% > coeff=eq_dist_coeff(3,1:6)
+%
+% >> coeff = eq_dist_coeff(3,1:6)
+%
 %  coeff =
+%
 %      2.0000    2.5198    2.0396    2.2449    2.4183    2.5698
 %
 %See also
 % PARTITION_OPTIONS, EQ_MIN_DIST
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-29 $
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

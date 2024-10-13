@@ -30,23 +30,26 @@ function project_point_set(points,varargin)
 %
 %Notes
 % The points are assumed to all lie on the unit sphere S^dim, where dim == 2 or
-% dim == 3. The first point POINTS(:,1) should be the North pole [1,0,0]' or 
+% dim == 3. The first point POINTS(:,1) should be the North pole [1,0,0]' or
 % [1,0,0,0]'.
 %
 %Examples
-% > x
-%  x =
-%           0    0.0000   -0.0000    0.0000
-%           0    1.0000   -1.0000         0
-%      1.0000    0.0000    0.0000   -1.0000
-%  
-% > project_point_set(x)
+%
+% >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+%
+% x =
+%
+%      0     0     0     0
+%      0     1    -1     0
+%      1     0     0    -1
+%
+% >> project_point_set(x)
 %
 %See also
 % ILLUSTRATION_OPTIONS
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-05-05 $
+% $Revision 1.12 $ $Date 2024-10-12 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

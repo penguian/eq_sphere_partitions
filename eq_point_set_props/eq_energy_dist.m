@@ -25,19 +25,25 @@ function [energy,dist] = eq_energy_dist(dim,N,s,varargin)
 % For dim > 3, extra offsets are not used.
 %
 %Examples
-% > energy=eq_energy_dist(2,10)
+%
+% >> energy = eq_energy_dist(2,10)
+%
 %  energy =
 %     32.7312
 %
-% > [energy,dist]=eq_energy_dist(3,1:6,0)
+% >> [energy,dist] = eq_energy_dist(3,1:6,0)
+%
 %  energy =
 %           0   -0.6931   -1.3863   -2.7726   -4.1589   -6.2383
+%
 %  dist =
 %      2.0000    2.0000    1.4142    1.4142    1.4142    1.4142
-%  
-% > [energy,dist]=eq_energy_dist(3,100,1,'offset','extra')
+%
+% >> [energy,dist] = eq_energy_dist(3,100,1,'offset','extra')
+%
 %  energy =
 %     4.0042e+03
+%
 %  dist =
 %      0.6545
 %
@@ -46,7 +52,7 @@ function [energy,dist] = eq_energy_dist(dim,N,s,varargin)
 % MIN_DIST
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-05-05 $
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -70,7 +76,7 @@ elseif ischar(s)
     %
     % Ensure that the user has not omitted argument s.
     %
-    error('Argument s must be numeric.');    
+    error('Argument s must be numeric.');
 end
 %
 % If the option 'offset' is 'extra', then use experimental extra offsets
@@ -110,6 +116,6 @@ end
 energy = reshape(energy,shape);
 if nargout > 1
     dist = reshape(dist,shape);
-end    
+end
 %
 % end function

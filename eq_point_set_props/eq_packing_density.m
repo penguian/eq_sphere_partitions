@@ -29,20 +29,25 @@ function density = eq_packing_density(dim,N,varargin)
 % distance between center points. The spherical radius for N == 1 is a special 
 % case. It is defined to be pi.
 %
-%Examples 
-% > density=eq_packing_density(2,10)
+%Examples
+%
+% >> density = eq_packing_density(2,10)
+%
 %  density =
+%
 %      0.7467
-%  
-% > density=eq_packing_density(3,1:6)
+%
+% >> density = eq_packing_density(3,1:6)
+%
 %  density =
+%
 %      1.0000    1.0000    0.2725    0.3634    0.4542    0.5451
 %
 %See also
 % EQ_MIN_DIST, AREA_OF_CAP, AREA_OF_SPHERE, PARTITION_OPTIONS
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-28 $
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

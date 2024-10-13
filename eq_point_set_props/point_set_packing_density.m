@@ -12,33 +12,38 @@ function density = point_set_packing_density(points)
 % spherical caps with this minimum distance.
 %
 % The argument POINTS must be an array of real numbers of size (dim+1 by N),
-% where dim and N are positive integers. 
-% Each column of POINTS must represents a point of S^dim in Cartesian 
+% where dim and N are positive integers.
+% Each column of POINTS must represents a point of S^dim in Cartesian
 % coordinates.
 %
 %Notes
 % Because packing density is defined using spherical caps, it well defined only
 % for points on S^dim. Therefore POINTS must represent a subset of S^dim.
 %
-% For more details on the calculation of packing density, 
+% For more details on the calculation of packing density,
 % see HELP CALC_PACKING_DENSITY.
 %
-%Examples 
-% > x
-%  x =
-%           0    0.0000   -0.0000    0.0000
-%           0    1.0000   -1.0000         0
-%      1.0000    0.0000    0.0000   -1.0000
-%  
-% > point_set_packing_density(x)
-%  ans =
+%Examples
+%
+% >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+%
+% x =
+%
+%      0     0     0     0
+%      0     1    -1     0
+%      1     0     0    -1
+%
+% >> density = point_set_packing_density(x)
+%
+%  density =
+%
 %      0.5858
 %
 %See also
 % CALC_PACKING_DENSITY, EQ_MIN_DIST, AREA_OF_CAP, AREA_OF_SPHERE
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-28 $
+% $Revision 1.12 $ $Date 2024-10-12 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -59,7 +64,7 @@ tol = eps * 2^5;
 radius = sqrt(sum(points.*points));
 if (min(radius) < 1-tol) || (max(radius) > 1+tol)
     error('Point set must be a subset of the unit sphere');
-end    
+end
 %
 % dim is the dimension of S^dim as a manifold.
 %

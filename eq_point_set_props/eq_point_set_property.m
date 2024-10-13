@@ -26,15 +26,18 @@ function property = eq_point_set_property(fhandle,dim,N,varargin)
 % For dim > 3, extra offsets are not used.
 %
 %Examples
+%
 % > dist = eq_point_set_property(@point_set_min_dist,2,10)
+%
 %  dist =
+%
 %      1.0515
 %
 %See also
 % EQ_POINT_SET, FEVAL, PARTITION_OPTIONS
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-28 $
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

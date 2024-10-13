@@ -56,21 +56,28 @@ function coeff = calc_energy_coeff(dim,N,s,energy)
 % non-zero term.
 %
 %Examples
-% > N=2:6
+%
+% >> N = 2:6
+%
 %  N =
 %       2     3     4     5     6
-%  
-% > energy=eq_energy_dist(2,N,0)
+%
+% >> energy = eq_energy_dist(2,N,0)
+%
 %  energy =
+%
 %     -0.6931   -1.3863   -2.7726   -4.4205   -6.2383
-%  
+%
 % > calc_energy_coeff(2,N,0,energy)
+%
 %  ans =
 %     -0.2213   -0.1569   -0.2213   -0.2493   -0.2569
 %
 %See also
 % EQ_ENERGY_DIST, EQ_ENERGY_COEFF
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -140,7 +147,7 @@ if s ~= 0
 elseif dim ~= 1
     energy = (psi(dim)-psi(dim/2)-log(4))/2;
 else
-    energy = 0;    
+    energy = 0;
 end
 %
 % end function

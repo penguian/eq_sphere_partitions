@@ -23,23 +23,29 @@ function coeff = calc_dist_coeff(dim,N,min_euclidean_dist)
 % [KuiS98 (1.12) p. 525] for s > dim.
 %
 %Examples
-% > N=2:6
+%
+% >> N = 2:6
+%
 %  N =
 %       2     3     4     5     6
-%  
-% > dist=eq_min_dist(2,N)
+%
+% >> dist = eq_min_dist(2,N)
+%
 %  dist =
+%
 %      2.0000    1.4142    1.4142    1.4142    1.4142
-%  
-% > calc_dist_coeff(2,N,dist)
+%
+% >> calc_dist_coeff(2,N,dist)
+%
 %  ans =
+%
 %      2.8284    2.4495    2.8284    3.1623    3.4641
 %
 %See also
 % EQ_MIN_DIST, EQ_DIST_COEFF
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-29 $
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

@@ -9,23 +9,27 @@ function s = cart2polar2(x)
 % represented by the Cartesian coordinates X:
 % S = [phi;theta]: phi in [0, 2*pi), theta in [0, pi].
 %
-% The argument X must be an array of real numbers of size (3 by N), where N is 
+% The argument X must be an array of real numbers of size (3 by N), where N is
 % any positive integer. The result S will be an array of size (2 by N).
 %
 %Examples
-% > x
-% x =
-%          0    0.0000   -0.0000    0.0000
-%          0    1.0000   -1.0000         0
-%     1.0000    0.0000    0.0000   -1.0000
 %
-% > s=cart2polar2(x)
+% >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+%
+% x =
+%
+%      0     0     0     0
+%      0     1    -1     0
+%      1     0     0    -1
+%
+% >> s = cart2polar2(x)
+%
 % s =
 %          0    1.5708    4.7124         0
 %          0    1.5708    1.5708    3.1416
 %
 %Note
-% CART2POLAR2(X) projects any X in R^3 onto the sphere S^2 via a line through 
+% CART2POLAR2(X) projects any X in R^3 onto the sphere S^2 via a line through
 % the origin. The origin [0 0 0]' is itself projected onto a point on the
 % equator such that
 %
@@ -34,6 +38,8 @@ function s = cart2polar2(x)
 %See also
 % POLAR2CART
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-12 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -45,6 +51,6 @@ function s = cart2polar2(x)
 % For licensing, see COPYING.
 % For references, see AUTHORS.
 % For revision history, see CHANGELOG.
- 
+
 [phi, theta] = cart2sph(x(1,:),x(2,:),x(3,:));
 s = [mod(phi, 2*pi); pi/2-theta];

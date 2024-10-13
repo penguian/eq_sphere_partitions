@@ -63,13 +63,16 @@ function illustrate_eq_algorithm(dim,N,varargin)
 %    and the colatitudes of the polar caps.
 %
 %Examples
-% > illustrate_eq_algorithm(3,99)
-% > illustrate_eq_algorithm(3,99,'offset','extra','proj','eqarea')
-% > illustrate_eq_algorithm(3,99,'proj','eqarea','points','hide')
+%
+% >> illustrate_eq_algorithm(3,99)
+% >> illustrate_eq_algorithm(3,99,'offset','extra','proj','eqarea')
+% >> illustrate_eq_algorithm(3,99,'proj','eqarea','points','hide')
 %
 %See also
 % PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, SUBPLOT
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

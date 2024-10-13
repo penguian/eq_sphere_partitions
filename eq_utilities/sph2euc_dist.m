@@ -16,17 +16,24 @@ function e = sph2euc_dist(s)
 % The argument S is assumed to satsify abs(S) <= pi.
 %
 %Examples
-% > e=sph2euc_dist(pi)
+%
+% >> e = sph2euc_dist(pi)
+%
 % e =
+%
 %      2
 %
-% > e=sph2euc_dist(0:pi/4:pi)
+% >> e = sph2euc_dist(0:pi/4:pi)
+%
 % e =
+%
 %          0    0.7654    1.4142    1.8478    2.0000
 %
 %See also
 % EUC2SPH_DIST, EUCLIDEAN_DIST, SPHERICAL_DIST
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Change name from s2e to sph2euc_dist

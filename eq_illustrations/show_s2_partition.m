@@ -39,19 +39,23 @@ function [movie_frame] = show_s2_partition(N,varargin)
 % For more detail on illustration options, see HELP ILLUSTRATION_OPTIONS.
 %
 %Examples
-% > show_s2_partition(10)
-% > frames=show_s2_partition(9,'offset','extra')
+%
+% >> show_s2_partition(10)
+% >> frames = show_s2_partition(9,'offset','extra')
+%
 % frames =
+%
 % 1x10 struct array with fields:
 %     cdata
 %     colormap
-% > show_s2_partition(99,'points','hide')
+%
+% >> show_s2_partition(99,'points','hide')
 %
 %See also
 % MOVIE, PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, PROJECT_S2_PARTITION
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-30 $
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Function changed name from s2x to polar2cart

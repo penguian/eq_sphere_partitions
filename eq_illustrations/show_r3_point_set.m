@@ -37,18 +37,23 @@ function show_r3_point_set(points_x,varargin)
 % from the origin, the sphere will hide these points.
 %
 %Examples
-% > points_x
-% points_x =
-%          0    0.0000   -0.0000    0.0000
-%          0    1.0000   -1.0000         0
-%     1.0000    0.0000    0.0000   -1.0000
 %
-% > show_r3_point_set(points_x,'sphere','hide')
-% > show_r3_point_set(points_x,'sphere','show')
+% >> points_x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+%
+% points_x =
+%
+%      0     0     0     0
+%      0     1    -1     0
+%      1     0     0    -1
+%
+% >> show_r3_point_set(points_x,'sphere','hide')
+% >> show_r3_point_set(points_x,'sphere','show')
 %
 %See also
 % ILLUSTRATION_OPTIONS, SHOW_S2_PARTITION, PROJECT_POINT_SET
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

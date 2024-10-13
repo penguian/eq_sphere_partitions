@@ -28,22 +28,28 @@ function [bound_coeff,vertex_coeff] =  eq_diam_coeff(dim,N)
 % the same size as N.
 %
 %Examples
-% > bound_coeff=eq_diam_coeff(2,10)
+%
+% >> bound_coeff = eq_diam_coeff(2,10)
+%
 %  bound_coeff =
+%
 %      5.2915
-%  
-% > [bound_coeff,vertex_coeff]=eq_diam_coeff(3,1:6)
+%
+% >> [bound_coeff,vertex_coeff]=eq_diam_coeff(3,1:6)
+%
 %  bound_coeff =
+%
 %      2.0000    2.5198    2.8845    3.1748    3.4200    3.6342
-%  
+%
 %  vertex_coeff =
+%
 %      2.0000    2.5198    2.8845    3.1748    3.4200    3.6342
 %
 %See also 
 % EQ_DIAM_BOUND, EQ_VERTEX_DIAM, EQ_REGIONS, EQ_VERTEX_DIAM_COEFF
  
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-28 $
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of NSW.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -68,7 +74,7 @@ else
     shape = size(N);
     n_partitions = prod(shape);
     N = reshape(N,1,n_partitions);
-    
+
     bound_coeff =  zeros(size(N));
     vertex_coeff = zeros(size(N));
     for partition_n = 1:n_partitions
@@ -77,7 +83,7 @@ else
         scale = n^(1/dim);
         bound_coeff(partition_n) =  max_diam_bound_of_regions(regions)  * scale;
         vertex_coeff(partition_n) = max_vertex_diam_of_regions(regions) * scale;
-    end    
+    end
     %
     % Reshape output to same array size as original N.
     %

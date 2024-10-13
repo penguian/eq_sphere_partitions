@@ -21,11 +21,14 @@ function dist = eq_min_dist(dim,N,varargin)
 % distance. For dim > 3, extra offsets are not used.
 %
 %Examples
-% > dist=eq_min_dist(2,10)
+%
+% >> dist = eq_min_dist(2,10)
+%
 %  dist =
 %      1.0515
-%  
-% > dist=eq_min_dist(3,1:6)
+%
+% >> dist = eq_min_dist(3,1:6)
+%
 %  dist =
 %      2.0000    2.0000    1.4142    1.4142    1.4142    1.4142
 %
@@ -33,7 +36,7 @@ function dist = eq_min_dist(dim,N,varargin)
 % PARTITION_OPTIONS, EUCLIDEAN_DIST, EQ_ENERGY_DIST
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-28 $
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
