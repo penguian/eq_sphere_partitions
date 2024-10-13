@@ -60,6 +60,7 @@ function coeff = calc_energy_coeff(dim,N,s,energy)
 % >> N = 2:6
 %
 %  N =
+%
 %       2     3     4     5     6
 %
 % >> energy = eq_energy_dist(2,N,0)
@@ -68,9 +69,10 @@ function coeff = calc_energy_coeff(dim,N,s,energy)
 %
 %     -0.6931   -1.3863   -2.7726   -4.4205   -6.2383
 %
-% > calc_energy_coeff(2,N,0,energy)
+% >> coeff = calc_energy_coeff(2,N,0,energy)
 %
-%  ans =
+%  coeff =
+%
 %     -0.2213   -0.1569   -0.2213   -0.2493   -0.2569
 %
 %See also

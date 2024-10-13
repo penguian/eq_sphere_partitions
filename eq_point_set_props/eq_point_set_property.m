@@ -27,7 +27,7 @@ function property = eq_point_set_property(fhandle,dim,N,varargin)
 %
 %Examples
 %
-% > dist = eq_point_set_property(@point_set_min_dist,2,10)
+% >> dist = eq_point_set_property(@point_set_min_dist,2,10)
 %
 %  dist =
 %

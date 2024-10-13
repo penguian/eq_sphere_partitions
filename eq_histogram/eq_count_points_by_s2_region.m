@@ -44,27 +44,27 @@ function count_v = eq_count_points_by_s2_region(s_point,N)
 %
 %      8
 %
-% > points_s = eq_point_set_polar(2,128);
+% >> points_s = eq_point_set_polar(2,128);
 %
-% > count_v = eq_count_points_by_s2_region(points_s, 8)
+% >> count_v = eq_count_points_by_s2_region(points_s, 8)
 %
 % count_v =
 %
 %     19    15    14    17    15    14    15    19
 %
-% > sum(count_v)
+% >> sum(count_v)
 %
 % ans =
 %
 %    128
 %
-% > count_v = eq_count_points_by_s2_region(points_s, 5)
+% >> count_v = eq_count_points_by_s2_region(points_s, 5)
 %
 % count_v =
 %
 %     19    29    32    29    19
 %
-% > sum(count_v)
+% >> sum(count_v)
 %
 % ans =
 %

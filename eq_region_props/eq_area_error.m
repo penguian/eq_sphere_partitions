@@ -20,7 +20,7 @@ function [total_error, max_error] = eq_area_error(dim,N)
 %
 %Examples
 %
-% > [total_error, max_error] = eq_area_error(2,10)
+% >> [total_error, max_error] = eq_area_error(2,10)
 %
 % total_error =
 %
@@ -30,7 +30,7 @@ function [total_error, max_error] = eq_area_error(dim,N)
 %
 %    4.4409e-16
 %
-% > [total_error, max_error] = eq_area_error(3,1:6)
+% >> [total_error, max_error] = eq_area_error(3,1:6)
 %
 % total_error =
 %
