@@ -1,5 +1,5 @@
 % Recursive Zonal Equal Area Sphere Partitioning Toolbox.
-% Release 1.12 2024-09-18
+% Release 1.12 2024-10-14
 %
 %Functions by category
 %=====================
@@ -28,6 +28,10 @@
 %
 %Properties of recursive zonal equal area sphere partitions
 %----------------------------------------------------------
+%
+% Area
+%  eq_area_error          Total area error and max area error per region of an
+%                             EQ partition
 %
 % Diameter
 %  eq_diam_bound          Maximum per-region diameter bound of EQ partition
@@ -82,6 +86,9 @@
 %Illustrations
 %-------------
 %
+% Illustration of algorithms
+%  illustrate_eq_algorithm  Illustrate the EQ partition algorithm
+%
 % Illustration of EQ Partitions of S^2 or S^3
 %  show_s2_partition      3D illustration of an EQ partition of S^2
 %  project_s2_partition   Use projection to illustrate an EQ partition of S^2
@@ -97,11 +104,8 @@
 % Illustration options
 %  illustration_options   Options for illustrations of EQ partitions
 %
-%Tests
-%-----
-%
-%  eq_area_error          Total area error and max area error per region of an
-%                             EQ partition
+% Illustration utilities
+%  haslight               Check if axis handle has a light attached
 %
 %Utilities
 %---------
@@ -114,21 +118,23 @@
 %  euc2sph_dist           Convert Euclidean to spherical distance
 %  euclidean_dist         Euclidean distance between two points
 %  fatcurve               Create a parameterized cylindrical surface
-%  haslight               Check if axis handle has a light attached
 %  ideal_collar_angle     Ideal angle for spherical collars of an EQ partition
-%  illustration_options   Options for illustrations of EQ partitions
-%  partition_options      Options for EQ partition
 %  polar2cart             Convert spherical polar to Cartesian coordinates
 %  sph2euc_dist           Convert spherical to Euclidean distance
 %  spherical_dist         Spherical distance between two points on the sphere
 %  sradius_of_cap         Spherical radius of spherical cap of given area
 %  volume_of_ball         Volume of the unit ball
 %
+%Tests
+%-----
+%
+%  Tests of all functions.
+%
 % If the previous text scrolled off the screen, try
 % more on; help eq_sphere_partitions; more off;
 
 % Copyright 2024 Paul Leopardi
-% $Revision 1.12 $ $Date 2024-09-18 $
+% $Revision 1.12 $ $Date 2024-10-14 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-26 $
 % Function changed name from e2s to euc2sph_dist
