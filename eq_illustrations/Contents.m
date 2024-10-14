@@ -6,6 +6,9 @@
 %Functions by category
 %=====================
 %
+% Illustration of algorithms
+%  illustrate_eq_algorithm  Illustrate the EQ partition algorithm
+%
 % Illustration of EQ Partitions of S^2 or S^3
 %  show_s2_partition      3D illustration of an EQ partition of S^2
 %  project_s2_partition   Use projection to illustrate an EQ partition of S^2
@@ -23,7 +26,7 @@
 %  haslight               Check if axis handle has a light attached
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-10-13 $
+% $Revision 1.12 $ $Date 2024-10-14 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

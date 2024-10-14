@@ -1,7 +1,7 @@
 %Recursive Zonal Equal Area Sphere Partitioning: EQ partitions
 %
 % Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox.
-% Release 1.10 2005-06-01
+% Release 1.12 2024-10-14
 %
 %Functions by category
 %=====================
@@ -11,17 +11,16 @@
 %  eq_regions             Recursive zonal equal area (EQ) partition of sphere
 %
 % Point sets
-%  eq_point_set           Center points of regions of EQ partition, 
+%  eq_point_set           Center points of regions of EQ partition,
 %                             in Cartesian coordinates
-%  eq_point_set_polar     Center points of regions of an EQ partition, 
+%  eq_point_set_polar     Center points of regions of an EQ partition,
 %                             in spherical polar coordinates
 %
 % Partition options
 %  partition_options      Options for EQ partition
-%
-% Illustrations
-%  illustrate_eq_algorithm  Illustrate the EQ partition algorithm
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-14 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
