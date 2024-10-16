@@ -55,7 +55,7 @@ function [movie_frame] = show_s2_partition(N,varargin)
 % MOVIE, PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, PROJECT_S2_PARTITION
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-10-13 $
+% $Revision 1.12 $ $Date 2024-10-16 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Function changed name from s2x to polar2cart
@@ -93,11 +93,6 @@ if gopt.show_title
 end
 
 frame_no = 1;
-if nargout > 0
-    movie_frame(frame_no) = getframe(gcf);
-    frame_no = frame_no + 1;
-end
-
 if gopt.show_sphere
     show_s2_sphere;
     hold on
