@@ -1,0 +1,2478 @@
+ EQ_COUNT_POINTS_BY_S2_REGION Given a set of points, count points in each of N regions of S^2
+ 
+ Syntax
+  count_v = eq_count_points_by_s2_region(s_point,N)
+ 
+ Description
+  count_v = eq_count_points_by_s2_region(s_point,N) does the following:
+  1) partitions the unit sphere S^2 into a sequence of N regions of
+     equal area and small diameter;
+  2) for each point in s_point, determines which region contains the point;
+  3) sets count_v to be an array of length N containing the number of points of
+     s_point contained in each region.
+ 
+ Arguments
+  s_point  Sequence of points on S^2, as a 2 x n_points array in spherical polar coordinates,
+           with longitude 0 <= s(1,p_idx) <= 2*pi, colatitude 0 <= s(2,p_idx) <= pi.
+  N        Required number of regions, a positive integer.
+ 
+ Examples
+ 
+  >> points_s = eq_point_set_polar(2,8)
+ 
+  points_s =
+ 
+           0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596         0
+           0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708    3.1416
+ 
+  >> count_v = eq_count_points_by_s2_region(points_s, 8)
+ 
+  count_v =
+ 
+       1     1     1     1     1     1     1     1
+ 
+  >> count_v = eq_count_points_by_s2_region(points_s, 5)
+ 
+  count_v =
+ 
+       1     2     2     2     1
+ 
+  >> sum(count_v)
+ 
+  ans =
+ 
+       8
+ 
+  >> points_s = eq_point_set_polar(2,128);
+ 
+  >> count_v = eq_count_points_by_s2_region(points_s, 8)
+ 
+  count_v =
+ 
+      19    15    14    17    15    14    15    19
+ 
+  >> sum(count_v)
+ 
+  ans =
+ 
+     128
+ 
+  >> count_v = eq_count_points_by_s2_region(points_s, 5)
+ 
+  count_v =
+ 
+      19    29    32    29    19
+ 
+  >> sum(count_v)
+ 
+  ans =
+ 
+     128
+ 
+ See also
+  EQ_FIND_S2_REGION
+
+
+points_s =
+
+  Columns 1 through 7
+
+         0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596
+         0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708
+
+  Column 8
+
+         0
+    3.1416
+
+
+count_v =
+
+     1     1     1     1     1     1     1     1
+
+
+count_v =
+
+     1     2     2     2     1
+
+
+ans =
+
+     8
+
+
+count_v =
+
+    19    15    14    17    15    14    15    19
+
+
+ans =
+
+   128
+
+
+count_v =
+
+    19    29    32    29    19
+
+
+ans =
+
+   128
+
+ EQ_FIND_S2_REGION Given a sequence of points, partition S^2 into N regions
+ and find the index of the region containing each point.
+ 
+ Syntax
+  r_idx = eq_find_s2_region(s_point,N);
+ 
+ Description
+  r_idx = eq_find_s2_region(s_point,N) does the following:
+  1) partitions the unit sphere S^2 into a sequence of N regions of
+     equal area and small diameter;
+  2) for each point in s_point, determines which region contains the point;
+  3) sets r_idx to be an array of length size(s_point,2) containing the index of
+     the region corresponding to each point.
+ 
+ Arguments
+  s_point  Sequence of points on S^2, as a 2 x n_points array in spherical polar coordinates,
+           with longitude 0 <= s(1,p_idx) <= 2*pi, colatitude 0 <= s(2,p_idx) <= pi.
+  N        Required number of regions, a positive integer.
+ 
+ Examples
+ 
+  >> points_s = eq_point_set_polar(2,8)
+ 
+  points_s =
+ 
+          0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596         0
+          0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708    3.1416
+ 
+  >> r_idx = eq_find_s2_region(points_s,8)
+ 
+  r_idx =
+ 
+       1     2     3     4     5     6     7     8
+ 
+  >> r_idx = eq_find_s2_region(points_s,5)
+ 
+  r_idx =
+ 
+       1     2     2     3     3     4     4     5
+ 
+ See also
+  EQ_COUNT_POINTS_BY_S2_REGION, LOOKUP_S2_REGION
+
+
+points_s =
+
+  Columns 1 through 7
+
+         0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596
+         0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708
+
+  Column 8
+
+         0
+    3.1416
+
+
+r_idx =
+
+     1     2     3     4     5     6     7     8
+
+
+r_idx =
+
+     1     2     2     3     3     4     4     5
+
+ IN_S2_REGION Test that a point on S^2 is within a given region
+ 
+ Syntax
+  result = in_s2_region(s_point,region)
+ 
+ Description
+  result = in_s2_region(s_point,region)
+  sets result to an array of length size(s_point,2) with each entry set to true (1)
+  if the corresponding point in s_point is in region, false (0) otherwise.
+ 
+ Arguments
+  s_point  Sequence of points on S^2, as a 2 x n_points array in spherical polar coordinates,
+           with longitude 0 <= s(1,p_idx) <= 2*pi, colatitude 0 <= s(2,p_idx) <= pi.
+  region   One region of S^2 as returned by eq_regions(2,N) for some positive integer N.
+ 
+ Examples
+ 
+  >> points_s = eq_point_set_polar(2,8)
+ 
+  points_s =
+ 
+           0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596         0
+           0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708    3.1416
+ 
+  >> s_regions = eq_regions(2,5);
+  >> region = s_regions(:,:,3)
+ 
+  region =
+      2.0944    4.1888
+      0.9273    2.2143
+ 
+  >> result = in_s2_region(points_s, region)
+ 
+  result =
+       0     0     0     1     1     0     0     0
+ 
+ See also
+ 
+  EQ_REGIONS, EQ_FIND_S2_REGION
+
+
+points_s =
+
+  Columns 1 through 7
+
+         0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596
+         0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708
+
+  Column 8
+
+         0
+    3.1416
+
+
+region =
+
+    2.0944    4.1888
+    0.9273    2.2143
+
+
+result =
+
+     0     0     0     1     1     0     0     0
+
+ EQ_CAPS Partition a sphere into to nested spherical caps
+ 
+ Syntax
+  [s_cap,n_regions] = eq_caps(dim,N);
+ 
+ Description
+  [S_CAP,N_REGIONS] = EQ_CAPS(dim,N) does the following:
+  1) partitions the unit sphere S^dim into a list of spherical caps of
+     increasing colatitude and thus increasing area,
+  2) sets S_CAP to be an array of size (1 by N_COLLARS+2),
+     containing increasing colatitudes of caps, and
+  3) sets N_REGIONS to be an array of size (1 by N_COLLARS+2),
+     containing the intger number of regions in each corresponding zone of 
+     S^dim.
+ 
+  The argument N is assumed to be a positive integer.
+ 
+ Notes
+  The value N_COLLARS is a positive integer function of dim and N.
+ 
+  S_CAP[1] is C_POLAR, the colatitude of the North polar cap.
+  S_CAP[N_COLLARS+1] is pi-C_POLAR.
+  S_CAP[N_COLLARS+2] is pi.
+ 
+  N_REGIONS[1] is 1.
+  N_REGIONS[N_COLLARS+2] is 1.
+  The sum of N_REGIONS is N.
+ 
+ Examples
+ 
+  >> [s_cap,n_regions] = eq_caps(2,10)
+ 
+  s_cap =
+ 
+      0.6435    1.5708    2.4981    3.1416
+ 
+  n_regions =
+ 
+       1     4     4     1
+ 
+  >> [s_cap,n_regions] = eq_caps(3,6)
+ 
+  s_cap =
+ 
+      0.9845    2.1571    3.1416
+ 
+  n_regions =
+ 
+       1     4     1
+ 
+ See also
+  EQ_REGIONS, EQ_POINT_SET_POLAR
+
+
+s_cap =
+
+    0.6435    1.5708    2.4981    3.1416
+
+
+n_regions =
+
+     1     4     4     1
+
+
+s_cap =
+
+    0.9845    2.1571    3.1416
+
+
+n_regions =
+
+     1     4     1
+
+ EQ_POINT_SET Center points of regions of EQ partition, in Cartesian coordinates
+ 
+ Syntax
+  points_x = eq_point_set(dim,N,options);
+ 
+ Description
+  POINTS_X = EQ_POINT_SET(dim,N) does the following:
+  1) uses the recursive zonal equal area sphere partitioning algorithm to
+  partition S^dim (the unit sphere in dim+1 dimensional space) into N regions
+  of equal area and small diameter, and
+  2) sets POINTS_X to be an array of size (dim+1 by N), containing the center
+  points of each region.
+  Each column of POINTS_X represents a point of S^dim, in Cartesian coordinates.
+ 
+  The arguments dim and N must be positive integers.
+ 
+  POINTS_X = EQ_POINT_SET(dim,N,'offset','extra') uses experimental extra offsets
+  for S^2 and S^3 to try to minimize energy.
+ 
+  POINTS_X = EQ_POINT_SET(dim,N,extra_offset) uses experimental extra offsets if
+  extra_offset is true or non-zero.
+ 
+ Notes
+  Each region is defined as a product of intervals in spherical polar
+  coordinates. The center point of a region is defined via the center points
+  of each interval, with the exception of spherical caps and their descendants,
+  where the center point is defined using the center of the spherical cap.
+ 
+  If dim > 3, extra offsets are not used.
+  For more details on options, see help partition_options.
+ 
+ Examples
+ 
+  >> points_x = eq_point_set(2,4)
+ 
+  points_x =
+           0    0.0000   -0.0000    0.0000
+           0    1.0000   -1.0000         0
+      1.0000    0.0000    0.0000   -1.0000
+ 
+  >> size(points_x)
+ 
+  ans =
+ 
+       3     4
+ 
+ See also
+  PARTITION_OPTIONS, EQ_POINT_SET_POLAR, EQ_REGIONS, S2X
+
+
+points_x =
+
+         0    0.0000   -0.0000    0.0000
+         0    1.0000   -1.0000         0
+    1.0000    0.0000    0.0000   -1.0000
+
+
+ans =
+
+     3     4
+
+ EQ_POINT_SET_POLAR Center points of regions of an EQ partition
+ 
+ Syntax
+  points_s = eq_point_set_polar(dim,N,options);
+ 
+ Description
+  POINTS_S = EQ_POINT_SET_POLAR(dim,N) does the following:
+  1) uses the recursive zonal equal area sphere partitioning algorithm to
+  partition S^dim (the unit sphere in dim+1 dimensional space) into N regions
+  of equal area and small diameter, and
+  2) sets POINTS_S to be an array of size (dim by N), containing the center
+  points of each region. Each column of POINTS_S represents a point of S^dim,
+  in spherical polar coordinates.
+ 
+  The arguments dim and N must be positive integers.
+ 
+  POINTS_S = EQ_POINT_SET_POLAR(dim,N,'offset','extra') uses experimental extra
+  offsets for S^2 and S^3 to try to minimize energy. If dim > 3, extra offsets
+  are not used.
+ 
+  POINTS_S = EQ_POINT_SET_POLAR(dim,N,extra_offset) uses experimental extra
+  offsets if extra_offset is true or non-zero.
+ 
+ Notes
+  Each region is defined as a product of intervals in spherical polar
+  coordinates. The center point of a region is defined via the center points
+  of each interval, with the exception of spherical caps and their descendants,
+  where the center point is defined using the center of the spherical cap.
+ 
+  For more details on options, see HELP PARTITION_OPTIONS.
+ 
+ Examples
+ 
+  >> points_s = eq_point_set_polar(2,4)
+ 
+  points_s =
+ 
+           0    1.5708    4.7124         0
+           0    1.5708    1.5708    3.1416
+ 
+  >> size(points_s)
+ 
+  ans =
+ 
+       2     4
+ 
+ See also
+  PARTITION_OPTIONS, EQ_POINT_SET, EQ_REGIONS
+
+
+points_s =
+
+         0    1.5708    4.7124         0
+         0    1.5708    1.5708    3.1416
+
+
+ans =
+
+     2     4
+
+ EQ_REGIONS Recursive zonal equal area (EQ) partition of sphere
+ 
+ Syntax
+  [regions,dim_1_rot] = eq_regions(dim,N,options);
+ 
+ Description
+  REGIONS = EQ_REGIONS(dim,N) uses the recursive zonal equal area sphere
+  partitioning algorithm to partition S^dim (the unit sphere in dim+1
+  dimensional space) into N regions of equal area and small diameter.
+ 
+  The arguments dim and N must be positive integers.
+ 
+  The result REGIONS is a (dim by 2 by N) array, representing the regions
+  of S^dim. Each element represents a pair of vertex points in spherical polar
+  coordinates.
+ 
+  Each region is defined as a product of intervals in spherical polar
+  coordinates. The pair of vertex points regions(:,1,n) and regions(:,2,n) give
+  the lower and upper limits of each interval.
+ 
+  REGIONS = EQ_REGIONS(dim,N,'offset','extra') uses experimental extra 
+  offsets for S^2 and S^3 to try to minimize energy. If dim > 3, extra offsets 
+  are not used. 
+ 
+  REGIONS = EQ_REGIONS(dim,N,extra_offset) uses experimental extra offsets 
+  if extra_offset is true or non-zero.
+ 
+  [REGIONS,DIM_1_ROT] = EQ_REGIONS(dim,N) also returns DIM_1_ROT, a cell 
+  array containing N rotation matrices, one per region, each of size dim by dim.
+  These describe the R^dim rotation needed to place the region in its final 
+  position.
+ 
+  [REGIONS,DIM_1_ROT] = EQ_REGIONS(dim,N,'offset','extra') partitions S^dim 
+  into N regions, using extra offsets, and also returning DIM_1_ROT, as above.
+ 
+ Notes
+  The output argument DIM_1_ROT is the only way to track the effect of the extra
+  offset when dim == 3, because the R^3 rotation means that the boundary of a 
+  region generally no longer coincides with hyperplanes of colatitude and 
+  longitude. The function ILLUSTRATE_S3_PARTITION uses DIM_1_ROT.
+ 
+  For more details on options, see HELP PARTITION_OPTIONS.
+ 
+ Examples
+ 
+  >> regions = eq_regions(2,4)
+ 
+  regions(:,:,1) =
+           0    6.2832
+           0    1.0472
+  regions(:,:,2) =
+           0    3.1416
+      1.0472    2.0944
+  regions(:,:,3) =
+      3.1416    6.2832
+      1.0472    2.0944
+  regions(:,:,4) =
+           0    6.2832
+      2.0944    3.1416
+ 
+  >> size(regions)
+ 
+  ans =
+       2     2     4
+ 
+ See also
+  PARTITION_OPTIONS, EQ_POINT_SET, EQ_POINT_SET_POLAR, PROJECT_S3_PARTITION
+
+
+regions(:,:,1) =
+
+         0    6.2832
+         0    1.0472
+
+
+regions(:,:,2) =
+
+         0    3.1416
+    1.0472    2.0944
+
+
+regions(:,:,3) =
+
+    3.1416    6.2832
+    1.0472    2.0944
+
+
+regions(:,:,4) =
+
+         0    6.2832
+    2.0944    3.1416
+
+
+ans =
+
+     2     2     4
+
+ PARTITION_OPTIONS Options for EQ partition
+ 
+ Syntax
+  popt = partition_options(pdefault,options);
+ 
+ Description
+  POPT = PARTITION_OPTIONS(PDEFAULT,options) collects partition options,
+  specified as name, value pairs, and places these into the structure POPT.
+  The structure PDEFAULT is used to define default option values.
+ 
+  The structures pdefault and popt may contain the following fields:
+  extra_offset:  boolean
+ 
+  The following partition options are available.
+ 
+  'offset':      Control extra rotation offsets for S^2 and S^3 regions.
+      'extra':   Use extra rotation offsets for S^2 and S^3 regions, to try
+                 to minimize energy.
+                 Sets opt.extra_offset to true.
+      'normal':  Do not use extra offsets
+                 Sets opt.extra_offset to false.
+ 
+  Some shortcuts are also provided.
+  POPT = PARTITION_OPTIONS(pdefault) just sets POPT to PDEFAULT.
+ 
+  The following are equivalent to PARTITION_OPTIONS(PDEFAULT,'offset','extra'):
+  PARTITION_OPTIONS(PDEFAULT,true)
+  PARTITION_OPTIONS(PDEFAULT,'extra')
+ 
+  The following are equivalent to PARTITION_OPTIONS(PDEFAULT,'offset','normal'):
+  PARTITION_OPTIONS(PDEFAULT,false)
+  PARTITION_OPTIONS(PDEFAULT,'normal')
+ 
+ Examples
+ 
+  >> pdefault.extra_offset = false;
+  >> popt = partition_options(pdefault,'offset','extra')
+ 
+  popt =
+ 
+      extra_offset: 1
+ 
+  >> popt = partition_options(pdefault,false)
+ 
+  popt =
+      extra_offset: 0
+
+
+popt = 
+
+  struct with fields:
+
+    extra_offset: 1
+
+
+popt = 
+
+  struct with fields:
+
+    extra_offset: 0
+
+ CALC_DIST_COEFF Coefficient of minimum distance
+ 
+ Syntax
+  coeff = calc_dist_coeff(dim,N,min_euclidean_dist);
+ 
+ Description
+  COEFF = CALC_DIST_COEFF(dim,N,MIN_EUCLIDEAN_DIST) sets COEFF to be the
+  coefficient in the expression for the lower bound on the minimum distance of
+  a minimum energy point set:
+ 
+     MIN_EUCLIDEAN_DIST >= COEFF N^(-1/dim).
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers. 
+  The argument MIN_EUCLIDEAN_DIST must be an array of real nubers of the same array size as N.
+  The result COEFF will be an array of the same size as N.
+ 
+ Notes
+  The expression for the lower bound on minimum distance of a minimum r^(-s)
+  energy point set on S^dim was given by [RakSZ95] for s == 0 and dim = 2, 
+  [Dahl78] for s == dim-1, [KuiSS04 Theorem 8] for dim-1 <= s < dim and
+  [KuiS98 (1.12) p. 525] for s > dim.
+ 
+ Examples
+ 
+  >> N = 2:6
+ 
+   N =
+        2     3     4     5     6
+ 
+  >> dist = eq_min_dist(2,N)
+ 
+   dist =
+ 
+       2.0000    1.4142    1.4142    1.4142    1.4142
+ 
+  >> calc_dist_coeff(2,N,dist)
+ 
+   ans =
+ 
+       2.8284    2.4495    2.8284    3.1623    3.4641
+ 
+ See also
+  EQ_MIN_DIST, EQ_DIST_COEFF
+
+
+N =
+
+     2     3     4     5     6
+
+
+dist =
+
+    2.0000    1.4142    1.4142    1.4142    1.4142
+
+
+ans =
+
+    2.8284    2.4495    2.8284    3.1623    3.4641
+
+ CALC_ENERGY_COEFF Coefficient of second term in expansion of energy
+ 
+ Syntax
+  coeff = calc_energy_coeff(d,N,s,energy);
+ 
+ Description
+  COEFF = CALC_ENERGY_COEFF(dim,N,s,ENERGY) sets COEFF to be the coefficient of
+  the second term of an expansion of ENERGY with the same form as the expansion 
+  of E(dim,N,s), the minimum r^(-s) energy of a set of N points on S^dim.
+ 
+  Specifically, for s not equal to 0, COEFF is the solution to
+ 
+  ENERGY == (SPHERE_INT_ENERGY(dim,s)/2) N^2 + COEFF N^(1+s/dim),
+ 
+  and for s == 0 (the logarithmic potential), COEFF is the solution to
+ 
+  ENERGY == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N).
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers. 
+  The argument ENERGY must an array of real numbers of the same array size as N.
+  The result COEFF will be an array of the same size as N.
+ 
+ Notes
+  1) The energy expansion is not valid for N == 1, and in particular,
+ 
+  EQ_ENERGY_COEFF(dim,N,0,energy) := 0.
+ 
+  2) For s > 0, [KuiS98 (1.6) p524] has
+ 
+  E(dim,N,s) == (SPHERE_INT_ENERGY(dim,s)/2) N^2 + COEFF N^(1+s/dim) + ...
+  
+  where SPHERE_INT_ENERGY(dim,s) is the energy integral of the r^(-s) potential
+  on S^dim.
+ 
+  The case s == 0 (logarithmic potential) can be split into subcases.
+  For s == 0 and dim == 1, E(1,N,0) is obtained by equally spaced points on S^1,
+  and the formula for the log potential for N equally spaced points on a circle
+  gives
+ 
+  E(1,N,0) == (-1/2) N LOG(N) exactly.
+ 
+  For s == 0 and dim == 2, [SafK97 (4) p7] has
+ 
+  E(2,N,0) == (SPHERE_INT_ENERGY(2,0)/2) N^2 + COEFF N LOG(N) + o(N LOG(N)).
+ 
+  In general, for s == 0,
+ 
+  E(dim,N,0) == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N) + ... 
+ 
+  with sphere_int_energy(1,0) == 0.
+ 
+  CALC_ENERGY_COEFF just uses this general formula for s == 0, so for s == 0 and
+  dim == 1, the coefficient returned is actually the coefficient of the first
+  non-zero term.
+ 
+ Examples
+ 
+  >> N = 2:6
+ 
+   N =
+ 
+        2     3     4     5     6
+ 
+  >> energy = eq_energy_dist(2,N,0)
+ 
+   energy =
+ 
+      -0.6931   -1.3863   -2.7726   -4.4205   -6.2383
+ 
+  >> coeff = calc_energy_coeff(2,N,0,energy)
+ 
+   coeff =
+ 
+      -0.2213   -0.1569   -0.2213   -0.2493   -0.2569
+ 
+ See also
+  EQ_ENERGY_DIST, EQ_ENERGY_COEFF
+
+
+N =
+
+     2     3     4     5     6
+
+
+energy =
+
+   -0.6931   -1.3863   -2.7726   -4.4205   -6.2383
+
+
+coeff =
+
+   -0.2213   -0.1569   -0.2213   -0.2493   -0.2569
+
+ CALC_PACKING_DENSITY Density of packing given by minimum distance
+ 
+ Syntax
+  density = calc_packing_density(dim,N,min_euclidean_dist);
+ 
+ Description
+  DENSITY = CALC_PACKING_DENSITY(dim,N,MIN_EUCLIDEAN_DIST) sets DENSITY to
+  be the density of a packing of S^dim by N equal spherical caps with centers
+  having minimum Euclidean distance MIN_EUCLIDEAN_DIST.
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers.
+  The argument MIN_EUCLIDEAN_DIST must be an array of real nubers of the same array size as N.
+  The result DENSITY will be an array of the same size as N.
+ 
+ Notes
+  The packing density is defined to be the sum of the areas of the spherical
+  caps of the packing, divided by the area of the unit sphere S^dim.
+ 
+  The spherical radius of the caps in the packing is half the minimum spherical
+  distance between center points. The spherical radius for N == 1 is a special
+  case. It is defined to be pi.
+ 
+ Examples
+ 
+  >> N = 2:6
+ 
+   N =
+        2     3     4     5     6
+ 
+  >> dist = eq_min_dist(2,N)
+ 
+   dist =
+ 
+       2.0000    1.4142    1.4142    1.4142    1.4142
+ 
+  >> density = calc_packing_density(2,N,dist)
+ 
+   density =
+       1.0000    0.4393    0.5858    0.7322    0.8787
+ 
+ See also
+  EQ_MIN_DIST, AREA_OF_CAP, AREA_OF_SPHERE, EQ_PACKING_DENSITY
+
+
+N =
+
+     2     3     4     5     6
+
+
+dist =
+
+    2.0000    1.4142    1.4142    1.4142    1.4142
+
+
+density =
+
+    1.0000    0.4393    0.5858    0.7322    0.8787
+
+ EQ_DIST_COEFF Coefficient of minimum distance of an EQ point set
+ 
+ Syntax
+  coeff = eq_dist_coeff(dim,N,options);
+ 
+ Description
+  COEFF = EQ_DIST_COEFF(dim,N) does the following:
+  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+     partition the unit sphere S^dim into N regions,
+  2) finds the EQ point set, the set of center points of each region,
+  3) finds the minimum Euclidean distance between points of the EQ point set,
+  4) sets COEFF to be the coefficient in the expression for the lower bound on
+     the minimum distance of a minimum energy point set:
+ 
+     DIST >= COEFF N^(-1/dim).
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers. 
+  The result COEFF will be an array of the same size as N.
+ 
+  COEFF = EQ_DIST_COEFF(dim,N,'offset','extra'), for dim == 2 or dim == 3, uses
+  experimental extra rotation offsets to try to maximize the minimum distance. 
+  For dim > 3, extra offsets are not used.
+ 
+ Notes
+  The expression for the lower bound on minimum distance of a minimum r^(-s)
+  energy point set on S^dim was given by [RakSZ95] for s == 0 and dim = 2, 
+  [Dahl78] for s == dim-1, [KuiSS04 Theorem 8] for dim-1 <= s < dim and
+  [KuiS98 (1.12) p. 525] for s > dim.
+ 
+  Ideally eq_dist_coeff(dim,N) should tend to area_of_sphere(dim)^(1/dim) as 
+  N goes to infinity.
+ 
+ Examples
+ 
+  >> coeff = eq_dist_coeff(2,10)
+ 
+   coeff =
+ 
+       3.3250
+ 
+  >> coeff = eq_dist_coeff(3,1:6)
+ 
+   coeff =
+ 
+       2.0000    2.5198    2.0396    2.2449    2.4183    2.5698
+ 
+ See also
+  PARTITION_OPTIONS, EQ_MIN_DIST
+
+
+coeff =
+
+    3.3250
+
+
+coeff =
+
+    2.0000    2.5198    2.0396    2.2449    2.4183    2.5698
+
+ EQ_ENERGY_COEFF Coefficient in expansion of energy of an EQ point set
+ 
+ Syntax
+  coeff = eq_energy_coeff(dim,N,s,options);
+ 
+ Description
+  COEFF = EQ_ENERGY_COEFF(dim,N,s)  does the following:
+  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+     partition the unit sphere S^dim into N regions,
+  2) finds the EQ point set, the set of center points of each region,
+  3) finds the r^(-s) energy of the EQ point set, and
+  4) sets COEFF to be the coefficient of the second term of the expansion of
+     the energy, having the same form as the expansion of E(dim,N,s), 
+     the minimum r^(-s) energy of a set of N points on S^dim.
+ 
+  Specifically, for s not equal to 0, COEFF is the solution to
+ 
+  energy == (SPHERE_INT_ENERGY(dim,s)/2) N^2 + COEFF N^(1+s/dim),
+ 
+  and for s == 0 (the logarithmic potential), COEFF is the solution to
+ 
+  energy == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N).
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers. 
+  The result COEFF will be an array of the same size as N.
+ 
+  COEFF = EQ_ENERGY_COEFF(dim,N) uses the default value dim-1 for s.
+ 
+  COEFF = EQ_ENERGY_COEFF(dim,N,s,'offset','extra') uses experimental extra offsets
+  for S^2 and S^3 to try to minimize energy. For dim > 3, extra offsets are
+  not used.
+ 
+ Notes
+  1) The energy expansion is not valid for N == 1, and in particular,
+ 
+  EQ_ENERGY_COEFF(dim,N,0) := 0.
+ 
+  2) For details of calculation of the energy coefficient, 
+  see HELP CALC_ENERGY_COEFF
+ 
+ Examples
+ 
+  >> coeff = eq_energy_coeff(2,10)
+ 
+   coeff =
+ 
+      -0.5461
+ 
+  >> coeff = eq_energy_coeff(3,1:6)
+ 
+   coeff =
+ 
+      -0.5000   -0.5512   -0.5208   -0.5457   -0.5472   -0.5679
+ 
+  >> coeff = eq_energy_coeff(2,1:6,0)
+ 
+   coeff =
+ 
+            0   -0.2213   -0.1569   -0.2213   -0.2493   -0.2569
+ 
+ See also
+  PARTITION_OPTIONS, EQ_ENERGY_DIST, CALC_ENERGY_COEFF
+
+
+coeff =
+
+   -0.5461
+
+
+coeff =
+
+   -0.5000   -0.5512   -0.5208   -0.5457   -0.5472   -0.5679
+
+
+coeff =
+
+         0   -0.2213   -0.1569   -0.2213   -0.2493   -0.2569
+
+ EQ_ENERGY_DIST Energy and minimum distance of an EQ point set
+ 
+  Syntax
+  [energy,dist] = eq_energy_dist(dim,N,s,options);
+ 
+ Description
+  [ENERGY,DIST] = EQ_ENERGY_DIST(dim,N,s) does the following:
+  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+     partition the unit sphere S^dim into N regions,
+  2) finds the EQ point set, the set of center points of each region,
+  3) sets ENERGY to be the r^(-s) energy of the EQ point set, and
+  4) optionally, sets DIST to be the minimum Euclidean distance between 
+     points of the EQ point set.
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers. 
+  The results ENERGY and DIST will be arrays of the same size as N.
+  The result DIST is optional.
+ 
+  [ENERGY,DIST] = EQ_ENERGY_DIST(dim,N) uses the default value dim-1 for s.
+ 
+  [ENERGY,DIST] = EQ_ENERGY_DIST(dim,N,s,'offset','extra') uses experimental
+  extra offsets for S^2 and S^3 to try to minimize energy. 
+  For dim > 3, extra offsets are not used.
+ 
+ Examples
+ 
+  >> energy = eq_energy_dist(2,10)
+ 
+   energy =
+      32.7312
+ 
+  >> [energy,dist] = eq_energy_dist(3,1:6,0)
+ 
+   energy =
+            0   -0.6931   -1.3863   -2.7726   -4.1589   -6.2383
+ 
+   dist =
+       2.0000    2.0000    1.4142    1.4142    1.4142    1.4142
+ 
+  >> [energy,dist] = eq_energy_dist(3,100,1,'offset','extra')
+ 
+   energy =
+      4.0042e+03
+ 
+   dist =
+       0.6545
+ 
+ See also
+  EQ_POINT_SET, PARTITION_OPTIONS, POINT_SET_ENERGY_DIST, EUCLIDEAN_DIST, 
+  MIN_DIST
+
+
+energy =
+
+   32.7312
+
+
+energy =
+
+         0   -0.6931   -1.3863   -2.7726   -4.1589   -6.2383
+
+
+dist =
+
+    2.0000    2.0000    1.4142    1.4142    1.4142    1.4142
+
+
+energy =
+
+   4.0042e+03
+
+
+dist =
+
+    0.4733
+
+ EQ_MIN_DIST Minimum distance between center points of an EQ partition
+ 
+ Syntax
+  dist = eq_min_dist(dim,N,options);
+ 
+ Description
+  DIST = EQ_MIN_DIST(dim,N) does the following:
+  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+     partition the unit sphere S^dim into N regions,
+  2) finds the EQ point set, the set of center points of each region, and
+  3) sets DIST to be the minimum Euclidean distance between points of 
+     the EQ point set.
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers. 
+  The result DIST will be an array of the same size as N.
+ 
+  DIST = EQ_MIN_DIST(dim,N,'offset','extra'), for dim == 2 or dim == 3, 
+  uses exerimental extra rotation offsets to try to maximize the minimum 
+  distance. For dim > 3, extra offsets are not used.
+ 
+ Examples
+ 
+  >> dist = eq_min_dist(2,10)
+ 
+   dist =
+       1.0515
+ 
+  >> dist = eq_min_dist(3,1:6)
+ 
+   dist =
+       2.0000    2.0000    1.4142    1.4142    1.4142    1.4142
+ 
+ See also
+  PARTITION_OPTIONS, EUCLIDEAN_DIST, EQ_ENERGY_DIST
+
+
+dist =
+
+    1.0515
+
+
+dist =
+
+    2.0000    2.0000    1.4142    1.4142    1.4142    1.4142
+
+ EQ_PACKING_DENSITY  Density of packing given by minimum distance of EQ point set
+ 
+ Syntax
+  density = eq_packing_density(dim,N,options);
+ 
+ Description
+  DENSITY = EQ_PACKING_DENSITY(dim,N) does the following:
+  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+     partition the unit sphere S^dim into N regions,
+  2) finds the EQ point set, the set of center points of each region,
+  3) finds the minimum Euclidean distance between points of the EQ point set,
+  4) sets DENSITY to be the maximum density of a packing of S^dim by equal 
+     spherical caps with centers at the EQ point set.
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers. 
+  The result DENSITY will be an array of the same size as N.
+ 
+  DENSITY = EQ_PACKING_DENSITY(dim,N,'offset','extra'), for dim == 2 or dim == 3, 
+  uses experimental extra rotation offsets to try to maximize the minimum 
+  distance. For dim > 3, extra offsets are not used.
+ 
+ Notes
+  The packing density is defined to be the sum of the areas of the spherical 
+  caps of the packing, divided by the area of the unit sphere S^dim.
+ 
+  The spherical radius of the caps in the packing is half the minimum spherical
+  distance between center points. The spherical radius for N == 1 is a special 
+  case. It is defined to be pi.
+ 
+ Examples
+ 
+  >> density = eq_packing_density(2,10)
+ 
+   density =
+ 
+       0.7467
+ 
+  >> density = eq_packing_density(3,1:6)
+ 
+   density =
+ 
+       1.0000    1.0000    0.2725    0.3634    0.4542    0.5451
+ 
+ See also
+  EQ_MIN_DIST, AREA_OF_CAP, AREA_OF_SPHERE, PARTITION_OPTIONS
+
+
+density =
+
+    0.7467
+
+
+density =
+
+    1.0000    1.0000    0.2725    0.3634    0.4542    0.5451
+
+ EQ_POINT_SET_PROPERTY Property of an EQ point set
+  
+ Syntax
+  property = eq_point_set_property(fhandle,dim,N,options);
+ 
+ Description
+  PROPERTY = EQ_POINT_SET_PROPERTY(FHANDLE,dim,N) does the following:
+  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+     partition the unit sphere S^dim into N regions,
+  2) finds the EQ point set, the set of center points of each region,
+  3) calls the function defined by FHANDLE which is expected to use the 
+     EQ point set to calculate the value of the result, PROPERTY.
+ 
+  The argument FHANDLE must be a function handle. The function specified by
+  FHANDLE must take as its argument a single (dim+1 by N) array, representing 
+  N points of S^dim, in Cartesian coordinates, and must return a single value
+  based on these points.
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers. 
+  The result PROPERTY will be an array of the same size as N.
+ 
+  PROPERTY = EQ_POINT_SET_PROPERTY(FHANDLE,dim,N,'offset','extra'), 
+  for dim == 2 or dim == 3, uses exerimental extra rotation offsets to try to 
+  maximize the minimum distance between points of the EQ point set.
+  For dim > 3, extra offsets are not used.
+ 
+ Examples
+ 
+  >> dist = eq_point_set_property(@point_set_min_dist,2,10)
+ 
+   dist =
+ 
+       1.0515
+ 
+ See also
+  EQ_POINT_SET, FEVAL, PARTITION_OPTIONS
+
+
+dist =
+
+    1.0515
+
+ POINT_SET_DIST_COEFF Coefficient of minimum distance of a point set
+ 
+ Syntax
+  coeff = point_set_dist_coeff(points);
+ 
+ Description
+  COEFF = POINT_SET_DIST_COEFF(POINTS) does the following:
+  1) finds the minimum Euclidean distance between points of the point set
+     POINTS, which should be a subset of the unit sphere S^dim, and
+  2) sets COEFF to be the coefficient in the expression for the lower bound on
+     the minimum distance of a minimum energy point set:
+ 
+     MIN_EUCLIDEAN_DIST >= COEFF N^(-1/dim),
+ 
+     where N is the number of points in POINTS.
+ 
+  The argument POINTS must be an array of real numbers of size (dim+1 by N),
+  where dim and N are positive integers.
+  Each column of POINTS represents a point in R^(dim+1).
+  It is assumed that point set POINTS is a subset of the unit sphere S^dim,
+  but this is not checked.
+ 
+ Notes
+  Fore more details on the calculation of the coefficient of the minimum
+  distance, see HELP CALC_DIST-COEFF.
+ 
+ Examples
+ 
+  >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+ 
+  x =
+ 
+       0     0     0     0
+       0     1    -1     0
+       1     0     0    -1
+ 
+  >> coeff = point_set_dist_coeff(x)
+ 
+  coeff =
+ 
+      2.8284
+ 
+ See also
+  POINT_SET_MIN_DIST, CALC_DIST_COEFF, EQ_DIST_COEFF, EQ_MIN_DIST
+
+
+x =
+
+     0     0     0     0
+     0     1    -1     0
+     1     0     0    -1
+
+
+coeff =
+
+    2.8284
+
+ POINT_SET_ENERGY_COEFF Coefficient in expansion of energy of a point set
+ 
+ Syntax
+  coeff = point_set_energy_coeff(points,s);
+ 
+ Description
+  COEFF = POINT_SET_ENERGY_COEFF(POINTS,s)  does the following:
+  1) finds the r^(-s) energy of the point set POINTS, and
+  2) sets COEFF to be the coefficient of the second term of the expansion of
+     the energy, having the same form as the expansion of E(dim,N,s),
+     the minimum r^(-s) energy of a set of N points on S^dim.
+ 
+  The argument POINTS must be an array of real numbers of size (dim+1 by N),
+  where dim and N are positive integers.
+  Each column of POINTS represents a point in R^(dim+1).
+ 
+  Specifically, for s not equal to 0, COEFF is the solution to
+ 
+  energy == (SPHERE_INT_ENERGY(dim,s)/2) N^2 + COEFF N^(1+s/dim),
+ 
+  and for s == 0 (the logarithmic potential), COEFF is the solution to
+ 
+  energy == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N).
+ 
+  COEFF = POINT_SET_ENERGY_COEFF(POINTS) uses the default value dim-1 for s.
+ 
+ Notes
+  The value dim is the dimension of S^dim as a manifold. The point set POINTS
+  is assumed to be a subset of R^(dim+1) but is not assumed to be a subset of
+  S^dim.
+ 
+  For details of the calculation of the energy coefficient,
+  see HELP CALC_ENERGY_COEFF.
+ 
+ Examples
+ 
+  >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+ 
+  x =
+ 
+       0     0     0     0
+       0     1    -1     0
+       1     0     0    -1
+ 
+  >> coeff = point_set_energy_coeff(x)
+ 
+   coeff =
+      -0.5214
+ 
+ See also
+  POINT_SET_ENERGY_DIST, CALC_ENERGY_COEFF, EQ_ENERGY_COEFF, EQ_ENERGY_DIST
+
+
+x =
+
+     0     0     0     0
+     0     1    -1     0
+     1     0     0    -1
+
+
+coeff =
+
+   -0.5214
+
+ POINT_SET_ENERGY_DIST Energy and minimum distance of a point set
+ 
+ Syntax
+  [energy,min_dist] = point_set_energy_dist(points,s);
+ 
+ Description
+  [ENERGY,MIN_DIST] = POINT_SET_ENERGY_DIST(POINTS,s) sets ENERGY to be the
+  energy of the r^(-s) potential on the point set POINTS, and sets MIN_DIST
+  to be the minimum Euclidean distance between points of POINTS.
+ 
+  POINTS must be an array of real numbers of size (M by N), where M and N
+  are positive integers, with each of the N columns representing a point of
+  R^M in Cartesian coordinates.
+  The result MIN_DIST is optional.
+ 
+  [ENERGY,MIN_DIST] = POINT_SET_ENERGY_DIST(POINTS) uses the default value of
+  dim-1 for s.
+ 
+ Notes
+  The value of ENERGY for a single point is 0.
+  Since this function is usually meant to be used for points on a unit sphere,
+  the value of MIN_DIST for a single point is defined to be 2.
+ 
+ Examples
+ 
+  >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+ 
+  x =
+ 
+       0     0     0     0
+       0     1    -1     0
+       1     0     0    -1
+ 
+  >> [energy,min_dist] = point_set_energy_dist(x)
+ 
+  energy =
+ 
+      2.5000
+ 
+  min_dist =
+ 
+      1.4142
+ 
+ See also
+  EUCLIDEAN_DIST, EQ_ENERGY_DIST, POINT_SET_MIN_DIST
+
+
+x =
+
+     0     0     0     0
+     0     1    -1     0
+     1     0     0    -1
+
+
+energy =
+
+    3.8284
+
+
+min_dist =
+
+    1.4142
+
+ POINT_SET_MIN_DIST Minimum distance between points of a point set
+ 
+ Syntax
+  min_dist = point_set_min_dist(points);
+ 
+ Description
+  MIN_DIST = POINT_SET_MIN_DIST(POINTS) sets MIN_DIST to be the minimum
+  Euclidean distance between points of the point set POINTS.
+ 
+  POINTS must be an array of real numbers of size (M by N), where M and N
+  are positive integers, with each of the N columns representing a point of
+  R^M in Cartesian coordinates.
+ 
+ Notes
+  Since this function is usually meant to be used for points on a unit sphere,
+  the value of POINT_SET_MIN_DIST for a single point is defined to be 2.
+ 
+ Examples
+ 
+  >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+ 
+  x =
+ 
+       0     0     0     0
+       0     1    -1     0
+       1     0     0    -1
+ 
+  >> min_dist = point_set_min_dist(x)
+ 
+  min_dist =
+ 
+      1.4142
+ 
+ See also
+  EUCLIDEAN_DIST, MIN_EUCLIDEAN_DIST, POINT_SET_ENERGY_DIST
+
+
+x =
+
+     0     0     0     0
+     0     1    -1     0
+     1     0     0    -1
+
+
+min_dist =
+
+    1.4142
+
+ POINT_SET_PACKING_DENSITY  Density of packing given by minimum distance of a point set
+ 
+ Syntax
+  density = point_set_packing_density(points);
+ 
+ Description
+  DENSITY = POINT_SET_PACKING_DENSITY(POINTS) does the following:
+  1) finds the minimum Euclidean distance between points of the point set
+     POINTS, and
+  2) sets DENSITY to be the density of a packing of S^dim by N equal
+  spherical caps with this minimum distance.
+ 
+  The argument POINTS must be an array of real numbers of size (dim+1 by N),
+  where dim and N are positive integers.
+  Each column of POINTS must represents a point of S^dim in Cartesian
+  coordinates.
+ 
+ Notes
+  Because packing density is defined using spherical caps, it well defined only
+  for points on S^dim. Therefore POINTS must represent a subset of S^dim.
+ 
+  For more details on the calculation of packing density,
+  see HELP CALC_PACKING_DENSITY.
+ 
+ Examples
+ 
+  >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+ 
+  x =
+ 
+       0     0     0     0
+       0     1    -1     0
+       1     0     0    -1
+ 
+  >> density = point_set_packing_density(x)
+ 
+   density =
+ 
+       0.5858
+ 
+ See also
+  CALC_PACKING_DENSITY, EQ_MIN_DIST, AREA_OF_CAP, AREA_OF_SPHERE
+
+
+x =
+
+     0     0     0     0
+     0     1    -1     0
+     1     0     0    -1
+
+
+density =
+
+    0.5858
+
+ EQ_AREA_ERROR Total area error and max area error per region of an EQ partition
+ 
+ Syntax
+  [total_error, max_error] = eq_area_error(dim,N)
+ 
+ Description
+  [TOTAL_ERROR, MAX_ERROR] = EQ_AREA_ERROR(dim,N) does the following:
+  1) uses the recursive zonal equal area sphere partitioning algorithm to
+     partition the unit sphere S^dim into N regions,
+  2) sets TOTAL_ERROR to be the absolute difference between the total area of
+     all regions of the partition, and the area of S^dim, and
+  3) sets MAX_ERROR to be the maximum absolute difference between the area of
+     any region of the partition, and the ideal area of a region as given by
+     AREA_OF_IDEAL_REGION(dim,N), which is 1/N times the area of S^dim.
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers.
+  The results TOTAL_ERROR and MAX_ERROR will be arrays of the same size as N.
+ 
+ Examples
+ 
+  >> [total_error, max_error] = eq_area_error(2,10)
+ 
+  total_error =
+ 
+     1.7764e-15
+ 
+  max_error =
+ 
+     4.4409e-16
+ 
+  >> [total_error, max_error] = eq_area_error(3,1:6)
+ 
+  total_error =
+ 
+     1.0e-12 *
+      0.0036    0.0036    0.1847    0.0142    0.0142    0.2132
+ 
+  max_error =
+ 
+     1.0e-12 *
+      0.0036    0.0018    0.1954    0.0284    0.0440    0.0777
+ 
+ See also
+  EQ_REGIONS, AREA_OF_SPHERE, AREA_OF_IDEAL_REGION
+
+
+total_error =
+
+   1.7764e-15
+
+
+max_error =
+
+   1.9984e-15
+
+
+total_error =
+
+   1.0e-14 *
+
+    0.3553    0.3553         0    0.3553    0.3553         0
+
+
+max_error =
+
+   1.0e-13 *
+
+    0.0355    0.0178    0.0977    0.2043    0.4396    0.4752
+
+ EQ_DIAM_BOUND Maximum per-region diameter bound of EQ partition
+ 
+ Syntax
+  diam_bound = eq_diam_bound(dim,N);
+ 
+ Description
+  DIAM_BOUND = EQ_DIAM_BOUND(dim,N) does the following:
+  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+     partition the unit sphere S^dim into N regions,
+  2) sets DIAM_BOUND to be the maximum of the per-region diameter bound over
+     all the regions of the partition.
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers. 
+  The result DIAM_BOUND will an array of the same size as N.
+ 
+ Examples
+ 
+  >> diam_bound = eq_diam_bound(2,10)
+ 
+   diam_bound =
+ 
+       1.6733
+ 
+  >> diam_bound = eq_diam_bound(3,1:6)
+ 
+   diam_bound =
+ 
+        2     2     2     2     2     2
+ 
+ See also
+  EQ_VERTEX_DIAM, EQ_DIAM_COEFF, EQ_REGIONS_PROPERTY
+
+
+diam_bound =
+
+    1.6733
+
+
+diam_bound =
+
+     2     2     2     2     2     2
+
+ EQ_DIAM_COEFF Coefficients of diameter bound and vertex diameter of EQ partition
+ 
+ Syntax
+  [bound_coeff,vertex_coeff] = eq_diam_coeff(dim,N);
+ 
+ Description
+  [BOUND_COEFF,VERTEX_COEFF] = EQ_DIAM_COEFF(dim,N) does the following:
+  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+     partition the unit sphere S^dim into N regions,
+  2) finds the maximum of the per-region diameter bound over all the regions 
+     of the partition,
+  3) sets BOUND_COEFF to be the diameter bound coefficient, defined as the
+     solution to
+  
+     max_diam_bound == BOUND_COEFF N^(-1/dim),
+ 
+  4) optionally finds the maximum vertex diameter over all the regions of the
+     partition, and
+  5) optionally sets VERTEX_COEFF to be the vertex diameter coefficient,
+     defined as the solution to
+  
+     max_vertex_diam == VERTEX_COEFF N^(-1/dim).
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers. 
+  The result BOUND_COEFF and the optional result VERTEX_COEFF will be arrays of
+  the same size as N.
+ 
+ Examples
+ 
+  >> bound_coeff = eq_diam_coeff(2,10)
+ 
+   bound_coeff =
+ 
+       5.2915
+ 
+  >> [bound_coeff,vertex_coeff]=eq_diam_coeff(3,1:6)
+ 
+   bound_coeff =
+ 
+       2.0000    2.5198    2.8845    3.1748    3.4200    3.6342
+ 
+   vertex_coeff =
+ 
+       2.0000    2.5198    2.8845    3.1748    3.4200    3.6342
+ 
+ See also 
+  EQ_DIAM_BOUND, EQ_VERTEX_DIAM, EQ_REGIONS, EQ_VERTEX_DIAM_COEFF
+
+
+bound_coeff =
+
+    5.2915
+
+
+bound_coeff =
+
+    2.0000    2.5198    2.8845    3.1748    3.4200    3.6342
+
+
+vertex_coeff =
+
+    2.0000    2.5198    2.8845    3.1748    3.4200    3.6342
+
+ EQ_REGIONS_PROPERTY Property of regions of an EQ partition
+ 
+ Syntax
+  property = eq_regions_property(fhandle,dim,N);
+ 
+ Description
+  PROPERTY = EQ_REGIONS_PROPERTY(FHANDLE,dim,N) does the following:
+  1) uses the recursive zonal equal area sphere partitioning algorithm to
+     partition the unit sphere S^dim into N regions,
+  2) calls the function defined by FHANDLE which is expected to use the
+     regions to calculate the value of the result, PROPERTY.
+ 
+  The argument FHANDLE must be a function handle. The function specified by
+  FHANDLE must take as its argument a single (dim by 2 by N) array,
+  representing N regions of S^dim, in spherical polar coordinates, and must
+  return a single value based on these regions.
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers.
+  The result PROPERTY will be an array of the same size as N.
+ 
+ Examples
+ 
+  See code in Matlab M files eq_diam_bound.m, eq_vertex_diam.m.
+ 
+ See also
+  EQ_REGIONS, FEVAL, EQ_DIAM_BOUND, EQ_VERTEX_DIAM
+
+ EQ_VERTEX_DIAM_COEFF Coefficient of maximum vertex diameter of EQ partition
+ 
+ Syntax
+  coeff = eq_vertex_diam_coeff(dim,N);
+ 
+ Description
+  COEFF = EQ_VERTEX_DIAM_COEFF(dim,N) does the following:
+  1) uses the recursive zonal equal area sphere partitioning algorithm to
+     partition the unit sphere S^dim into N regions,
+  2) finds the maximum vertex diameter over all the regions of the partition,
+  3) sets COEFF to be the vertex diameter coefficient,
+     defined as the solution to
+ 
+     max_vertex_diam == COEFF N^(-1/dim).
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers.
+  The result COEFF will an array of the same size as N.
+ 
+ Examples
+ 
+  >> coeff = eq_vertex_diam_coeff(2,10)
+ 
+   coeff =
+ 
+       4.4721
+ 
+  >> coeff = eq_vertex_diam_coeff(3,1:6)
+ 
+   coeff =
+ 
+       2.0000    2.5198    2.8845    3.1748    3.4200    3.6342
+ 
+ See also
+  EQ_VERTEX_DIAM, EQ_DIAM_COEFF
+
+
+coeff =
+
+    4.4721
+
+
+coeff =
+
+    2.0000    2.5198    2.8845    3.1748    3.4200    3.6342
+
+ EQ_VERTEX_DIAM Maximum vertex diameter of EQ partition
+ 
+ Syntax
+  vertex_diam = eq_vertex_diam(dim,N);
+ 
+ Description
+  VERTEX_DIAM = EQ_VERTEX_DIAM(dim,N) does the following:
+  1) uses the recursive zonal equal area sphere partitioning algorithm to
+     partition the unit sphere S^dim into N regions,
+  2) sets VERTEX_DIAM to be the maximum vertex diameter over all the regions
+     of the partition.
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers.
+  The result VERTEX_DIAM will an array of the same size as N.
+ 
+ Examples
+ 
+  >> vertex_diam = eq_vertex_diam(2,10)
+ 
+   vertex_diam =
+ 
+       1.4142
+ 
+  >> vertex_diam = eq_vertex_diam(3,1:6)
+ 
+   vertex_diam =
+ 
+        2     2     2     2     2     2
+ 
+ See also
+  EQ_DIAM_BOUND, EQ_VERTEX_DIAM_COEFF, EQ_DIAM_COEFF, EQ_REGIONS_PROPERTY
+
+
+vertex_diam =
+
+    1.4142
+
+
+vertex_diam =
+
+    2.0000    2.0000    2.0000    2.0000    2.0000    2.0000
+
+ AREA_OF_CAP Area of spherical cap
+ 
+ Syntax
+  area = area_of_cap(dim, s_cap);
+ 
+ Description
+  AREA = AREA_OF_CAP(dim, S_CAP) sets AREA to be the area of an S^dim spherical
+  cap of spherical radius S_CAP.
+ 
+  The argument dim must be a positive integer.
+  The argument S_CAP must be a real number or an array of real numbers.
+  The result AREA will be an array of the same size as S_CAP.
+ 
+ Notes
+  S_CAP is assumed to be in the range [0, pi].
+ 
+  The area is defined via the Lebesgue measure on S^dim inherited from
+  its embedding in R^(dim+1).
+ 
+  For dim <= 2, and for dim==3 (when pi/6 <= s_cap <= pi*5/6),
+  AREA is calculated in closed form, using the analytic solution of
+  the definite integral given in the reference.
+  Otherwise, AREA is calculated using the Matlab function BETAINC,
+  the incomplete Beta function ratio.
+ 
+  Ref: [LeGS01 Lemma 4.1 p255].
+ 
+ Examples
+ 
+  >> a = area_of_cap(2,pi/2)
+ 
+  a =
+ 
+      6.2832
+ 
+  >> a = area_of_cap(3,0:pi/4:pi)
+ 
+  a =
+ 
+           0    1.7932    9.8696   17.9460   19.7392
+ 
+ See also
+  SRADIUS_OF_CAP
+
+
+a =
+
+    6.2832
+
+
+a =
+
+         0    1.7932    9.8696   17.9460   19.7392
+
+ AREA_OF_COLLAR Area of spherical collar
+ 
+ Syntax
+  area = area_of_collar(dim, a_top, a_bot);
+ 
+ Description
+  AREA = AREA_OF_COLLAR(dim, A_TOP, A_BOT) sets AREA to be the area of
+  an S^dim spherical collar specified by A_TOP, A_BOT, where
+  A_TOP is top (smaller) spherical radius,
+  A_BOT is bottom (larger) spherical radius.
+ 
+  The argument dim must be a positive integer.
+  The arguments A_TOP and A_BOT must be real numbers or arrays of real numbers,
+  with the same array size.
+  The result AREA will be an array of the same size as A_TOP.
+ 
+ Notes
+  A_TOP and A_BOT are assumed to be in the range [0, pi].
+ 
+  The area is defined via the Lebesgue measure on S^dim inherited from
+  its embedding in R^(dim+1).
+ 
+  Ref: [LeGS01 Lemma 4.1 p255].
+ 
+ Examples
+ 
+  >> area = area_of_collar(2,0:2,1:3)
+ 
+  area =
+ 
+      2.8884    6.0095    3.6056
+ 
+ See also
+  AREA_OF_CAP, AREA_OF_SPHERE
+
+
+area =
+
+    2.8884    6.0095    3.6056
+
+ AREA_OF_IDEAL_REGION Area of one region of an EQ partition
+ 
+ Syntax
+  area = area_of_ideal_region(dim,N);
+ 
+ Description
+  AREA = AREA_OF_IDEAL_REGION(dim,N) sets AREA to be the area of one of N equal
+  area regions on S^dim, that is 1/N times AREA_OF_SPHERE(dim).
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers.
+  The result AREA will be an array of the same size as N.
+ 
+ Examples
+ 
+  >> area = area_of_ideal_region(3,1:6)
+ 
+  area =
+ 
+     19.7392    9.8696    6.5797    4.9348    3.9478    3.2899
+ 
+ See also
+  AREA_OF_SPHERE
+
+
+area =
+
+   19.7392    9.8696    6.5797    4.9348    3.9478    3.2899
+
+ AREA_OF_SPHERE Area of sphere
+ 
+ Syntax
+  area = area_of_sphere(dim);
+ 
+ Description
+  AREA = AREA_OF_SPHERE(dim) sets AREA to be the area of the sphere S^dim,
+ 
+  The argument dim must be a positive integer or an array of positive integers.
+  The result AREA will be an array of the same size as dim.
+ 
+ Notes
+  The area of S^dim is defined via the Lebesgue measure on S^dim inherited from
+  its embedding in R^(dim+1).
+ 
+  Ref: [Mue98] p39.
+ 
+ Examples
+ 
+  >> area = area_of_sphere(1:7)
+ 
+  area =
+ 
+      6.2832   12.5664   19.7392   26.3189   31.0063   33.0734   32.4697
+ 
+ See also
+  AREA_OF_CAP, VOLUME_OF_BALL
+
+
+area =
+
+    6.2832   12.5664   19.7392   26.3189   31.0063   33.0734   32.4697
+
+ CART2POLAR2 Convert from Cartesian to spherical coordinates on sphere S^2
+ 
+ Syntax
+  s = cart2polar2(x);
+ 
+ Description
+  S = CART2POLAR2(X) sets S to be the spherical polar coordinates of the points
+  represented by the Cartesian coordinates X:
+  S = [phi;theta]: phi in [0, 2*pi), theta in [0, pi].
+ 
+  The argument X must be an array of real numbers of size (3 by N), where N is
+  any positive integer. The result S will be an array of size (2 by N).
+ 
+ Examples
+ 
+  >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+ 
+  x =
+ 
+       0     0     0     0
+       0     1    -1     0
+       1     0     0    -1
+ 
+  >> s = cart2polar2(x)
+ 
+  s =
+           0    1.5708    4.7124         0
+           0    1.5708    1.5708    3.1416
+ 
+ Note
+  CART2POLAR2(X) projects any X in R^3 onto the sphere S^2 via a line through
+  the origin. The origin [0 0 0]' is itself projected onto a point on the
+  equator such that
+ 
+      POLAR2CART(CART2POLAR2([0 0 0]')) == [1 0 0]'.
+ 
+ See also
+  POLAR2CART
+
+
+x =
+
+     0     0     0     0
+     0     1    -1     0
+     1     0     0    -1
+
+
+s =
+
+         0    1.5708    4.7124         0
+         0    1.5708    1.5708    3.1416
+
+ EUC2SPH_DIST Convert Euclidean to spherical distance
+ 
+ Syntax
+  s = e2s(e);
+ 
+ Description
+  S = EUC2SPH_DIST(E) converts the Euclidean distance E to the spherical
+  distance S, using a formula which is valid for the unit sphere in all
+  dimensions.
+ 
+  The argument E must be a real number or an array of real numbers.
+  The result S will be an array of the same size as E.
+ 
+ Note
+  The argument E is assumed to satsify abs(E) <= 2.
+ 
+ Examples
+ 
+  >> s = euc2sph_dist(2)
+ 
+   s =
+       3.1416
+ 
+  >> s = euc2sph_dist(0:0.5:2)
+ 
+   s =
+            0    0.5054    1.0472    1.6961    3.1416
+ 
+  >> s = euc2sph_dist(-2)
+ 
+   s =
+      -3.1416
+ 
+ See also
+  SPH2EUC_DIST, EUCLIDEAN_DIST, SPHERICAL_DIST
+
+
+s =
+
+    3.1416
+
+
+s =
+
+         0    0.5054    1.0472    1.6961    3.1416
+
+
+s =
+
+   -3.1416
+
+ EUCLIDEAN_DIST Euclidean distance between two points in Cartesian coordinates
+ 
+ Syntax
+  distance = euclidean_dist(x,y);
+ 
+ Description
+  DISTANCE = EUCLIDEAN_DIST(X,Y) sets DISTANCE to be the Euclidean distance
+  between the two points X and Y.
+ 
+  The arguments X and Y must be arrays of the same size, M by N, where M and N
+  are positive integers. Each of X and Y is assumed to represent N points in
+  R^M, in Cartesian coordinates.
+  The result DISTANCE will be a 1 by N array.
+ 
+ Examples
+ 
+  >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+ 
+  x =
+ 
+       0     0     0     0
+       0     1    -1     0
+       1     0     0    -1
+ 
+  >> y = [[0 -0.5 0.866]' [0 0.866 0.5]' [0 -0.866 -0.5]' [0 0.5 -0.866]']
+ 
+  y =
+ 
+           0         0         0         0
+     -0.5000    0.8660   -0.8660    0.5000
+      0.8660    0.5000   -0.5000   -0.8660
+ 
+  >> distance = euclidean_dist(x,y)
+ 
+  distance =
+ 
+      0.5176    0.5176    0.5176    0.5176
+ 
+ See also
+  SPHERICAL_DIST, E2S, S2E
+
+
+x =
+
+     0     0     0     0
+     0     1    -1     0
+     1     0     0    -1
+
+
+y =
+
+         0         0         0         0
+   -0.5000    0.8660   -0.8660    0.5000
+    0.8660    0.5000   -0.5000   -0.8660
+
+
+distance =
+
+    0.5176    0.5176    0.5176    0.5176
+
+ FATCURVE Create a parameterized cylindrical surface at radius r from curve c
+ 
+ Syntax
+  [X,Y,Z] = fatcurve(c,r);
+ 
+ Description
+  [X,Y,Z] = FATCURVE(C, R) sets X, Y and Z to be the coordinates of a
+  cylindrical surface at radius R from curve C. This function is intended
+  for use with the Matlab function SURF to illustrate curves in R^3.
+ 
+ Examples
+ 
+  >> N=5;
+  >> phi = linspace(0, pi/5, N);
+  >> theta = zeros(1, N);
+  >> s = [theta; phi];
+  >> c = polar2cart(s)
+  >> r = 0.1
+  >> [X,Y,Z] = fatcurve(c,r)
+ 
+  c =
+ 
+           0    0.1564    0.3090    0.4540    0.5878
+           0         0         0         0         0
+      1.0000    0.9877    0.9511    0.8910    0.8090
+ 
+  r =
+ 
+      0.1000
+ 
+  X =
+ 
+           0    0.0055    0.0078    0.0055    0.0000   -0.0055   -0.0078   -0.0055   -0.0000
+      0.1564    0.1729    0.1798    0.1729    0.1564    0.1399    0.1331    0.1399    0.1564
+      0.3090    0.3361    0.3473    0.3361    0.3090    0.2820    0.2707    0.2820    0.3090
+      0.4540    0.4909    0.5062    0.4909    0.4540    0.4170    0.4017    0.4170    0.4540
+      0.5878    0.6247    0.6400    0.6247    0.5878    0.5508    0.5355    0.5508    0.5878
+ 
+  Y =
+ 
+      0.1000    0.0707    0.0000   -0.0707   -0.1000   -0.0707   -0.0000    0.0707    0.1000
+      0.1000    0.0707    0.0000   -0.0707   -0.1000   -0.0707   -0.0000    0.0707    0.1000
+      0.1000    0.0707    0.0000   -0.0707   -0.1000   -0.0707   -0.0000    0.0707    0.1000
+      0.1000    0.0707    0.0000   -0.0707   -0.1000   -0.0707   -0.0000    0.0707    0.1000
+      0.1000    0.0707    0.0000   -0.0707   -0.1000   -0.0707   -0.0000    0.0707    0.1000
+ 
+  Z =
+ 
+      1.0000    1.0705    1.0997    1.0705    1.0000    0.9295    0.9003    0.9295    1.0000
+      0.9877    1.0564    1.0849    1.0564    0.9877    0.9189    0.8905    0.9189    0.9877
+      0.9511    1.0164    1.0434    1.0164    0.9511    0.8857    0.8587    0.8857    0.9511
+      0.8910    0.9513    0.9763    0.9513    0.8910    0.8307    0.8057    0.8307    0.8910
+      0.8090    0.8693    0.8943    0.8693    0.8090    0.7487    0.7238    0.7487    0.8090
+
+
+c =
+
+         0    0.1564    0.3090    0.4540    0.5878
+         0         0         0         0         0
+    1.0000    0.9877    0.9511    0.8910    0.8090
+
+
+r =
+
+    0.1000
+
+
+X =
+
+  Columns 1 through 7
+
+         0    0.0055    0.0078    0.0055    0.0000   -0.0055   -0.0078
+    0.1564    0.1729    0.1798    0.1729    0.1564    0.1399    0.1331
+    0.3090    0.3361    0.3473    0.3361    0.3090    0.2820    0.2707
+    0.4540    0.4909    0.5062    0.4909    0.4540    0.4170    0.4017
+    0.5878    0.6247    0.6400    0.6247    0.5878    0.5508    0.5355
+
+  Columns 8 through 9
+
+   -0.0055   -0.0000
+    0.1399    0.1564
+    0.2820    0.3090
+    0.4170    0.4540
+    0.5508    0.5878
+
+
+Y =
+
+  Columns 1 through 7
+
+    0.1000    0.0707    0.0000   -0.0707   -0.1000   -0.0707   -0.0000
+    0.1000    0.0707    0.0000   -0.0707   -0.1000   -0.0707   -0.0000
+    0.1000    0.0707    0.0000   -0.0707   -0.1000   -0.0707   -0.0000
+    0.1000    0.0707    0.0000   -0.0707   -0.1000   -0.0707   -0.0000
+    0.1000    0.0707    0.0000   -0.0707   -0.1000   -0.0707   -0.0000
+
+  Columns 8 through 9
+
+    0.0707    0.1000
+    0.0707    0.1000
+    0.0707    0.1000
+    0.0707    0.1000
+    0.0707    0.1000
+
+
+Z =
+
+  Columns 1 through 7
+
+    1.0000    1.0705    1.0997    1.0705    1.0000    0.9295    0.9003
+    0.9877    1.0564    1.0849    1.0564    0.9877    0.9189    0.8905
+    0.9511    1.0164    1.0434    1.0164    0.9511    0.8857    0.8587
+    0.8910    0.9513    0.9763    0.9513    0.8910    0.8307    0.8057
+    0.8090    0.8693    0.8943    0.8693    0.8090    0.7487    0.7238
+
+  Columns 8 through 9
+
+    0.9295    1.0000
+    0.9189    0.9877
+    0.8857    0.9511
+    0.8307    0.8910
+    0.7487    0.8090
+
+ IDEAL_COLLAR_ANGLE The ideal angle for spherical collars of an EQ partition
+ 
+ Syntax
+  angle = ideal_collar_angle(dim,N);
+ 
+ Description
+  ANGLE = IDEAL_COLLAR_ANGLE(dim,N) sets ANGLE to the ideal angle for the
+  spherical collars of an EQ partition of the unit sphere S^dim into N regions.
+ 
+  The argument dim must be a positive integer.
+  The argument N must be a positive integer or an array of positive integers.
+  The result ANGLE will be an array of the same size as N.
+ 
+ Notes
+  The ideal collar angle is determined by the side of a dim-dimensional
+  hypercube of the same volume as the area of a single region of an N region
+  equal area partition of S^dim.
+ 
+  Since the EQ partition for N < 3 has no spherical collars,
+  the recursive zonal equal area sphere partitioning algorithm does not use
+  ideal_collar_angle(dim,N) for N < 3.
+ 
+ Examples
+ 
+  >> angle = ideal_collar_angle(2,10)
+ 
+   angle =
+ 
+       1.1210
+ 
+  >> angle = ideal_collar_angle(3,1:6)
+ 
+   angle =
+ 
+       2.7026    2.1450    1.8739    1.7025    1.5805    1.4873
+ 
+ See also
+  AREA_OF_IDEAL_REGION
+
+
+angle =
+
+    1.1210
+
+
+angle =
+
+    2.7026    2.1450    1.8739    1.7025    1.5805    1.4873
+
+ POLAR2CART Convert spherical polar to Cartesian coordinates
+ 
+ Syntax
+  x = polar2cart(s);
+ 
+ Description
+  X = POLAR2CART(S) sets X to be the Cartesian coordinates of the points
+  represented by the spherical polar coordinates S.
+ 
+  S is assumed to be an array of size (dim by N) representing N points of
+  S^dim in spherical polar coordinates, where dim and N are positive integers.
+  N will be an array of size (dim+1 by N).
+ 
+ Examples
+ 
+  >> s = [[0 0]' [pi/2 pi/2]' [3*pi/2 pi/2]' [0 pi]']
+ 
+  s =
+           0    1.5708    4.7124         0
+           0    1.5708    1.5708    3.1416
+ 
+  >> x = polar2cart(s)
+ 
+  x =
+           0    0.0000   -0.0000    0.0000
+           0    1.0000   -1.0000         0
+      1.0000    0.0000    0.0000   -1.0000
+ 
+ See also
+  CART2POLAR2
+
+
+s =
+
+         0    1.5708    4.7124         0
+         0    1.5708    1.5708    3.1416
+
+
+x =
+
+         0    0.0000   -0.0000    0.0000
+         0    1.0000   -1.0000         0
+    1.0000    0.0000    0.0000   -1.0000
+
+ SPHE2EUC_DIST Convert spherical to Euclidean distance
+ 
+ Syntax
+  e = sph2euc_dist(s);
+ 
+ Description
+  E = SPHE2EUC_DIST (S) converts the spherical distance S to Euclidean
+  distance E, using a formula which is valid for the unit sphere in all
+  dimensions.
+ 
+  The argument S must be a real number or an array of real numbers.
+  The result E will be an array of the same size as S.
+ 
+ Note
+  The argument S is assumed to satsify abs(S) <= pi.
+ 
+ Examples
+ 
+  >> e = sph2euc_dist(pi)
+ 
+  e =
+ 
+       2
+ 
+  >> e = sph2euc_dist(0:pi/4:pi)
+ 
+  e =
+ 
+           0    0.7654    1.4142    1.8478    2.0000
+ 
+ See also
+  EUC2SPH_DIST, EUCLIDEAN_DIST, SPHERICAL_DIST
+
+
+e =
+
+     2
+
+
+e =
+
+         0    0.7654    1.4142    1.8478    2.0000
+
+ SPHERICAL_DIST Spherical distance between two points on the sphere
+ 
+ Syntax
+  a_dist = spherical_dist(x,y);
+ 
+ Description
+  A_DIST = SPHERICAL_DIST(X,Y) sets A_DIST to be the spherical distance
+  between the two points X and Y.
+ 
+  The arguments X and Y must be arrays of the same size, M by N, where M and N
+  are positive integers. Each of X and Y is assumed to represent N points in
+  R^M, in Cartesian coordinates.
+  The result A_DIST will be a 1 by N array.
+ 
+ Examples
+ 
+  >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+ 
+  x =
+ 
+       0     0     0     0
+       0     1    -1     0
+       1     0     0    -1
+ 
+  >> y = [[0 -0.5 0.866]' [0 0.866 0.5]' [0 -0.866 -0.5]' [0 0.5 -0.866]']
+ 
+  y =
+ 
+           0         0         0         0
+     -0.5000    0.8660   -0.8660    0.5000
+      0.8660    0.5000   -0.5000   -0.8660
+ 
+  >> a_dist = spherical_dist(x,y)
+ 
+  a_dist =
+ 
+      0.5236    0.5236    0.5236    0.5236
+ 
+ See also
+  EUCLIDEAN_DIST, E2S, S2E
+
+
+x =
+
+     0     0     0     0
+     0     1    -1     0
+     1     0     0    -1
+
+
+y =
+
+         0         0         0         0
+   -0.5000    0.8660   -0.8660    0.5000
+    0.8660    0.5000   -0.5000   -0.8660
+
+
+a_dist =
+
+    0.5236    0.5236    0.5236    0.5236
+
+ SRADIUS_OF_CAP Spherical radius of spherical cap of given area
+ 
+ Syntax
+  s_cap = sradius_of_cap(dim, area);
+ 
+ Description
+  S_CAP = SRADIUS_OF_CAP(dim, AREA) sets S_CAP to be the spherical radius of
+  an S^dim spherical cap of area AREA.
+ 
+  The argument dim must be a positive integer.
+  The argument AREA must be a real number or an array of real numbers.
+  The result S_CAP will be an array of the same size as AREA.
+ 
+ Notes
+  S_CAP is assumed to be in the range [0, pi].
+ 
+  The area is defined via the Lebesgue measure on S^dim inherited from
+  its embedding in R^(dim+1).
+ 
+  For dim <= 2, S_CAP is calculated in closed form.
+  Otherwise, S_CAP is approximated using the Matlab function FZERO.
+ 
+  Ref: [LeGS01 Lemma 4.1 p255].
+ 
+ Examples
+ 
+  >> s_cap = sradius_of_cap(2,area_of_sphere(2)/2)
+ 
+  s_cap =
+      1.5708
+ 
+  >> s_cap = sradius_of_cap(3,(0:4)*area_of_sphere(3)/4)
+ 
+  s_cap =
+           0    1.1549    1.5708    1.9867    3.1416
+ 
+ See also
+  FZERO, AREA_OF_CAP
+
+
+s_cap =
+
+    1.5708
+
+
+s_cap =
+
+         0    1.1549    1.5708    1.9867    3.1416
+
+ VOLUME_OF_BALL Volume of the unit ball
+ 
+ Syntax
+  volume = volume_of_ball(dim);
+ 
+ Description
+  VOLUME = VOLUME_OF_BALL(dim) sets VOLUME to be the volume of the unit ball
+  B^dim in R^dim which is enclosed by the sphere S^(dim-1).
+ 
+  The argument dim must be a positive integer or an array of positive integers.
+  The result VOLUME will be an array of the same size as dim.
+ 
+ Notes
+  The volume of B^dim is defined via the Lebesgue measure on R^dim.
+ 
+  Ref: [WeiMW].
+ 
+ Examples
+ 
+  >> volume = volume_of_ball(1:7)
+ 
+  volume =
+ 
+      2.0000    3.1416    4.1888    4.9348    5.2638    5.1677    4.7248
+ 
+ See also
+  AREA_OF_SPHERE
+
+
+volume =
+
+    2.0000    3.1416    4.1888    4.9348    5.2638    5.1677    4.7248
+
