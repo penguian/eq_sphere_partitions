@@ -1,7 +1,7 @@
 %Recursive Zonal Equal Area Sphere Partitioning: EQ partitions
 %
 % Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox.
-% Release 1.12 2024-10-14
+% Release 1.12 2024-10-16
 %
 %Functions by category
 %=====================
@@ -18,9 +18,12 @@
 %
 % Partition options
 %  partition_options      Options for EQ partition
+%
+% Illustration of algorithms
+%  illustrate_eq_algorithm    Illustrate the EQ partition algorithm
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-10-14 $
+% $Revision 1.12 $ $Date 2024-10-16 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
