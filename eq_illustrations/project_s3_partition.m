@@ -131,7 +131,6 @@ axis off
 
 pause(0);
 if nargout > 0
-    movie_frame = cell(N);
     movie_frame(1) = getframe(gcf);
 end
 
