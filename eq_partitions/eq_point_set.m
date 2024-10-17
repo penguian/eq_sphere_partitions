@@ -46,10 +46,10 @@ function points_x = eq_point_set(dim,N,varargin)
 %      3     4
 %
 %See also
-% PARTITION_OPTIONS, EQ_POINT_SET_POLAR, EQ_REGIONS, S2X
+% PARTITION_OPTIONS, EQ_POINT_SET_POLAR, EQ_REGIONS, POLAR2CART
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-10-13 $
+% $Revision 1.12 $ $Date 2024-10-17 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Function changed name from s2x to polar2cart
