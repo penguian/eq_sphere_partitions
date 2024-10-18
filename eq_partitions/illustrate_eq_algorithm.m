@@ -6,7 +6,7 @@ function illustrate_eq_algorithm(dim,N,varargin)
 %
 %Description
 % ILLUSTRATE_EQ_ALGORITHM(dim,N) illustrates the recursive zonal equal area
-% sphere partitioning algorithm, which partitions S^dim (the unit sphere in 
+% sphere partitioning algorithm, which partitions S^dim (the unit sphere in
 % dim+1 dimensional space) into N regions of equal area and small diameter.
 %
 % The illustration consists of four subplots:
@@ -45,7 +45,7 @@ function illustrate_eq_algorithm(dim,N,varargin)
 %
 %Notes
 % The step numbers refer to the following steps of the the recursive zonal
-% equal area sphere partitioning algorithm, which partition the sphere into 
+% equal area sphere partitioning algorithm, which partition the sphere into
 % zones.
 %
 % 1. Determine the colatitudes of the North and South polar caps.
@@ -318,7 +318,7 @@ if isfield(gopt,'stereo')
         arg{k+1} = 'eqarea';
     end
     k = k+2;
-end    
+end
 
 if isfield(gopt,'show_title')
     arg{k} = 'title';
@@ -365,5 +365,5 @@ if isfield(gopt,'show_surfaces')
         arg{k+1} = 'hide';
     end
     % k = k+2;
-end    
+end
 

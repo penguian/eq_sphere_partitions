@@ -6,12 +6,12 @@ function coeff = eq_energy_coeff(dim,N,s,varargin)
 %
 %Description
 % COEFF = EQ_ENERGY_COEFF(dim,N,s)  does the following:
-% 1) uses the recursive zonal equal area sphere partitioning algorithm to 
+% 1) uses the recursive zonal equal area sphere partitioning algorithm to
 %    partition the unit sphere S^dim into N regions,
 % 2) finds the EQ point set, the set of center points of each region,
 % 3) finds the r^(-s) energy of the EQ point set, and
 % 4) sets COEFF to be the coefficient of the second term of the expansion of
-%    the energy, having the same form as the expansion of E(dim,N,s), 
+%    the energy, having the same form as the expansion of E(dim,N,s),
 %    the minimum r^(-s) energy of a set of N points on S^dim.
 %
 % Specifically, for s not equal to 0, COEFF is the solution to
@@ -23,7 +23,7 @@ function coeff = eq_energy_coeff(dim,N,s,varargin)
 % energy == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N).
 %
 % The argument dim must be a positive integer.
-% The argument N must be a positive integer or an array of positive integers. 
+% The argument N must be a positive integer or an array of positive integers.
 % The result COEFF will be an array of the same size as N.
 %
 % COEFF = EQ_ENERGY_COEFF(dim,N) uses the default value dim-1 for s.
@@ -37,7 +37,7 @@ function coeff = eq_energy_coeff(dim,N,s,varargin)
 %
 % EQ_ENERGY_COEFF(dim,N,0) := 0.
 %
-% 2) For details of calculation of the energy coefficient, 
+% 2) For details of calculation of the energy coefficient,
 % see HELP CALC_ENERGY_COEFF
 %
 %Examples

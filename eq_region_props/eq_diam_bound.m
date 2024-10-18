@@ -6,13 +6,13 @@ function diam_bound = eq_diam_bound(dim,N)
 %
 %Description
 % DIAM_BOUND = EQ_DIAM_BOUND(dim,N) does the following:
-% 1) uses the recursive zonal equal area sphere partitioning algorithm to 
+% 1) uses the recursive zonal equal area sphere partitioning algorithm to
 %    partition the unit sphere S^dim into N regions,
 % 2) sets DIAM_BOUND to be the maximum of the per-region diameter bound over
 %    all the regions of the partition.
 %
 % The argument dim must be a positive integer.
-% The argument N must be a positive integer or an array of positive integers. 
+% The argument N must be a positive integer or an array of positive integers.
 % The result DIAM_BOUND will an array of the same size as N.
 %
 %Examples

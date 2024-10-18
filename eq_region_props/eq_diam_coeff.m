@@ -6,24 +6,24 @@ function [bound_coeff,vertex_coeff] =  eq_diam_coeff(dim,N)
 %
 %Description
 % [BOUND_COEFF,VERTEX_COEFF] = EQ_DIAM_COEFF(dim,N) does the following:
-% 1) uses the recursive zonal equal area sphere partitioning algorithm to 
+% 1) uses the recursive zonal equal area sphere partitioning algorithm to
 %    partition the unit sphere S^dim into N regions,
-% 2) finds the maximum of the per-region diameter bound over all the regions 
+% 2) finds the maximum of the per-region diameter bound over all the regions
 %    of the partition,
 % 3) sets BOUND_COEFF to be the diameter bound coefficient, defined as the
 %    solution to
-% 
+%
 %    max_diam_bound == BOUND_COEFF N^(-1/dim),
 %
 % 4) optionally finds the maximum vertex diameter over all the regions of the
 %    partition, and
 % 5) optionally sets VERTEX_COEFF to be the vertex diameter coefficient,
 %    defined as the solution to
-% 
+%
 %    max_vertex_diam == VERTEX_COEFF N^(-1/dim).
 %
 % The argument dim must be a positive integer.
-% The argument N must be a positive integer or an array of positive integers. 
+% The argument N must be a positive integer or an array of positive integers.
 % The result BOUND_COEFF and the optional result VERTEX_COEFF will be arrays of
 % the same size as N.
 %
@@ -45,9 +45,9 @@ function [bound_coeff,vertex_coeff] =  eq_diam_coeff(dim,N)
 %
 %      2.0000    2.5198    2.8845    3.1748    3.4200    3.6342
 %
-%See also 
+%See also
 % EQ_DIAM_BOUND, EQ_VERTEX_DIAM, EQ_REGIONS, EQ_VERTEX_DIAM_COEFF
- 
+
 % Copyright 2024 Paul Leopardi.
 % $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of NSW.

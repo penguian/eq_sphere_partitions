@@ -6,7 +6,7 @@ function coeff = eq_dist_coeff(dim,N,varargin)
 %
 %Description
 % COEFF = EQ_DIST_COEFF(dim,N) does the following:
-% 1) uses the recursive zonal equal area sphere partitioning algorithm to 
+% 1) uses the recursive zonal equal area sphere partitioning algorithm to
 %    partition the unit sphere S^dim into N regions,
 % 2) finds the EQ point set, the set of center points of each region,
 % 3) finds the minimum Euclidean distance between points of the EQ point set,
@@ -16,20 +16,20 @@ function coeff = eq_dist_coeff(dim,N,varargin)
 %    DIST >= COEFF N^(-1/dim).
 %
 % The argument dim must be a positive integer.
-% The argument N must be a positive integer or an array of positive integers. 
+% The argument N must be a positive integer or an array of positive integers.
 % The result COEFF will be an array of the same size as N.
 %
 % COEFF = EQ_DIST_COEFF(dim,N,'offset','extra'), for dim == 2 or dim == 3, uses
-% experimental extra rotation offsets to try to maximize the minimum distance. 
+% experimental extra rotation offsets to try to maximize the minimum distance.
 % For dim > 3, extra offsets are not used.
 %
 %Notes
 % The expression for the lower bound on minimum distance of a minimum r^(-s)
-% energy point set on S^dim was given by [RakSZ95] for s == 0 and dim = 2, 
+% energy point set on S^dim was given by [RakSZ95] for s == 0 and dim = 2,
 % [Dahl78] for s == dim-1, [KuiSS04 Theorem 8] for dim-1 <= s < dim and
 % [KuiS98 (1.12) p. 525] for s > dim.
 %
-% Ideally eq_dist_coeff(dim,N) should tend to area_of_sphere(dim)^(1/dim) as 
+% Ideally eq_dist_coeff(dim,N) should tend to area_of_sphere(dim)^(1/dim) as
 % N goes to infinity.
 %
 %Examples

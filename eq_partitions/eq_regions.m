@@ -19,25 +19,25 @@ function [regions,dim_1_rot] = eq_regions(dim,N,varargin)
 % coordinates. The pair of vertex points regions(:,1,n) and regions(:,2,n) give
 % the lower and upper limits of each interval.
 %
-% REGIONS = EQ_REGIONS(dim,N,'offset','extra') uses experimental extra 
-% offsets for S^2 and S^3 to try to minimize energy. If dim > 3, extra offsets 
-% are not used. 
+% REGIONS = EQ_REGIONS(dim,N,'offset','extra') uses experimental extra
+% offsets for S^2 and S^3 to try to minimize energy. If dim > 3, extra offsets
+% are not used.
 %
-% REGIONS = EQ_REGIONS(dim,N,extra_offset) uses experimental extra offsets 
+% REGIONS = EQ_REGIONS(dim,N,extra_offset) uses experimental extra offsets
 % if extra_offset is true or non-zero.
 %
-% [REGIONS,DIM_1_ROT] = EQ_REGIONS(dim,N) also returns DIM_1_ROT, a cell 
+% [REGIONS,DIM_1_ROT] = EQ_REGIONS(dim,N) also returns DIM_1_ROT, a cell
 % array containing N rotation matrices, one per region, each of size dim by dim.
-% These describe the R^dim rotation needed to place the region in its final 
+% These describe the R^dim rotation needed to place the region in its final
 % position.
 %
-% [REGIONS,DIM_1_ROT] = EQ_REGIONS(dim,N,'offset','extra') partitions S^dim 
+% [REGIONS,DIM_1_ROT] = EQ_REGIONS(dim,N,'offset','extra') partitions S^dim
 % into N regions, using extra offsets, and also returning DIM_1_ROT, as above.
 %
 %Notes
 % The output argument DIM_1_ROT is the only way to track the effect of the extra
-% offset when dim == 3, because the R^3 rotation means that the boundary of a 
-% region generally no longer coincides with hyperplanes of colatitude and 
+% offset when dim == 3, because the R^3 rotation means that the boundary of a
+% region generally no longer coincides with hyperplanes of colatitude and
 % longitude. The function ILLUSTRATE_S3_PARTITION uses DIM_1_ROT.
 %
 % For more details on options, see HELP PARTITION_OPTIONS.

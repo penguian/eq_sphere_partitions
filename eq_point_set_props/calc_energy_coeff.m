@@ -6,7 +6,7 @@ function coeff = calc_energy_coeff(dim,N,s,energy)
 %
 %Description
 % COEFF = CALC_ENERGY_COEFF(dim,N,s,ENERGY) sets COEFF to be the coefficient of
-% the second term of an expansion of ENERGY with the same form as the expansion 
+% the second term of an expansion of ENERGY with the same form as the expansion
 % of E(dim,N,s), the minimum r^(-s) energy of a set of N points on S^dim.
 %
 % Specifically, for s not equal to 0, COEFF is the solution to
@@ -18,7 +18,7 @@ function coeff = calc_energy_coeff(dim,N,s,energy)
 % ENERGY == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N).
 %
 % The argument dim must be a positive integer.
-% The argument N must be a positive integer or an array of positive integers. 
+% The argument N must be a positive integer or an array of positive integers.
 % The argument ENERGY must an array of real numbers of the same array size as N.
 % The result COEFF will be an array of the same size as N.
 %
@@ -30,7 +30,7 @@ function coeff = calc_energy_coeff(dim,N,s,energy)
 % 2) For s > 0, [KuiS98 (1.6) p524] has
 %
 % E(dim,N,s) == (SPHERE_INT_ENERGY(dim,s)/2) N^2 + COEFF N^(1+s/dim) + ...
-% 
+%
 % where SPHERE_INT_ENERGY(dim,s) is the energy integral of the r^(-s) potential
 % on S^dim.
 %
@@ -47,7 +47,7 @@ function coeff = calc_energy_coeff(dim,N,s,energy)
 %
 % In general, for s == 0,
 %
-% E(dim,N,0) == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N) + ... 
+% E(dim,N,0) == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N) + ...
 %
 % with sphere_int_energy(1,0) == 0.
 %
@@ -108,7 +108,7 @@ else
     n_partitions = prod(shape);
     N = reshape(N,1,n_partitions);
     %
-    % Refs for s==0, dim == 2: 
+    % Refs for s==0, dim == 2:
     % [SafK97 (4) p. 7] [Zho95 (5.6) p. 68, 3.11 - corrected) p. 42]
     %
     first_term = (sphere_int_energy(dim,s)/2) * N.^2;
@@ -134,11 +134,11 @@ function energy = sphere_int_energy(dim,s)
 % energy = sphere_int_energy(d,s);
 %
 %Description
-% ENERGY = SPHERE_INT_ENERGY(dim,s) sets ENERGY to be the energy integral 
+% ENERGY = SPHERE_INT_ENERGY(dim,s) sets ENERGY to be the energy integral
 % on S^dim of the r^(-s) potential, defined using normalized Lebesgue measure.
 %
 % Ref for s > 0: [KuiS98 (1.6) p524]
-% Ref for s == 0 and dim == 2: SafK97 (4) p. 7] 
+% Ref for s == 0 and dim == 2: SafK97 (4) p. 7]
 % For s == 0 and dim >= 2, integral was obtained using Maple:
 %     energy = (1/2)*(omega(dim)/omega(dim+1)* ...
 %          int(-log(2*sin(theta/2)*(sin(theta))^(dim-1),theta=0..Pi),

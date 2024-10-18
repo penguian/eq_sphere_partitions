@@ -12,13 +12,13 @@ function coeff = calc_dist_coeff(dim,N,min_euclidean_dist)
 %    MIN_EUCLIDEAN_DIST >= COEFF N^(-1/dim).
 %
 % The argument dim must be a positive integer.
-% The argument N must be a positive integer or an array of positive integers. 
+% The argument N must be a positive integer or an array of positive integers.
 % The argument MIN_EUCLIDEAN_DIST must be an array of real nubers of the same array size as N.
 % The result COEFF will be an array of the same size as N.
 %
 %Notes
 % The expression for the lower bound on minimum distance of a minimum r^(-s)
-% energy point set on S^dim was given by [RakSZ95] for s == 0 and dim = 2, 
+% energy point set on S^dim was given by [RakSZ95] for s == 0 and dim = 2,
 % [Dahl78] for s == dim-1, [KuiSS04 Theorem 8] for dim-1 <= s < dim and
 % [KuiS98 (1.12) p. 525] for s > dim.
 %

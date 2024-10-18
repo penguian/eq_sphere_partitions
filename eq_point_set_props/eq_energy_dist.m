@@ -6,22 +6,22 @@ function [energy,dist] = eq_energy_dist(dim,N,s,varargin)
 %
 %Description
 % [ENERGY,DIST] = EQ_ENERGY_DIST(dim,N,s) does the following:
-% 1) uses the recursive zonal equal area sphere partitioning algorithm to 
+% 1) uses the recursive zonal equal area sphere partitioning algorithm to
 %    partition the unit sphere S^dim into N regions,
 % 2) finds the EQ point set, the set of center points of each region,
 % 3) sets ENERGY to be the r^(-s) energy of the EQ point set, and
-% 4) optionally, sets DIST to be the minimum Euclidean distance between 
+% 4) optionally, sets DIST to be the minimum Euclidean distance between
 %    points of the EQ point set.
 %
 % The argument dim must be a positive integer.
-% The argument N must be a positive integer or an array of positive integers. 
+% The argument N must be a positive integer or an array of positive integers.
 % The results ENERGY and DIST will be arrays of the same size as N.
 % The result DIST is optional.
 %
 % [ENERGY,DIST] = EQ_ENERGY_DIST(dim,N) uses the default value dim-1 for s.
 %
 % [ENERGY,DIST] = EQ_ENERGY_DIST(dim,N,s,'offset','extra') uses experimental
-% extra offsets for S^2 and S^3 to try to minimize energy. 
+% extra offsets for S^2 and S^3 to try to minimize energy.
 % For dim > 3, extra offsets are not used.
 %
 %Examples
@@ -48,7 +48,7 @@ function [energy,dist] = eq_energy_dist(dim,N,s,varargin)
 %      0.6545
 %
 %See also
-% EQ_POINT_SET, PARTITION_OPTIONS, POINT_SET_ENERGY_DIST, EUCLIDEAN_DIST, 
+% EQ_POINT_SET, PARTITION_OPTIONS, POINT_SET_ENERGY_DIST, EUCLIDEAN_DIST,
 % MIN_DIST
 
 % Copyright 2024 Paul Leopardi.

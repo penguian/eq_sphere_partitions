@@ -6,27 +6,27 @@ function density = eq_packing_density(dim,N,varargin)
 %
 %Description
 % DENSITY = EQ_PACKING_DENSITY(dim,N) does the following:
-% 1) uses the recursive zonal equal area sphere partitioning algorithm to 
+% 1) uses the recursive zonal equal area sphere partitioning algorithm to
 %    partition the unit sphere S^dim into N regions,
 % 2) finds the EQ point set, the set of center points of each region,
 % 3) finds the minimum Euclidean distance between points of the EQ point set,
-% 4) sets DENSITY to be the maximum density of a packing of S^dim by equal 
+% 4) sets DENSITY to be the maximum density of a packing of S^dim by equal
 %    spherical caps with centers at the EQ point set.
 %
 % The argument dim must be a positive integer.
-% The argument N must be a positive integer or an array of positive integers. 
+% The argument N must be a positive integer or an array of positive integers.
 % The result DENSITY will be an array of the same size as N.
 %
-% DENSITY = EQ_PACKING_DENSITY(dim,N,'offset','extra'), for dim == 2 or dim == 3, 
-% uses experimental extra rotation offsets to try to maximize the minimum 
+% DENSITY = EQ_PACKING_DENSITY(dim,N,'offset','extra'), for dim == 2 or dim == 3,
+% uses experimental extra rotation offsets to try to maximize the minimum
 % distance. For dim > 3, extra offsets are not used.
 %
 %Notes
-% The packing density is defined to be the sum of the areas of the spherical 
+% The packing density is defined to be the sum of the areas of the spherical
 % caps of the packing, divided by the area of the unit sphere S^dim.
 %
 % The spherical radius of the caps in the packing is half the minimum spherical
-% distance between center points. The spherical radius for N == 1 is a special 
+% distance between center points. The spherical radius for N == 1 is a special
 % case. It is defined to be pi.
 %
 %Examples

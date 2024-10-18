@@ -213,12 +213,12 @@ end
 % end function
 
 function duplicate_error(option_name,varargin)
-fprintf('Duplicate option %s\n',option_name); 
+fprintf('Duplicate option %s\n',option_name);
 option_error(varargin{:});
 %
 % end function
 
-function value_error(value,varargin)       
+function value_error(value,varargin)
 fprintf('Invalid option value ');
 disp(value);
 option_error(varargin{:});

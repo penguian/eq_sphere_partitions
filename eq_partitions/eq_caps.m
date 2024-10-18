@@ -11,7 +11,7 @@ function [s_cap,n_regions] = eq_caps(dim,N)
 % 2) sets S_CAP to be an array of size (1 by N_COLLARS+2),
 %    containing increasing colatitudes of caps, and
 % 3) sets N_REGIONS to be an array of size (1 by N_COLLARS+2),
-%    containing the intger number of regions in each corresponding zone of 
+%    containing the intger number of regions in each corresponding zone of
 %    S^dim.
 %
 % The argument N is assumed to be a positive integer.

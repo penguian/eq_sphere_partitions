@@ -31,7 +31,7 @@ function show_r3_point_set(points_x,varargin)
 % For more detail on illustration options, see HELP ILLUSTRATION_OPTIONS.
 %
 %Note
-% This function is primarily for use with the point set POINTS_X as a subset of the 
+% This function is primarily for use with the point set POINTS_X as a subset of the
 % unit sphere S^2, but this is not assumed and not checked.
 % If you show the unit sphere S^2 and POINTS_X contains points closer than radius 1
 % from the origin, the sphere will hide these points.

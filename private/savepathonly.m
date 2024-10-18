@@ -16,9 +16,9 @@ function result = savepathonly(outputfile)
 %   There are a few exceptional cases, which are not handled by SAVEPATH or
 %   PATH2RC but should be.
 %   1. The output of PATHDEF, MATLABPATH and PATH includes the directories
-%   listed by USERPATH. SAVEPATH does not check and remove these 
-%   directories. When the path is saved, SAVEPATH adds these extra 
-%   directories (if any) to the pathdef.m file. The result when Matlab is 
+%   listed by USERPATH. SAVEPATH does not check and remove these
+%   directories. When the path is saved, SAVEPATH adds these extra
+%   directories (if any) to the pathdef.m file. The result when Matlab is
 %   next started is that there are duplicate directories in the path.
 %   2. On Unix, if the directory "$HOME/matlab" is in the current MATLAB
 %   path, then SAVEPATH (or PATH2RC) adds this directory to the pathdef.m

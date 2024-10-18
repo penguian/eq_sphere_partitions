@@ -11,7 +11,7 @@ function uninstall(pddir)
 %      C:\MATLAB\toolbox\digitalsim
 %       uninstall
 %      Uninstalled.
-%      
+%
 %
 %   If you are sharing matlab over a network, the location of the
 %   'pathdef.m' file might have to be specified:

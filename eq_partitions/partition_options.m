@@ -87,7 +87,7 @@ for k=1:nopts
         fprintf('Option names must be character strings\n');
         option_error(varargin{:});
     end
-end    
+end
 opt_vals = varargin(2:2:2*nopts);
 
 option_name = 'offset';
