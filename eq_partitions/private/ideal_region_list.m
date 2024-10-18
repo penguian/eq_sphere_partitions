@@ -30,7 +30,7 @@ if n_collars > 0
     % the collar angle such that n_collars collars fit between the polar caps.
     %
     a_fitting = (pi-2*c_polar)/n_collars;
-    ideal_region_area = area_of_ideal_region(dim,N);    
+    ideal_region_area = area_of_ideal_region(dim,N);
     for collar_n = 1:n_collars
         ideal_collar_area = area_of_collar(dim, c_polar+(collar_n-1)*a_fitting, c_polar+collar_n*a_fitting);
         r_regions(1+collar_n) = ideal_collar_area / ideal_region_area;

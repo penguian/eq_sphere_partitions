@@ -106,7 +106,7 @@ if pathdef_exists
         disp([estr 'Cannot write to the pathdef file ' ...
             pathdef_name ' which was found on the Matlab path.']);
         error(['Try "' command ' -". ' need_to_specify_msg]);
-    end    
+    end
 else
     disp([estr was_not_uninstalled_msg ' The file pathdef.m was not found.']);
     error(['Try "' command ' -". ' need_to_specify_msg]);
