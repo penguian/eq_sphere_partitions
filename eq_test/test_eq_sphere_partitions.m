@@ -1,8 +1,8 @@
 function test_eq_sphere_partitions
-%TEST_EQ_SPHERE_PARTITIONS Test the functions in the eq_sphere_partitions directory
+%TEST_EQ_SPHERE_PARTITIONS Test the functions in all directories except eq_illustrations
 
 % Copyright 2024 Paul Leopardi.
-% $Revision $ 1.12 $ $Date 2024-10-14 $
+% $Revision $ 1.12 $ $Date 2024-10-18 $
 %
 % For licensing, see COPYING.
 % For references, see AUTHORS.
