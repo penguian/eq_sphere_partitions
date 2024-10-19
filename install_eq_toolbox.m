@@ -36,11 +36,9 @@ function install_eq_toolbox(arg)
 % For Windows systems: [matlabroot '\toolbox\local'].
 % If this directory does not exist, INSTALL_EQ_TOOLBOX tries to create it.
 %
-% For Toolbox Installer 2.2 by B. Rasmus Anthin, see
+% For Toolbox Installer 2.2 by Rasmus Anthin, see
 % Matlab Central File Exchange
-% http://www.mathworks.com/matlabcentral/fileexchange/
-% Home page of B. Rasmus Anthin
-% http://www.etek.chalmers.se/~e8rasmus/
+% https://au.mathworks.com/matlabcentral/fileexchange/3726-toolbox-installer-2-2
 %
 %Examples
 % > install_eq_toolbox
@@ -67,7 +65,7 @@ function install_eq_toolbox(arg)
 % UNINSTALL_EQ_TOOLBOX, PATHDEF, PATH, Toolbox Installer 2.2
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-28 $
+% $Revision 1.12 $ $Date 2024-10-20 $
 % Copyright 2013 Paul Leopardi
 % $Revision 1.11 $ $Date 2013-01-11 $
 % Remove 'ver' output argument from calls to fileparts()

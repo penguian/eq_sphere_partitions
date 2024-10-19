@@ -29,11 +29,9 @@ function uninstall_eq_toolbox(arg)
 % In particular, UNINSTALL_EQ_TOOLBOX does not delete pathdef.m or its
 % directory, even if these were created by INSTALL_EQ_TOOLBOX.
 %
-% For Toolbox Installer 2.2 by B. Rasmus Anthin, see
+% For Toolbox Installer 2.2 by Rasmus Anthin, see
 % Matlab Central File Exchange
-% http://www.mathworks.com/matlabcentral/fileexchange/
-% Home page of B. Rasmus Anthin
-% http://www.etek.chalmers.se/~e8rasmus/
+% https://au.mathworks.com/matlabcentral/fileexchange/3726-toolbox-installer-2-2
 %
 %Examples
 % > cd ~
@@ -55,7 +53,7 @@ function uninstall_eq_toolbox(arg)
 % INSTALL_EQ_TOOLBOX, PATHDEF, PATH, Toolbox Installer 2.2.
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-28 $
+% $Revision 1.12 $ $Date 2024-10-20 $
 % Copyright 2013 Paul Leopardi
 % $Revision 1.11 $ $Date 2013-01-11 $
 % Remove 'ver' output argument from calls to fileparts()
