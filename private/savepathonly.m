@@ -36,13 +36,23 @@ function result = savepathonly(outputfile)
 %   See also SAVEPATH.
 
 % Copyright 2024 Paul Leopardi.
-% $Revision 1.12 $ $Date 2024-04-28 $
+% $Revision 1.12 $ $Date 2024-10-20 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-05-31 $
 % Initialize cell array removed{} as size 0 rather than size 1
 % On Windows, do not remove [getenv('USERPROFILE') '\matlab'] directory
 % $Revision 1.00 $ $Date 2005-02-03 $
 
+%
+% We will call call SAVEPATH (or PATH2RC) depending on Matlab version
+%
+if verLessThan('matlab', '7')
+    verge7 = false;
+    savefn = @path2rc;
+else
+    verge7 = true;
+    savefn = @savepath;
+end
 %
 % Before version 7, only Unix has case sensitive path names
 %
@@ -100,9 +110,9 @@ for d = 1:length(dirnames)
     end
 end
 %
-% Now that we have cleaned up the path we can safely call SAVEPATH (or PATH2RC)
+% Now that we have cleaned up the path we can safely call SAVEFN
 %
-result = savepath(outputfile);
+result = savefn(outputfile);
 %
 % We now add the paths back in
 %
