@@ -1,17 +1,12 @@
 Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox.
-Release 1.12 2024-09-18
+Release 1.12 2024-10-27
 Copyright 2024 Paul Leopardi
 Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
-README.txt
+README
 
 For licensing, see COPYING
 For references, see AUTHORS
 For revision history, see CHANGELOG.
-
-NOTE:
-This file has lines terminated by CR-LF for use with DOS and Windows Notepad.
-On Windows, to read AUTHORS, COPYING and CHANGELOG, use another editor, such as
-Wordpad or the Matlab editor.
 
 >> What is the Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox?
 
@@ -25,8 +20,8 @@ The functions are grouped into the following groups of tasks:
 3. Find properties of EQ point sets
 4. Create histograms based on EQ partitions
 5. Produce illustrations
-6. Test the toolbox
-7. Perform some utility function
+6. Perform some utility function
+7. Test the toolbox
 
 >> What is an EQ partition?
 
@@ -53,14 +48,15 @@ point is defined using the center of the spherical cap.
 Release 1.00 2005-02-13 was the first version of the EQ sphere partitioning
 code to be packaged in toolbox form.
 Release 1.10 2005-06-26 is the first public release of the code.
-Release 1.12 2024-09-18 brings the Matlab code up to date, and includes
+Release 1.12 2024-10-27 brings the Matlab code up to date, and includes
 histogram utilities.
 For details of changes from earlier versions of the EQ partitioning code,
 and changes from 1.00 to the current release, see CHANGELOG.
 
 >> Which versions of Matlab can I use?
 
-This toolbox has been tested with Matlab version R2023b Update 2 on Linux.
+This toolbox has been tested with various Matlab versions between R2020b and
+R2023b on Linux, MacOS and Windows 10.
 
 >> How do I install the Recursive Zonal Equal Area Sphere Partitioning Toolbox?
 
@@ -69,18 +65,18 @@ these directories need to be on your Matlab path every time you start Matlab.
 You will therefore need to install the toolbox before using it.
 
 To do this,
-1. Unzip the file eqsp-1.12.zip into the directory where you
-   want the toolbox to reside. This will create the subdirectory
+1. Unzip the downloaded Zip file into the directory where you want the toolbox
+   to reside. This will create the subdirectory
    eq_sphere_partitions.
 2. Run Matlab, change directory to eq_sphere_partitions and then run
    install_eq_toolbox.
-For more information, see INSTALL.txt.
+For more information, see INSTALL.
 
 >> What documentation is available?
 
 The user documentation includes the help comments in each Matlab M file,
-plus the extra files Contents.m, AUTHORS, CHANGELOG, COPYING, INSTALL.txt
-and README.txt.
+plus the extra files Contents.m, AUTHORS, CHANGELOG, COPYING, INSTALL, and
+README.
 
 The extra files contain the following:
 Contents.m:    A brief description of those functions in the toolbox which are
@@ -88,8 +84,8 @@ Contents.m:    A brief description of those functions in the toolbox which are
 AUTHORS:       Authors, acknowledgements and references.
 CHANGELOG:     Revision history.
 COPYING:       Software license terms.
-INSTALL.txt:   Installation instructions in DOS CR-LF text format.
-README.txt:    This file.
+INSTALL:       Installation instructions.
+README:        This file.
 
 >> How do I get help?
 
@@ -142,18 +138,23 @@ For example, here is the result of HELP EQ_POINT_SET:
   For more details on options, see help partition_options.
 
  Examples
-  > points_x = eq_point_set(2,4)
+
+  >> points_x = eq_point_set(2,4)
+
   points_x =
            0    0.0000   -0.0000    0.0000
            0    1.0000   -1.0000         0
       1.0000    0.0000    0.0000   -1.0000
 
-  > size(points_x)
+  >> size(points_x)
+
   ans =
+
        3     4
 
  See also
-  PARTITION_OPTIONS, EQ_POINT_SET_POLAR, EQ_REGIONS, S2X
+  PARTITION_OPTIONS, EQ_POINT_SET_POLAR, EQ_REGIONS, POLAR2CART
+
 -------------------------------------------------------------------------------
 
 >> What is the input? What is the output?
@@ -196,7 +197,14 @@ S^dim for N points:
 
 > [energy,dist] = eq_energy_dist(dim,N,s);
 
-4. Produce an illustration
+4. Create a histogram
+
+o Given a set of points, count points in each of N regions of an EQ partition
+of S^2:
+
+> count_v = eq_count_points_by_s2_region(points_s, 8);
+
+5. Produce an illustration
 
 o Use projection to illustrate the EQ partition of S^2 into N regions:
 
