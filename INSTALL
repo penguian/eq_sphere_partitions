@@ -2,16 +2,11 @@ Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox.
 Release 1.12 2024-10-20
 Copyright 2024 Paul Leopardi
 Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
-INSTALL.txt
+INSTALL
 
 For licensing, see COPYING.
 For references, see AUTHORS.
 For revision history, see CHANGELOG.
-
-NOTE:
-This file has lines terminated by CR-LF for use with DOS and Windows Notepad.
-On Windows, to read AUTHORS, COPYING and CHANGELOG, use another editor, such as
-Wordpad or the Matlab editor.
 
 Installation
 ============
