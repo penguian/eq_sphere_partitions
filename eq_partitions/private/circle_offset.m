@@ -3,11 +3,11 @@ function offset = circle_offset(n_top,n_bot,extra_twist)
 %
 % Given n_top and n_bot, calculate an offset.
 %
-% The values n_top and n_bot represent the numbers of 
+% The values n_top and n_bot represent the numbers of
 % equally spaced points on two overlapping circles.
 % The offset is given in multiples of whole rotations, and
 % consists of three parts;
-% 1) Half the difference between a twist of one sector on each of bottom and top. 
+% 1) Half the difference between a twist of one sector on each of bottom and top.
 % This brings the centre points into alignment.
 % 2) A rotation which will maximize the minimum angle between
 % points on the two circles.

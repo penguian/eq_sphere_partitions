@@ -29,11 +29,9 @@ function uninstall_eq_toolbox(arg)
 % In particular, UNINSTALL_EQ_TOOLBOX does not delete pathdef.m or its
 % directory, even if these were created by INSTALL_EQ_TOOLBOX.
 %
-% For Toolbox Installer 2.2 by B. Rasmus Anthin, see
+% For Toolbox Installer 2.2 by Rasmus Anthin, see
 % Matlab Central File Exchange
-% http://www.mathworks.com/matlabcentral/fileexchange/
-% Home page of B. Rasmus Anthin
-% http://www.etek.chalmers.se/~e8rasmus/
+% https://au.mathworks.com/matlabcentral/fileexchange/3726-toolbox-installer-2-2
 %
 %Examples
 % > cd ~
@@ -54,10 +52,12 @@ function uninstall_eq_toolbox(arg)
 %See also
 % INSTALL_EQ_TOOLBOX, PATHDEF, PATH, Toolbox Installer 2.2.
 
-% Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
-% Revsion 1.11 Copyright 2013 Paul Leopardi
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-20 $
+% Copyright 2013 Paul Leopardi
 % $Revision 1.11 $ $Date 2013-01-11 $
 % Remove 'ver' output argument from calls to fileparts()
+% Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Clearly distinguish between info and error messages
 % Documentation files renamed
@@ -68,7 +68,7 @@ function uninstall_eq_toolbox(arg)
 % For revision history, see CHANGELOG.
 
 command = mfilename;
-[command_dir name ext] = fileparts(mfilename('fullpath'));
+[command_dir, ~, ~] = fileparts(mfilename('fullpath'));
 wd = pwd;
 if ~strcmp(command_dir,wd)
     error(['Please run ' command ' from toolbox directory, eg. ' command_dir])
@@ -87,7 +87,7 @@ istr = 'Info: ';
 was_not_uninstalled_msg = 'Uninstaller cannot continue.';
 need_to_specify_msg     = 'You will need to specify the directory for pathdef.m';
 
-pathdef_exists = (exist('pathdef') == 2);
+pathdef_exists = (exist('pathdef','file') == 2);
 if pathdef_exists
     pathdef_name = which('pathdef');
     pathdefid = fopen(pathdef_name,'a');
@@ -104,7 +104,7 @@ if pathdef_exists
         disp([estr 'Cannot write to the pathdef file ' ...
             pathdef_name ' which was found on the Matlab path.']);
         error(['Try "' command ' -". ' need_to_specify_msg]);
-    end    
+    end
 else
     disp([estr was_not_uninstalled_msg ' The file pathdef.m was not found.']);
     error(['Try "' command ' -". ' need_to_specify_msg]);

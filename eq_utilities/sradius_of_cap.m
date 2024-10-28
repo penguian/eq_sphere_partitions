@@ -5,7 +5,7 @@ function s_cap = sradius_of_cap(dim, area)
 % s_cap = sradius_of_cap(dim, area);
 %
 %Description
-% S_CAP = SRADIUS_OF_CAP(dim, AREA) sets S_CAP to be the spherical radius of 
+% S_CAP = SRADIUS_OF_CAP(dim, AREA) sets S_CAP to be the spherical radius of
 % an S^dim spherical cap of area AREA.
 %
 % The argument dim must be a positive integer.
@@ -24,18 +24,22 @@ function s_cap = sradius_of_cap(dim, area)
 % Ref: [LeGS01 Lemma 4.1 p255].
 %
 %Examples
-% > s_cap=sradius_of_cap(2,area_of_sphere(2)/2)
+%
+% >> s_cap = sradius_of_cap(2,area_of_sphere(2)/2)
 %
 % s_cap =
 %     1.5708
 %
-% > s_cap=sradius_of_cap(3,(0:4)*area_of_sphere(3)/4)
+% >> s_cap = sradius_of_cap(3,(0:4)*area_of_sphere(3)/4)
+%
 % s_cap =
 %          0    1.1549    1.5708    1.9867    3.1416
 %
 %See also
 % FZERO, AREA_OF_CAP
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -74,8 +78,9 @@ otherwise
             else
                 flipped = false;
             end
-            sk = ...
-                fzero(inline(sprintf('area_of_cap(%d,s)-%21.14g',dim,ak),'s'),[0,pi]);
+            area_diff = @(s) eval(sprintf('area_of_cap(%d,s)-%21.14g',dim,ak));
+            sk = fzero(area_diff,[0,pi]);
+
             if flipped
                 s_cap(k) = pi - sk;
             else

@@ -11,7 +11,7 @@ function [s_cap,n_regions] = eq_caps(dim,N)
 % 2) sets S_CAP to be an array of size (1 by N_COLLARS+2),
 %    containing increasing colatitudes of caps, and
 % 3) sets N_REGIONS to be an array of size (1 by N_COLLARS+2),
-%    containing the intger number of regions in each corresponding zone of 
+%    containing the intger number of regions in each corresponding zone of
 %    S^dim.
 %
 % The argument N is assumed to be a positive integer.
@@ -28,21 +28,32 @@ function [s_cap,n_regions] = eq_caps(dim,N)
 % The sum of N_REGIONS is N.
 %
 %Examples
-% > [s_cap,n_regions] = eq_caps(2,10)
+%
+% >> [s_cap,n_regions] = eq_caps(2,10)
+%
 % s_cap =
+%
 %     0.6435    1.5708    2.4981    3.1416
+%
 % n_regions =
+%
 %      1     4     4     1
-%  
-% > [s_cap,n_regions] = eq_caps(3,6)
+%
+% >> [s_cap,n_regions] = eq_caps(3,6)
+%
 % s_cap =
+%
 %     0.9845    2.1571    3.1416
+%
 % n_regions =
+%
 %      1     4     1
 %
 %See also
 % EQ_REGIONS, EQ_POINT_SET_POLAR
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -55,8 +66,8 @@ function [s_cap,n_regions] = eq_caps(dim,N)
 %
 % Check number of arguments
 %
-error(nargchk(2,2,nargin));
-error(nargoutchk(2,2,nargout));
+narginchk(2,2);
+nargoutchk(2,2);
 %
 % dim is the number of dimensions
 % N is the number of regions
@@ -78,8 +89,8 @@ elseif N == 1
     %
     % We have only one region, which must be the whole sphere.
     %
-    s_cap = [pi];
-    n_regions = [1];
+    s_cap = pi;
+    n_regions = 1;
     %
 else
     %

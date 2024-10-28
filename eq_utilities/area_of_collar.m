@@ -5,7 +5,7 @@ function area = area_of_collar(dim, a_top, a_bot)
 % area = area_of_collar(dim, a_top, a_bot);
 %
 %Description
-% AREA = AREA_OF_COLLAR(dim, A_TOP, A_BOT) sets AREA to be the area of 
+% AREA = AREA_OF_COLLAR(dim, A_TOP, A_BOT) sets AREA to be the area of
 % an S^dim spherical collar specified by A_TOP, A_BOT, where
 % A_TOP is top (smaller) spherical radius,
 % A_BOT is bottom (larger) spherical radius.
@@ -24,13 +24,18 @@ function area = area_of_collar(dim, a_top, a_bot)
 % Ref: [LeGS01 Lemma 4.1 p255].
 %
 %Examples
-% > area=area_of_collar(2,0:2,1:3)
+%
+% >> area = area_of_collar(2,0:2,1:3)
+%
 % area =
+%
 %     2.8884    6.0095    3.6056
 %
 %See also
 % AREA_OF_CAP, AREA_OF_SPHERE
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

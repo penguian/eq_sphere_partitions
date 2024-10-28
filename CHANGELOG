@@ -1,10 +1,26 @@
 Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox.
+Release 1.12 2024-10-20
+Copyright 2024 Paul Leopardi
 Release 1.10 2005-06-26
 Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 CHANGELOG
 
 For licensing, see COPYING
 For references, see AUTHORS
+
+Changes between Release 1.10 and Release 1.12 as at 2024-10-20
+==============================================================
+
+1) Bring the installer up-to-date with respect to current Matlab.
+
+2) Bring the code up-to-date with respect to current Matlab.
+
+3) Complete the histogram utilities in the eq_histogram directory.
+
+4) Add tests to the eq_test directory.
+
+* Note * The histogram utilities as at Revision 1.11 of 2012-2013
+were incomplete, untested, and incorrect.
 
 Changes between Revision 1.02 and Release 1.10 as at 2005-06-26
 ===============================================================
@@ -337,7 +353,7 @@ point_set_props/point_set_energy_dist.m
 o r^(-s) energy and minimum distance of a point set
 
 point_set_props/point_set_min_dist.m
-o Minimum distance between points of a point set 
+o Minimum distance between points of a point set
 
 point_set_props/point_set_packing_density.m
 o  Density of packing given by min dist of a point set
@@ -349,7 +365,7 @@ point_set_props/eq_energy_coeff.m
 o Coefficient in expansion of energy of an RZ point set
 
 point_set_props/eq_min_dist.m
-o Minimum distance between points of an RZ point set 
+o Minimum distance between points of an RZ point set
 
 point_set_props/eq_packing_density.m
 o  Density of packing given by minimum distance of RZ point set
@@ -395,24 +411,24 @@ dist_matrix.m, sphere_dist_matrix.m
 o Out of scope.
 
 minus_dist.m, minus_dist_sq.m
-o No longer needed. 
-  Were used in constrained nonlinear optimization to estimate diameter. 
+o No longer needed.
+  Were used in constrained nonlinear optimization to estimate diameter.
 
 r2s.m, s2r.m
 o Duplicates of e2s.m and s2e.m.
 
 region_is_cap.m, region_is_sphere.m
-o No longer needed. 
-  Were used to estimate diameter. 
+o No longer needed.
+  Were used to estimate diameter.
 
 run_diam_bound_coeff_from.m,   run_vertex_diam_bound_coeff_from.m
 run_vertex_diam_bound_coeff.m, run_vertex_diam_coeff.m
-o Out of scope. 
+o Out of scope.
   Were used for batch jobs run from Linux shell scripts.
 
 5) Use of subfunctions.
 
-The following M files now contain the subfunctions as listed. 
+The following M files now contain the subfunctions as listed.
 As a consequence, the subfunctions no longer exist as separate M files.
 
 illustrations/illustration_options.m:
@@ -428,7 +444,7 @@ illustrations/show_s2_partition.m:
  SHOW_S2_REGION
 
 partitions/illustrate_eq_algorithm.m:
- OPTION_ARGUMENTS, ILLUSTRATE_STEPS_1_2, 
+ OPTION_ARGUMENTS, ILLUSTRATE_STEPS_1_2,
  ILLUSTRATE_STEPS_3_5, ILLUSTRATE_STEPS_6_7
 
 partitions/partition_options.m:
@@ -572,14 +588,14 @@ Now uses normalized font sizes.
 o Now use illustrations/illustrate_point_set.m
 o Removed unnecessary calls to PACK
 
-10.3) illustrations/show_s2_partition.m, illustrations/show_r3_point_set.m, 
+10.3) illustrations/show_s2_partition.m, illustrations/show_r3_point_set.m,
 o Now use new function SURF_JET to set up extreme values for COLARMAP JET.
   Also, SURF_JET uses HASLIGHT to determine if a light already exists,
   and only calls CAMLIGHT if there is no existing light.
 o Now use new function SHOW_S2_SPHERE to draw the unit sphere S^2.
   Also, SHOW_S2_SPHERE sets specular reflection of the unit sphere to 0.
-o show_s2_partition now uses PAUSE(0) to build up the illustration 
-  collar-by-collar rather than region-by-region. This is faster.  
+o show_s2_partition now uses PAUSE(0) to build up the illustration
+  collar-by-collar rather than region-by-region. This is faster.
 
 10.4) partitions/eq_caps.m
 Check for integer dim and N removed.
@@ -625,7 +641,7 @@ area_error.m:
   2004-03-23
   Simplify by removing options.
   2004-01-20
-  Ensure that routine works whether N is a number or range specified by a row matrix 
+  Ensure that routine works whether N is a number or range specified by a row matrix
 .
   2004-01-19
   Started.
@@ -928,7 +944,7 @@ partsphere.m:
 
 part_to_caps.m:
   2004-08-14
-  Make dim==1 consistent with dim>1 by 
+  Make dim==1 consistent with dim>1 by
   returning the longitude of a sector enclosing the
   cumulative sum of arc lengths given by summing n_regions.
   2004-03-23
@@ -1153,7 +1169,7 @@ Maple revision history
             euclidean_dist functions.
             Clean up conversions s2x and s2r.
 2003-09-26: Plot energy coefficients.
-            Fix functions which list energy and energy coefficients: 
+            Fix functions which list energy and energy coefficients:
             they had incorrect array assignments.
             Gram determinant for S^2 points.
 2003-09-25: Use Euclidean diameters as well as spherical diameters.

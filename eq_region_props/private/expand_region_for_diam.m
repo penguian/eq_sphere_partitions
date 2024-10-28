@@ -2,7 +2,7 @@ function expanded_region = expand_region_for_diam(region)
 %EXPAND_REGION_FOR_DIAM The set of 2^d vertices of a region
 %
 % Expand a region from the 2 vertex definition to the set of 2^dim vertices
-% of the pseudo-region of a region, so that the Euclidean diameter of a region 
+% of the pseudo-region of a region, so that the Euclidean diameter of a region
 % is approximated by the diameter of this set.
 %
 % expanded_region = expand_region_for_diam(region);

@@ -6,38 +6,47 @@ function [total_error, max_error] = eq_area_error(dim,N)
 %
 %Description
 % [TOTAL_ERROR, MAX_ERROR] = EQ_AREA_ERROR(dim,N) does the following:
-% 1) uses the recursive zonal equal area sphere partitioning algorithm to 
+% 1) uses the recursive zonal equal area sphere partitioning algorithm to
 %    partition the unit sphere S^dim into N regions,
 % 2) sets TOTAL_ERROR to be the absolute difference between the total area of
 %    all regions of the partition, and the area of S^dim, and
-% 3) sets MAX_ERROR to be the maximum absolute difference between the area of 
+% 3) sets MAX_ERROR to be the maximum absolute difference between the area of
 %    any region of the partition, and the ideal area of a region as given by
 %    AREA_OF_IDEAL_REGION(dim,N), which is 1/N times the area of S^dim.
 %
 % The argument dim must be a positive integer.
-% The argument N must be a positive integer or an array of positive integers. 
+% The argument N must be a positive integer or an array of positive integers.
 % The results TOTAL_ERROR and MAX_ERROR will be arrays of the same size as N.
 %
 %Examples
-% > [total_error, max_error] = eq_area_error(2,10)
+%
+% >> [total_error, max_error] = eq_area_error(2,10)
+%
 % total_error =
+%
 %    1.7764e-15
-%  
+%
 % max_error =
+%
 %    4.4409e-16
-%  
-% > [total_error, max_error] = eq_area_error(3,1:6)
+%
+% >> [total_error, max_error] = eq_area_error(3,1:6)
+%
 % total_error =
+%
 %    1.0e-12 *
 %     0.0036    0.0036    0.1847    0.0142    0.0142    0.2132
-%  
+%
 % max_error =
+%
 %    1.0e-12 *
 %     0.0036    0.0018    0.1954    0.0284    0.0440    0.0777
 %
 %See also
 % EQ_REGIONS, AREA_OF_SPHERE, AREA_OF_IDEAL_REGION
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -50,8 +59,8 @@ function [total_error, max_error] = eq_area_error(dim,N)
 %
 % Check number of arguments
 %
-error(nargchk(2,2,nargin));
-error(nargoutchk(2,2,nargout));
+narginchk(2,2);
+nargoutchk(2,2);
 
 %
 % Flatten N into a row vector.

@@ -6,45 +6,53 @@ function [energy,dist] = eq_energy_dist(dim,N,s,varargin)
 %
 %Description
 % [ENERGY,DIST] = EQ_ENERGY_DIST(dim,N,s) does the following:
-% 1) uses the recursive zonal equal area sphere partitioning algorithm to 
+% 1) uses the recursive zonal equal area sphere partitioning algorithm to
 %    partition the unit sphere S^dim into N regions,
 % 2) finds the EQ point set, the set of center points of each region,
 % 3) sets ENERGY to be the r^(-s) energy of the EQ point set, and
-% 4) optionally, sets DIST to be the minimum Euclidean distance between 
+% 4) optionally, sets DIST to be the minimum Euclidean distance between
 %    points of the EQ point set.
 %
 % The argument dim must be a positive integer.
-% The argument N must be a positive integer or an array of positive integers. 
+% The argument N must be a positive integer or an array of positive integers.
 % The results ENERGY and DIST will be arrays of the same size as N.
 % The result DIST is optional.
 %
 % [ENERGY,DIST] = EQ_ENERGY_DIST(dim,N) uses the default value dim-1 for s.
 %
 % [ENERGY,DIST] = EQ_ENERGY_DIST(dim,N,s,'offset','extra') uses experimental
-% extra offsets for S^2 and S^3 to try to minimize energy. 
+% extra offsets for S^2 and S^3 to try to minimize energy.
 % For dim > 3, extra offsets are not used.
 %
 %Examples
-% > energy=eq_energy_dist(2,10)
+%
+% >> energy = eq_energy_dist(2,10)
+%
 %  energy =
 %     32.7312
 %
-% > [energy,dist]=eq_energy_dist(3,1:6,0)
+% >> [energy,dist] = eq_energy_dist(3,1:6,0)
+%
 %  energy =
 %           0   -0.6931   -1.3863   -2.7726   -4.1589   -6.2383
+%
 %  dist =
 %      2.0000    2.0000    1.4142    1.4142    1.4142    1.4142
-%  
-% > [energy,dist]=eq_energy_dist(3,100,1,'offset','extra')
+%
+% >> [energy,dist] = eq_energy_dist(3,100,1,'offset','extra')
+%
 %  energy =
 %     4.0042e+03
+%
 %  dist =
 %      0.6545
 %
 %See also
-% EQ_POINT_SET, PARTITION_OPTIONS, POINT_SET_ENERGY_DIST, EUCLIDEAN_DIST, 
+% EQ_POINT_SET, PARTITION_OPTIONS, POINT_SET_ENERGY_DIST, EUCLIDEAN_DIST,
 % MIN_DIST
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -57,7 +65,7 @@ function [energy,dist] = eq_energy_dist(dim,N,s,varargin)
 %
 % Check number of arguments.
 %
-error(nargchk(2,5,nargin));
+narginchk(2,5);
 %
 if nargin < 3
     %
@@ -68,7 +76,7 @@ elseif ischar(s)
     %
     % Ensure that the user has not omitted argument s.
     %
-    error('Argument s must be numeric.');    
+    error('Argument s must be numeric.');
 end
 %
 % If the option 'offset' is 'extra', then use experimental extra offsets
@@ -108,6 +116,6 @@ end
 energy = reshape(energy,shape);
 if nargout > 1
     dist = reshape(dist,shape);
-end    
+end
 %
 % end function

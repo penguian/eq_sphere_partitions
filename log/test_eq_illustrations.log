@@ -1,0 +1,502 @@
+ HASLIGHT Check if axis handle has a light attached
+ 
+ Syntax
+  lit = haslight(axish);
+ 
+ Description
+  LIT = HASLIGHT(AXISH) sets LIT to true if the axis specified by axis
+  handle AXISH has a child of type 'light', and sets LIT to false otherwise.
+ 
+ Examples
+ 
+  >> lit = haslight(gca)
+ 
+  lit =
+ 
+    logical
+ 
+     0
+
+
+lit =
+
+  logical
+
+   0
+
+ ILLUSTRATE_EQ_ALGORITHM Illustrate the EQ partition algorithm
+ 
+ Syntax
+  illustrate_eq_algorithm(dim,N,options);
+ 
+ Description
+  ILLUSTRATE_EQ_ALGORITHM(dim,N) illustrates the recursive zonal equal area
+  sphere partitioning algorithm, which partitions S^dim (the unit sphere in 
+  dim+1 dimensional space) into N regions of equal area and small diameter.
+ 
+  The illustration consists of four subplots:
+  1. Steps 1 and 2
+  2. Steps 3 to 5
+  3. Steps 6 and 7
+  4. Lower dimensional partitions (if dim == 2 or dim == 3)
+ 
+  ILLUSTRATE_EQ_ALGORITHM(dim,N,'offset','extra') uses experimental extra
+  offsets for S^2 and S^3. If dim > 3, extra offsets are not used.
+  For more detail on partition options, see HELP PARTITION_OPTIONS.
+ 
+  ILLUSTRATE_EQ_ALGORITHM(dim,N,options) also recognizes a number of
+  illustration options, which are specified as name, value pairs.
+  Any number of pairs can be used, in any order.
+ 
+  The following illustration options are used.
+ 
+  ILLUSTRATE_EQ_ALGORITHM(dim,N,'fontsize',size)
+  Font size used in titles (numeric, default 16).
+ 
+  ILLUSTRATE_EQ_ALGORITHM(dim,N,'title','long')
+  ILLUSTRATE_EQ_ALGORITHM(dim,N,'title','short')
+  Use long or short titles (default 'short').
+ 
+  ILLUSTRATE_EQ_ALGORITHM(dim,N,'proj','stereo')
+  ILLUSTRATE_EQ_ALGORITHM(dim,N,'proj','eqarea')
+  Use stereographic or equal area projection (default 'stereo').
+ 
+  ILLUSTRATE_EQ_ALGORITHM(dim,N,'points','show')
+  ILLUSTRATE_EQ_ALGORITHM(dim,N,'points','hide')
+  Show or hide center points (default 'show').
+ 
+  See examples below.
+  For more detail on illustration options, see HELP ILLUSTRATION_OPTIONS.
+ 
+ Notes
+  The step numbers refer to the following steps of the the recursive zonal
+  equal area sphere partitioning algorithm, which partition the sphere into 
+  zones.
+ 
+  1. Determine the colatitudes of the North and South polar caps.
+  2. Determine an ideal collar angle.
+  3. Use the angle between the North and South polar caps and the ideal collar
+     angle to determine an ideal number of collars.
+  4. Use a rounding procedure to determine the actual number of collars,
+     given the ideal number of collars.
+  5. Create a list containing the ideal number of regions in each collar.
+  6. Use a rounding procedure to create a list containing the actual number of
+     regions in each collar, given the list containing the ideal number of
+     regions.
+  7. Create a list containing the colatitude of the top of each zone,
+     given the list containing the actual number of regions in each collar,
+     and the colatitudes of the polar caps.
+ 
+ Examples
+ 
+  >> illustrate_eq_algorithm(3,99)
+  >> illustrate_eq_algorithm(3,99,'offset','extra','proj','eqarea')
+  >> illustrate_eq_algorithm(3,99,'proj','eqarea','points','hide')
+ 
+ See also
+  PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, SUBPLOT
+
+ ILLUSTRATION_OPTIONS Options for illustrations of EQ partitions
+ 
+ Syntax
+  gopt = illustration_options(gdefault,options);
+ 
+ Description
+  GOPT = ILLUSTRATION_OPTIONS(GDEFAULT,options) collects illustration options,
+  specified as name, value pairs, and places these into the structure GOPT.
+  The structure GDEFAULT is used to define default option values.
+ 
+  The structures gdefault and gopt may contain the following fields:
+  fontsize:      numeric
+  long_title:    boolean
+  stereo:        boolean
+  show_points:   boolean
+  show_sphere:   boolean
+  show_surfaces: boolean
+ 
+  The following illustration options are available.
+ 
+  'fontsize':    Font size used in titles.
+       number    Assigns number to field gopt.fontsize.
+ 
+  'title':       Length of titles.
+      'long':    Long titles.
+                 Sets gopt.show_title to true.
+                 Sets gopt.long_title to true.
+      'short':   Short titles.
+                 Sets gopt.show_title to true.
+                 Sets gopt.long_title to false.
+      'none':    No titles.
+                 Sets gopt.show_title to false.
+                 Sets gopt.long_title to false.
+      'show':    Show default titles.
+                 Sets gopt.show_title to true.
+      'hide':    Same as 'none'.
+ 
+  'proj':        Projection from the sphere to the plane R^2 or the space R^3.
+      'stereo':  Stereographic projection from the sphere to the whole space.
+                 Sets gopt.stereo to true.
+      'eqarea':  Equal area projection from the sphere to the disk or ball.
+                 Sets gopt.stereo to false.
+ 
+  'points':      Show or hide center points of regions.
+      'show':    Show center points of regions.
+                 Sets gopt.show_points to true.
+      'hide':    Hide center points of regions.
+                 Sets gopt.show_points to false.
+ 
+  'sphere':      Show or hide the sphere S^2.
+      'show':    Show sphere.
+                 Sets gopt.show_sphere to true.
+      'hide':    Hide sphere.
+                 Sets gopt.show_sphere to false.
+ 
+  'surf':        Show or hide surfaces of regions of a partition of S^3.
+      'show':    Show surfaces of regions.
+                 Sets gopt.show_surfaces to true.
+      'hide':    Hide surfaces of regions.
+                 Sets gopt.show_surfaces to false.
+ 
+ Examples
+ 
+  >> gdefault.fontsize=14;
+  >> gopt = illustration_options(gdefault,'proj','stereo')
+ 
+  gopt =
+ 
+      fontsize: 14
+        stereo: 1
+ 
+  >> gopt = illustration_options(gdefault,'proj','stereo','fontsize',12)
+ 
+  gopt =
+ 
+     fontsize: 12
+       stereo: 1
+
+
+gopt = 
+
+  struct with fields:
+
+    fontsize: 14
+      stereo: 1
+
+
+gopt = 
+
+  struct with fields:
+
+    fontsize: 12
+      stereo: 1
+
+ PROJECT_POINT_SET Use projection to illustrate a point set of S^2 or S^3
+ 
+ Syntax
+  project_point_set(points,options);
+ 
+ Description
+  PROJECT_POINT_SET(POINTS,OPTIONS) uses projection to illustrate a point set
+  of S^2 or S^3, represented by the Cartesian coordinates POINTS.
+ 
+  The argument POINTS must be an array of real numbers of size (3 by N) or
+  (4 by N), where N is a positive integer.
+ 
+  PROJECT_POINT_SET(N,options) also recognizes a number of illustration
+  options, which are specified as name, value pairs.
+  Any number of pairs can be used, in any order.
+ 
+  The following illustration options are used.
+ 
+  PROJECT_POINT_SET(N,'fontsize',size)
+  Font size used in titles (numeric, default 16).
+ 
+  PROJECT_POINT_SET(N,'title','show')
+  PROJECT_POINT_SET(N,'title','hide')
+  Show or hide titles (default 'hide').
+ 
+  PROJECT_POINT_SET(N,'proj','stereo')
+  PROJECT_POINT_SET(N,'proj','eqarea')
+  Use stereographic or equal area projection (default 'stereo').
+ 
+ Notes
+  The points are assumed to all lie on the unit sphere S^dim, where dim == 2 or
+  dim == 3. The first point POINTS(:,1) should be the North pole [1,0,0]' or
+  [1,0,0,0]'.
+ 
+ Examples
+ 
+  >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+ 
+  x =
+ 
+       0     0     0     0
+       0     1    -1     0
+       1     0     0    -1
+ 
+  >> project_point_set(x)
+ 
+ See also
+  ILLUSTRATION_OPTIONS
+
+
+x =
+
+     0     0     0     0
+     0     1    -1     0
+     1     0     0    -1
+
+ PROJECT_S2_PARTITION Use projection to illustrate an EQ partition of S^2
+ 
+ Syntax
+  [movie_frame] = project_s2_partition(N,options);
+ 
+ Description
+  PROJECT_S2_PARTITION(N) uses projection to illustrate the partition of
+  the unit sphere S^2 into N regions.
+ 
+  MOVIE_FRAME = PROJECT_S2_PARTITION(N) sets MOVIE_FRAME to be an array of
+  movie frames for use with MOVIE. The movie frames will contain the region by
+  region build-up of the illustration.
+ 
+  PROJECT_S2_PARTITION(N,'offset','extra') uses experimental extra offsets.
+  For more detail on partition options, see HELP PARTITION_OPTIONS.
+ 
+  PROJECT_S2_PARTITION(N,options) also recognizes a number of illustration
+  options, which are specified as name, value pairs.
+  Any number of pairs can be used, in any order.
+ 
+  The following illustration options are used.
+ 
+  PROJECT_S2_PARTITION(N,'fontsize',size)
+  Font size used in titles (numeric, default 16).
+ 
+  PROJECT_S2_PARTITION(N,'title','long')
+  PROJECT_S2_PARTITION(N,'title','short')
+  Use long or short titles (default 'long').
+ 
+  PROJECT_S2_PARTITION(N,'proj','stereo')
+  PROJECT_S2_PARTITION(N,'proj','eqarea')
+  Use stereographic or equal area projection (default 'stereo').
+ 
+  PROJECT_S2_PARTITION(N,'points','show')
+  PROJECT_S2_PARTITION(N,'points','hide')
+  Show or hide center points (default 'show').
+ 
+  For more detail on illustration options, see HELP ILLUSTRATION_OPTIONS.
+ 
+ Examples
+ 
+  >> project_s2_partition(10)
+  >> frames = project_s2_partition(9,'offset','extra','proj','eqarea')
+ 
+  frames =
+ 
+  1x10 struct array with fields:
+      cdata
+      colormap
+ 
+  >> project_s2_partition(99,'proj','eqarea','points','hide')
+ 
+ See also
+  MOVIE, PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, SHOW_S2_PARTITION,
+  PROJECT_S3_PARTITION
+
+
+frames = 
+
+  1x10 struct array with fields:
+
+    cdata
+    colormap
+
+ PROJECT_S3_PARTITION Use projection to illustrate an EQ partition of S^3
+ 
+ Syntax
+  [movie_frame] = project_s3_partition(N,options);
+ 
+ Description
+  PROJECT_S3_PARTITION(N) uses projection to illustrate the partition of
+  the unit sphere S^3 into N regions.
+ 
+  MOVIE_FRAME = PROJECT_S3_PARTITION(N) sets MOVIE_FRAME to be an array of
+  movie frames for use with MOVIE. The movie frames will contain the region by
+  region build-up of the illustration.
+ 
+  PROJECT_S3_PARTITION(N,'offset','extra') uses experimental extra offsets.
+  For more detail on partition options, see HELP PARTITION_OPTIONS.
+ 
+  PROJECT_S3_PARTITION(N,options) also recognizes a number of illustration
+  options, which are specified as name, value pairs.
+  Any number of pairs can be used, in any order.
+ 
+  The following illustration options are used.
+ 
+  PROJECT_S3_PARTITION(N,'fontsize',size)
+  Font size used in titles (numeric, default 18).
+ 
+  PROJECT_S3_PARTITION(N,'title','long')
+  PROJECT_S3_PARTITION(N,'title','short')
+  Use long or short titles (default 'long').
+ 
+  PROJECT_S3_PARTITION(N,'proj','stereo')
+  PROJECT_S3_PARTITION(N,'proj','eqarea')
+  Use stereographic or equal area projection (default 'stereo').
+ 
+  PROJECT_S3_PARTITION(N,'points','show')
+  PROJECT_S3_PARTITION(N,'points','hide')
+  Show or hide center points (default 'show').
+ 
+  PROJECT_S3_PARTITION(N,'surf','show')
+  PROJECT_S3_PARTITION(N,'surf','hide')
+  Show or hide surfaces of regions (default 'show').
+ 
+  For more detail on illustration options, see HELP ILLUSTRATION_OPTIONS.
+ 
+ Examples
+ 
+  >> project_s3_partition(10)
+  >> frames = project_s3_partition(9,'offset','extra','proj','eqarea')
+ 
+  frames =
+ 
+  1x18 struct array with fields:
+      cdata
+      colormap
+ 
+  >> project_s3_partition(99,'proj','eqarea','points','hide')
+ 
+ See also
+  MOVIE, PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, PROJECT_S2_PARTITION
+
+
+frames = 
+
+  1x18 struct array with fields:
+
+    cdata
+    colormap
+
+ SHOW_R3_POINT_SET 3D illustration of a point set
+ 
+ Syntax
+  show_r3_point_set(POINTS_X,options);
+ 
+ Description
+  SHOW_R3_POINT_SET(POINTS_X) uses a 3d plot to illustrate a point set in relation to
+  the unit sphere S^2.
+ 
+  The argument POINTS_X must be an array of real numbers of size (3 by N), where N is a
+  positive integer, representing N points of R^3.
+ 
+  SHOW_R3_POINT_SET(POINTS_X,options) also recognizes a number of illustration
+  options, which are specified as name, value pairs.
+  Any number of pairs can be used, in any order.
+ 
+  The following illustration options are used.
+ 
+  SHOW_R3_POINT_SET(POINTS_X,'fontsize',size)
+  Font size used in titles (numeric, default 16).
+ 
+  SHOW_R3_POINT_SET(POINTS_X,'title','show')
+  SHOW_R3_POINT_SET(POINTS_X,'title','hide')
+  Show or hide title (default 'hide').
+ 
+  SHOW_R3_POINT_SET(POINTS_X,'sphere','show')
+  SHOW_R3_POINT_SET(POINTS_X,'sphere','hide')
+  Show or hide the unit sphere S^2 (default 'hide').
+ 
+  For more detail on illustration options, see HELP ILLUSTRATION_OPTIONS.
+ 
+ Note
+  This function is primarily for use with the point set POINTS_X as a subset of the 
+  unit sphere S^2, but this is not assumed and not checked.
+  If you show the unit sphere S^2 and POINTS_X contains points closer than radius 1
+  from the origin, the sphere will hide these points.
+ 
+ Examples
+ 
+  >> points_x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+ 
+  points_x =
+ 
+       0     0     0     0
+       0     1    -1     0
+       1     0     0    -1
+ 
+  >> show_r3_point_set(points_x,'sphere','hide')
+  >> show_r3_point_set(points_x,'sphere','show')
+ 
+ See also
+  ILLUSTRATION_OPTIONS, SHOW_S2_PARTITION, PROJECT_POINT_SET
+
+
+points_x =
+
+     0     0     0     0
+     0     1    -1     0
+     1     0     0    -1
+
+ SHOW_S2_PARTITION 3D illustration of an EQ partition of S^2
+ 
+ Syntax
+  [movie_frame] = show_s2_partition(N,options);
+ 
+ Description
+  SHOW_S2_PARTITION(N) uses a 3d plot to illustrate the partition of
+  the unit sphere S^2 into N regions.
+ 
+  MOVIE_FRAME = SHOW_S2_PARTITION(N) sets MOVIE_FRAME to be an array of
+  movie frames for use with MOVIE. The movie frames will contain the region by
+  region build-up of the illustration.
+ 
+  SHOW_S2_PARTITION(N,'offset','extra') uses experimental extra offsets.
+  For more detail on partition options, see HELP PARTITION_OPTIONS.
+ 
+  SHOW_S2_PARTITION(N,options) also recognizes a number of illustration
+  options, which are specified as name, value pairs.
+  Any number of pairs can be used, in any order.
+ 
+  The following illustration options are used.
+ 
+  SHOW_S2_PARTITION(N,'fontsize',size)
+  Font size used in titles (numeric, default 16).
+ 
+  SHOW_S2_PARTITION(N,'title','show')
+  SHOW_S2_PARTITION(N,'title','hide')
+  Show or hide title (default 'show').
+ 
+  SHOW_S2_PARTITION(N,'points','show')
+  SHOW_S2_PARTITION(N,'points','hide')
+  Show or hide center points (default 'show').
+ 
+  SHOW_S2_PARTITION(N,'sphere','show')
+  SHOW_S2_PARTITION(N,'sphere','hide')
+  Show or hide the unit sphere S^2 (default 'show').
+ 
+  For more detail on illustration options, see HELP ILLUSTRATION_OPTIONS.
+ 
+ Examples
+ 
+  >> show_s2_partition(10)
+  >> frames = show_s2_partition(9,'offset','extra')
+ 
+  frames =
+ 
+  1x10 struct array with fields:
+      cdata
+      colormap
+ 
+  >> show_s2_partition(99,'points','hide')
+ 
+ See also
+  MOVIE, PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, PROJECT_S2_PARTITION
+
+
+frames = 
+
+  1x10 struct array with fields:
+
+    cdata
+    colormap
+

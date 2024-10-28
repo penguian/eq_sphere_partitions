@@ -17,13 +17,18 @@ function volume = volume_of_ball(dim)
 % Ref: [WeiMW].
 %
 %Examples
-% > volume=volume_of_ball(1:7)
+%
+% >> volume = volume_of_ball(1:7)
+%
 % volume =
+%
 %     2.0000    3.1416    4.1888    4.9348    5.2638    5.1677    4.7248
 %
 %See also
 % AREA_OF_SPHERE
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

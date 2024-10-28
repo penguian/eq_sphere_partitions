@@ -61,17 +61,24 @@ function gopt = illustration_options(gdefault, varargin)
 %                Sets gopt.show_surfaces to false.
 %
 %Examples
-% > gdefault.fontsize=14;
-% > gopt=illustration_options(gdefault,'proj','stereo')
+%
+% >> gdefault.fontsize=14;
+% >> gopt = illustration_options(gdefault,'proj','stereo')
+%
 % gopt =
+%
 %     fontsize: 14
 %       stereo: 1
 %
-% > gopt=illustration_options(gdefault,'proj','stereo','fontsize',12)
+% >> gopt = illustration_options(gdefault,'proj','stereo','fontsize',12)
+%
 % gopt =
+%
 %    fontsize: 12
 %      stereo: 1
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -84,19 +91,19 @@ function gopt = illustration_options(gdefault, varargin)
 gopt = gdefault;
 nargs = length(varargin);
 nopts = floor(nargs/2);
-opt_args = {varargin{1:2:2*nopts-1}};
+opt_args = varargin(1:2:2*nopts-1);
 for k=1:nopts
     if ~ischar([opt_args{k}])
         fprintf('Option names must be character strings\n');
         option_error(varargin{:});
     end
 end
-opt_vals = {varargin{2:2:2*nopts}};
+opt_vals = varargin(2:2:2*nopts);
 
 option_name = 'fontsize';
-pos = strmatch(option_name,opt_args,'exact');
+pos = find(strcmp(option_name,opt_args));
 if ~isempty(pos)
-    if (length(pos) == 1)
+    if (isscalar(pos))
         gopt.fontsize = opt_vals{pos};
     else
         duplicate_error(option_name,varargin{:});
@@ -104,9 +111,9 @@ if ~isempty(pos)
 end
 
 option_name = 'title';
-pos = strmatch(option_name,opt_args,'exact');
+pos = find(strcmp(option_name,opt_args));
 if ~isempty(pos)
-    if (length(pos) == 1)
+    if (isscalar(pos))
         value = opt_vals{pos};
     else
         duplicate_error(option_name,varargin{:});
@@ -123,8 +130,6 @@ if ~isempty(pos)
         gopt.long_title = false;
     case 'hide'
         gopt.show_title = false;
-    case 'hide'
-        gopt.show_title = false;
         gopt.long_title = false;
     case 'show'
         gopt.show_title = true;
@@ -134,9 +139,9 @@ if ~isempty(pos)
 end
 
 option_name = 'proj';
-pos = strmatch(option_name,opt_args);
+pos = find(strcmp(option_name,opt_args));
 if ~isempty(pos)
-    if (length(pos) == 1)
+    if (isscalar(pos))
         value = opt_vals{pos};
     else
         duplicate_error(option_name,varargin{:});
@@ -152,9 +157,9 @@ if ~isempty(pos)
 end
 
 option_name = 'points';
-pos = strmatch(option_name,opt_args,'exact');
+pos = find(strcmp(option_name,opt_args));
 if ~isempty(pos)
-    if (length(pos) == 1)
+    if (isscalar(pos))
         value = opt_vals{pos};
     else
         duplicate_error(option_name,varargin{:});
@@ -170,9 +175,9 @@ if ~isempty(pos)
 end
 
 option_name = 'surf';
-pos = strmatch(option_name,opt_args);
+pos = find(strcmp(option_name,opt_args));
 if ~isempty(pos)
-    if (length(pos) == 1)
+    if (isscalar(pos))
         value = opt_vals{pos};
     else
         duplicate_error(option_name,varargin{:});
@@ -188,9 +193,9 @@ if ~isempty(pos)
 end
 
 option_name = 'sphere';
-pos = strmatch(option_name,opt_args);
+pos = find(strcmp(option_name,opt_args));
 if ~isempty(pos)
-    if (length(pos) == 1)
+    if (isscalar(pos))
         value = opt_vals{pos};
     else
         duplicate_error(option_name,varargin{:});
@@ -208,12 +213,12 @@ end
 % end function
 
 function duplicate_error(option_name,varargin)
-fprintf('Duplicate option %s\n',option_name); 
+fprintf('Duplicate option %s\n',option_name);
 option_error(varargin{:});
 %
 % end function
 
-function value_error(value,varargin)       
+function value_error(value,varargin)
 fprintf('Invalid option value ');
 disp(value);
 option_error(varargin{:});
