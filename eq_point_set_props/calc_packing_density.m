@@ -23,21 +23,28 @@ function density = calc_packing_density(dim,N,min_euclidean_dist)
 % case. It is defined to be pi.
 %
 %Examples
-% > N=2:6
+%
+% >> N = 2:6
+%
 %  N =
 %       2     3     4     5     6
 %
-% > dist=eq_min_dist(2,N)
+% >> dist = eq_min_dist(2,N)
+%
 %  dist =
+%
 %      2.0000    1.4142    1.4142    1.4142    1.4142
 %
-% > calc_packing_density(2,N,dist)
-%  ans =
+% >> density = calc_packing_density(2,N,dist)
+%
+%  density =
 %      1.0000    0.4393    0.5858    0.7322    0.8787
 %
 %See also
 % EQ_MIN_DIST, AREA_OF_CAP, AREA_OF_SPHERE, EQ_PACKING_DENSITY
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -52,7 +59,7 @@ function density = calc_packing_density(dim,N,min_euclidean_dist)
 %
 % Check number of arguments
 %
-error(nargchk(3,3,nargin));
+narginchk(3,3);
 %
 s_cap = euc2sph_dist(min_euclidean_dist)/2;
 %

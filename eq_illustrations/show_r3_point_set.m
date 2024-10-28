@@ -31,24 +31,29 @@ function show_r3_point_set(points_x,varargin)
 % For more detail on illustration options, see HELP ILLUSTRATION_OPTIONS.
 %
 %Note
-% This function is primarily for use with the point set POINTS_X as a subset of the 
+% This function is primarily for use with the point set POINTS_X as a subset of the
 % unit sphere S^2, but this is not assumed and not checked.
 % If you show the unit sphere S^2 and POINTS_X contains points closer than radius 1
 % from the origin, the sphere will hide these points.
 %
 %Examples
-% > points_x
-% points_x =
-%          0    0.0000   -0.0000    0.0000
-%          0    1.0000   -1.0000         0
-%     1.0000    0.0000    0.0000   -1.0000
 %
-% > show_r3_point_set(points_x,'sphere','hide')
-% > show_r3_point_set(points_x,'sphere','show')
+% >> points_x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+%
+% points_x =
+%
+%      0     0     0     0
+%      0     1    -1     0
+%      1     0     0    -1
+%
+% >> show_r3_point_set(points_x,'sphere','hide')
+% >> show_r3_point_set(points_x,'sphere','show')
 %
 %See also
 % ILLUSTRATION_OPTIONS, SHOW_S2_PARTITION, PROJECT_POINT_SET
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

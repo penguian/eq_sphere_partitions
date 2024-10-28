@@ -30,21 +30,26 @@ function project_point_set(points,varargin)
 %
 %Notes
 % The points are assumed to all lie on the unit sphere S^dim, where dim == 2 or
-% dim == 3. The first point POINTS(:,1) should be the North pole [1,0,0]' or 
+% dim == 3. The first point POINTS(:,1) should be the North pole [1,0,0]' or
 % [1,0,0,0]'.
 %
 %Examples
-% > x
-%  x =
-%           0    0.0000   -0.0000    0.0000
-%           0    1.0000   -1.0000         0
-%      1.0000    0.0000    0.0000   -1.0000
-%  
-% > project_point_set(x)
+%
+% >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+%
+% x =
+%
+%      0     0     0     0
+%      0     1    -1     0
+%      1     0     0    -1
+%
+% >> project_point_set(x)
 %
 %See also
 % ILLUSTRATION_OPTIONS
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-12 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -60,18 +65,21 @@ gdefault.stereo = true;
 
 gopt = illustration_options(gdefault, varargin{:});
 
-if gopt.stereo
-    projection = 'x2stereo';
-else
-    projection = 'x2eqarea';
-end
-
 dim = size(points,1)-1;
+if dim ~= 2 && dim ~= 3
+    error('project_point_set(points_x): points_x must be a point set in R^3 or or R^4');
+end
 N = size(points,2);
+
+if gopt.stereo
+    projection = @x2stereo;
+else
+    projection = @x2eqarea;
+end
 
 switch dim
 case 2
-    t = feval(projection,points);
+    t = projection(points);
     r = real(pi-acos(points(end,N-size(t,2)+1:end)));
     limit = pi;
     if N <= 4
@@ -90,7 +98,7 @@ case 2
     grid off
     axis off
 case 3
-    t = feval(projection,points);
+    t = projection(points);
     r = real(pi-acos(points(end,N-size(t,2)+1:end)));
     if gopt.stereo
         limit = pi;
@@ -98,7 +106,6 @@ case 3
         limit = 2*pi;
     end
     s = (r+1)/(limit*10);
-    sphere_detail = ceil(20/log(N+1));
     [X,Y,Z] = sphere;
 
     for k = 1:size(t,2)
@@ -110,8 +117,6 @@ case 3
     grid off
     axis off
     camlight right
-otherwise
-    error('project_point_set(points_x): points_x must be a point set in R^3 or or R^4');
 end
 
 if gopt.show_title

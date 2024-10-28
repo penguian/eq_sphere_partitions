@@ -17,13 +17,18 @@ function area = area_of_sphere(dim)
 % Ref: [Mue98] p39.
 %
 %Examples
-% > area=area_of_sphere(1:7)
+%
+% >> area = area_of_sphere(1:7)
+%
 % area =
+%
 %     6.2832   12.5664   19.7392   26.3189   31.0063   33.0734   32.4697
 %
 %See also
 % AREA_OF_CAP, VOLUME_OF_BALL
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

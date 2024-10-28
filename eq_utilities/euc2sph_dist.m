@@ -5,7 +5,7 @@ function s = euc2sph_dist(e)
 % s = e2s(e);
 %
 %Description
-% S = EUC2SPH_DIST(E) converts the Euclidean distance E to the spherical 
+% S = EUC2SPH_DIST(E) converts the Euclidean distance E to the spherical
 % distance S, using a formula which is valid for the unit sphere in all
 % dimensions.
 %
@@ -16,21 +16,27 @@ function s = euc2sph_dist(e)
 % The argument E is assumed to satsify abs(E) <= 2.
 %
 %Examples
-% > s=euc2sph_dist(2)
+%
+% >> s = euc2sph_dist(2)
+%
 %  s =
 %      3.1416
 %
-% > s=euc2sph_dist(0:0.5:2)
+% >> s = euc2sph_dist(0:0.5:2)
+%
 %  s =
 %           0    0.5054    1.0472    1.6961    3.1416
 %
-% > s=euc2sph_dist(-2)
+% >> s = euc2sph_dist(-2)
+%
 %  s =
 %     -3.1416
 %
 %See also
 % SPH2EUC_DIST, EUCLIDEAN_DIST, SPHERICAL_DIST
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Change name from e2s to euc2sph_dist

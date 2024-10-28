@@ -13,12 +13,15 @@ function x = polar2cart(s)
 % N will be an array of size (dim+1 by N).
 %
 %Examples
-% > s
+%
+% >> s = [[0 0]' [pi/2 pi/2]' [3*pi/2 pi/2]' [0 pi]']
+%
 % s =
 %          0    1.5708    4.7124         0
 %          0    1.5708    1.5708    3.1416
 %
-% > x=polar2cart(s)
+% >> x = polar2cart(s)
+%
 % x =
 %          0    0.0000   -0.0000    0.0000
 %          0    1.0000   -1.0000         0
@@ -27,6 +30,8 @@ function x = polar2cart(s)
 %See also
 % CART2POLAR2
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Change name from s2x to polar2cart

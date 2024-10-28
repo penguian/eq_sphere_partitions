@@ -39,17 +39,23 @@ function [movie_frame] = show_s2_partition(N,varargin)
 % For more detail on illustration options, see HELP ILLUSTRATION_OPTIONS.
 %
 %Examples
-% > show_s2_partition(10)
-% > frames=show_s2_partition(9,'offset','extra')
+%
+% >> show_s2_partition(10)
+% >> frames = show_s2_partition(9,'offset','extra')
+%
 % frames =
+%
 % 1x10 struct array with fields:
 %     cdata
 %     colormap
-% > show_s2_partition(99,'points','hide')
+%
+% >> show_s2_partition(99,'points','hide')
 %
 %See also
 % MOVIE, PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, PROJECT_S2_PARTITION
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-16 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Function changed name from s2x to polar2cart
@@ -87,11 +93,6 @@ if gopt.show_title
 end
 
 frame_no = 1;
-if nargout > 0
-    movie_frame(frame_no) = getframe(gcf);
-    frame_no = frame_no + 1;
-end
-
 if gopt.show_sphere
     show_s2_sphere;
     hold on
@@ -121,7 +122,7 @@ if gopt.show_points
     hold on
     if nargout > 0
         movie_frame(frame_no) = getframe(gcf);
-        frame_no = frame_no + 1;
+        % frame_no = frame_no + 1;
     end
 end
 
@@ -156,8 +157,9 @@ n = 21;
 delta = 1/(n-1);
 h = 0:delta:1;
 t_to_b = zeros(dim,n);
-b_to_t = t_to_b;
+% b_to_t = t_to_b;
 r = sqrt(1/N)/12;
+j = zeros(1,dim);
 for k = 1:dim
     if ~pseudo || k < 2
         L = 1:dim;

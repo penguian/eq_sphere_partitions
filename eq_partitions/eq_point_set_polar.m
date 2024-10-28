@@ -31,18 +31,25 @@ function points_s = eq_point_set_polar(dim,N,varargin)
 % For more details on options, see HELP PARTITION_OPTIONS.
 %
 %Examples
-% > points_s = eq_point_set_polar(2,4)
+%
+% >> points_s = eq_point_set_polar(2,4)
+%
 % points_s =
+%
 %          0    1.5708    4.7124         0
 %          0    1.5708    1.5708    3.1416
 %
-% > size(points_s)
+% >> size(points_s)
+%
 % ans =
+%
 %      2     4
 %
 %See also
 % PARTITION_OPTIONS, EQ_POINT_SET, EQ_REGIONS
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Function changed name from s2x to polar2cart
@@ -60,7 +67,7 @@ function points_s = eq_point_set_polar(dim,N,varargin)
 %
 % Check number of arguments
 %
-error(nargchk(2,4,nargin));
+narginchk(2,4);
 %
 % dim is the number of dimensions
 % N is the number of regions

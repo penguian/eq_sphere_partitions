@@ -43,17 +43,23 @@ function [movie_frame] = project_s3_partition(N,varargin)
 % For more detail on illustration options, see HELP ILLUSTRATION_OPTIONS.
 %
 %Examples
-% > project_s3_partition(10)
-% > frames=project_s3_partition(9,'offset','extra','proj','eqarea')
+%
+% >> project_s3_partition(10)
+% >> frames = project_s3_partition(9,'offset','extra','proj','eqarea')
+%
 % frames =
+%
 % 1x18 struct array with fields:
 %     cdata
 %     colormap
-% > project_s3_partition(99,'proj','eqarea','points','hide')
+%
+% >> project_s3_partition(99,'proj','eqarea','points','hide')
 %
 %See also
 % MOVIE, PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, PROJECT_S2_PARTITION
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Function changed name from s2x to polar2cart
@@ -173,15 +179,15 @@ function project_s3_region(region, N, stereo, show_surfaces, rot_matrix)
 %
 % The default is to use stereographic projection
 % If the optional second argument, stereo is false,
-% then use a equal area projection.
+% then use an equal area projection.
 
 if nargin < 3
     stereo = true;
 end
 if stereo
-    projection = 'x2stereo';
+    projection = @x2stereo;
 else
-    projection = 'x2eqarea';
+    projection = @x2eqarea;
 end
 if nargin < 4
     show_surfaces = true;
@@ -209,9 +215,10 @@ h = 0:delta:1;
 t_to_b = zeros(dim,n,n);
 b_to_t = t_to_b;
 r = N^(-1/3)/32;
+L = 1:dim;
+j = zeros(1,dim);
 for k = 1:dim
     if ~pseudo || k < 3
-        L = 1:dim;
         j(L) = mod(k+L,dim)+1;
         t_to_b(j(1),:,:) = t(j(1))+(b(j(1))-t(j(1)))*h1;
         t_to_b(j(2),:,:) = t(j(2))+(b(j(2))-t(j(2)))*h2;
@@ -222,7 +229,7 @@ for k = 1:dim
         else
             t_to_b_x = polar2cart(t_to_b_v);
         end
-        s = reshape(feval(projection,t_to_b_x),dim,n,n);
+        s = reshape(projection(t_to_b_x),dim,n,n);
         degenerate = (norm(s(:,1,1)-s(:,1,2)) < tol);
         if ~degenerate && (~pseudo || k > 1)
             [X,Y,Z] = fatcurve(squeeze(s(:,1,:)),r);
@@ -235,7 +242,7 @@ for k = 1:dim
                 'FaceAlpha',(t(dim)/pi)/2,'FaceColor','interp','FaceLighting','phong','EdgeColor','none')
         end
         axis equal; hold on
-        camlight right
+
         b_to_t(j(1),:,:) = b(j(1))-(b(j(1))-t(j(1)))*h1;
         b_to_t(j(2),:,:) = b(j(2))-(b(j(2))-t(j(2)))*h2;
         b_to_t(j(3),:,:) = b(j(3))*ones(n,n);
@@ -245,7 +252,7 @@ for k = 1:dim
         else
             b_to_t_x = polar2cart(b_to_t_v);
         end
-        s = reshape(feval(projection,b_to_t_x),dim,n,n);
+        s = reshape(projection(b_to_t_x),dim,n,n);
         degenerate = (norm(s(:,1,1)-s(:,1,2)) < tol);
         if ~degenerate && (~pseudo || (k > 1 && abs(b(2)-pi) > tol))
             [X,Y,Z] = fatcurve(squeeze(s(:,1,:)),r);
@@ -255,7 +262,6 @@ for k = 1:dim
         if show_surfaces && k < 2
             surf(squeeze(s(1,:,:)),squeeze(s(2,:,:)),squeeze(s(3,:,:)),t(3)*ones(n,n),...
                 'FaceAlpha',(t(dim)/pi)/2,'FaceColor','interp','FaceLighting','phong','EdgeColor','none')
-            camlight right
         end
     end
 end

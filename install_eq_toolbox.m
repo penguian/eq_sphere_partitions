@@ -36,11 +36,9 @@ function install_eq_toolbox(arg)
 % For Windows systems: [matlabroot '\toolbox\local'].
 % If this directory does not exist, INSTALL_EQ_TOOLBOX tries to create it.
 %
-% For Toolbox Installer 2.2 by B. Rasmus Anthin, see
+% For Toolbox Installer 2.2 by Rasmus Anthin, see
 % Matlab Central File Exchange
-% http://www.mathworks.com/matlabcentral/fileexchange/
-% Home page of B. Rasmus Anthin
-% http://www.etek.chalmers.se/~e8rasmus/
+% https://au.mathworks.com/matlabcentral/fileexchange/3726-toolbox-installer-2-2
 %
 %Examples
 % > install_eq_toolbox
@@ -66,10 +64,12 @@ function install_eq_toolbox(arg)
 %See also
 % UNINSTALL_EQ_TOOLBOX, PATHDEF, PATH, Toolbox Installer 2.2
 
-% Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
-% Revsion 1.11 Copyright 2013 Paul Leopardi
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-20 $
+% Copyright 2013 Paul Leopardi
 % $Revision 1.11 $ $Date 2013-01-11 $
 % Remove 'ver' output argument from calls to fileparts()
+% Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Partial overhaul
 % o Restructure tests for existing pathdef.m file and guesses for pathdef_dir
@@ -89,7 +89,7 @@ if (nargin == 1) && strcmp(arg,'-')
 end
 
 command = mfilename;
-[command_dir name ext] = fileparts(mfilename('fullpath'));
+[command_dir , ~, ~] = fileparts(mfilename('fullpath'));
 wd = pwd;
 if ~strcmp(command_dir,wd)
     error(['Please run ' command ' from toolbox directory, eg. ' command_dir]);
@@ -110,7 +110,7 @@ was_not_installed_msg = 'Installer cannot continue.';
 try_to_create_msg =     'Try to create the directory outside of Matlab';
 
 current_pathdef_name = which('pathdef');
-pathdef_exists = (exist('pathdef') == 2);
+pathdef_exists = (exist('pathdef','file') == 2);
 if pathdef_exists
     pathdef_name = current_pathdef_name;
     %
@@ -130,14 +130,14 @@ if pathdef_exists
             install;
         end
         return;
-    elseif (exist('startup') == 2)
+    elseif (exist('startup','file') == 2)
         %
         % File open for pathdef.m failed.
         % We have been told that startup.m exists.
         % Guess that we should use pathdef.m in the same directory.
         %
         startup_name = which('startup');
-        [pathdef_dir name ext] = fileparts(startup_name);
+        [pathdef_dir , ~, ~] = fileparts(startup_name);
         pathdef_name = fullfile(pathdef_dir,'pathdef.m');
     else
         %
@@ -149,7 +149,7 @@ if pathdef_exists
             % We are using Unix.
             % Guess that we should use $HOME/matlab/pathdef.m
             %
-            [status,dir_str] = system('echo $HOME');
+            [~,dir_str] = system('echo $HOME');
             home_dir = deblank(dir_str);
             pathdef_name = fullfile(home_dir,'matlab','pathdef.m');
         else
@@ -160,7 +160,7 @@ if pathdef_exists
             pathdef_name = fullfile(matlabroot,'toolbox','local','pathdef.m');
         end
     end
-    [pathdef_dir name ext] = fileparts(pathdef_name);
+    [pathdef_dir , ~, ~] = fileparts(pathdef_name);
 end
 
 if strcmp(pathdef_name, current_pathdef_name)
@@ -201,12 +201,12 @@ if strcmp(pathdef_name, current_pathdef_name)
         return;
     end
     pathdef_name = fullfile(pname,'pathdef.m');
-    [pathdef_dir name ext] = fileparts(pathdef_name);
+    [pathdef_dir , ~, ~] = fileparts(pathdef_name);
 end
 %
 % Determine if Matlab thinks that pathdef_name already exists as a file.
 %
-if exist(pathdef_name) == 2
+if exist(pathdef_name,'file') == 2
     willstr = 'update';
 else
     willstr = 'create';
@@ -222,13 +222,13 @@ end
 %
 % Determine if Matlab thinks that pathdef_dir already exists as a directory.
 %
-pathdef_dir_exists = (exist(pathdef_dir) == 7);
+pathdef_dir_exists = (exist(pathdef_dir,'dir') == 7);
 %
 % Even if Matlab says that pathdef_dir exists, it might not exist as a directory.
 % Try to create it anyway. This should not hurt if it really does exist.
 %
-[parent dirname ext] = fileparts(pathdef_dir);
-[status message] = mkdir(parent,dirname);
+[parent, dirname, ~] = fileparts(pathdef_dir);
+[status, message] = mkdir(parent,dirname);
 if status < 0
     created_pathdef_dir = false;
     if ~pathdef_dir_exists
@@ -252,7 +252,7 @@ end
 % At this point, pathdef_dir should exist as a directory.
 % Check again.
 %
-pathdef_dir_exists = (exist(pathdef_dir) == 7);
+pathdef_dir_exists = (exist(pathdef_dir,'dir') == 7);
 if ~pathdef_dir_exists
     %
     % Matlab said pathdef_dir does not exist.

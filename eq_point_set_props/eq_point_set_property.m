@@ -1,38 +1,43 @@
 function property = eq_point_set_property(fhandle,dim,N,varargin)
 %EQ_POINT_SET_PROPERTY Property of an EQ point set
-% 
+%
 %Syntax
 % property = eq_point_set_property(fhandle,dim,N,options);
 %
 %Description
 % PROPERTY = EQ_POINT_SET_PROPERTY(FHANDLE,dim,N) does the following:
-% 1) uses the recursive zonal equal area sphere partitioning algorithm to 
+% 1) uses the recursive zonal equal area sphere partitioning algorithm to
 %    partition the unit sphere S^dim into N regions,
 % 2) finds the EQ point set, the set of center points of each region,
-% 3) calls the function defined by FHANDLE which is expected to use the 
+% 3) calls the function defined by FHANDLE which is expected to use the
 %    EQ point set to calculate the value of the result, PROPERTY.
 %
 % The argument FHANDLE must be a function handle. The function specified by
-% FHANDLE must take as its argument a single (dim+1 by N) array, representing 
+% FHANDLE must take as its argument a single (dim+1 by N) array, representing
 % N points of S^dim, in Cartesian coordinates, and must return a single value
 % based on these points.
 % The argument dim must be a positive integer.
-% The argument N must be a positive integer or an array of positive integers. 
+% The argument N must be a positive integer or an array of positive integers.
 % The result PROPERTY will be an array of the same size as N.
 %
-% PROPERTY = EQ_POINT_SET_PROPERTY(FHANDLE,dim,N,'offset','extra'), 
-% for dim == 2 or dim == 3, uses exerimental extra rotation offsets to try to 
+% PROPERTY = EQ_POINT_SET_PROPERTY(FHANDLE,dim,N,'offset','extra'),
+% for dim == 2 or dim == 3, uses exerimental extra rotation offsets to try to
 % maximize the minimum distance between points of the EQ point set.
 % For dim > 3, extra offsets are not used.
 %
 %Examples
-% > dist = eq_point_set_property(@point_set_min_dist,2,10)
+%
+% >> dist = eq_point_set_property(@point_set_min_dist,2,10)
+%
 %  dist =
+%
 %      1.0515
 %
 %See also
 % EQ_POINT_SET, FEVAL, PARTITION_OPTIONS
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -45,7 +50,7 @@ function property = eq_point_set_property(fhandle,dim,N,varargin)
 %
 % Check number of arguments
 %
-error(nargchk(3,5,nargin));
+narginchk(3,5);
 %
 % dim is the number of dimensions
 % N is the number of regions
@@ -68,7 +73,7 @@ property = zeros(size(N));
 for partition_n = 1:n_partitions
     points = eq_point_set(dim,N(partition_n),extra_offset);
     property(partition_n) = feval(fhandle,points);
-end    
+end
 %
 % Reshape output to same array size as original N.
 %

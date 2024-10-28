@@ -8,11 +8,11 @@ function coeff = point_set_energy_coeff(points,s)
 % COEFF = POINT_SET_ENERGY_COEFF(POINTS,s)  does the following:
 % 1) finds the r^(-s) energy of the point set POINTS, and
 % 2) sets COEFF to be the coefficient of the second term of the expansion of
-%    the energy, having the same form as the expansion of E(dim,N,s), 
+%    the energy, having the same form as the expansion of E(dim,N,s),
 %    the minimum r^(-s) energy of a set of N points on S^dim.
 %
 % The argument POINTS must be an array of real numbers of size (dim+1 by N),
-% where dim and N are positive integers. 
+% where dim and N are positive integers.
 % Each column of POINTS represents a point in R^(dim+1).
 %
 % Specifically, for s not equal to 0, COEFF is the solution to
@@ -30,23 +30,29 @@ function coeff = point_set_energy_coeff(points,s)
 % is assumed to be a subset of R^(dim+1) but is not assumed to be a subset of
 % S^dim.
 %
-% For details of the calculation of the energy coefficient, 
+% For details of the calculation of the energy coefficient,
 % see HELP CALC_ENERGY_COEFF.
 %
 %Examples
-% > x
-%  x =
-%           0    0.0000   -0.0000    0.0000
-%           0    1.0000   -1.0000         0
-%      1.0000    0.0000    0.0000   -1.0000
 %
-% > point_set_energy_coeff(x)
-%  ans =
+% >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+%
+% x =
+%
+%      0     0     0     0
+%      0     1    -1     0
+%      1     0     0    -1
+%
+% >> coeff = point_set_energy_coeff(x)
+%
+%  coeff =
 %     -0.5214
 %
 %See also
 % POINT_SET_ENERGY_DIST, CALC_ENERGY_COEFF, EQ_ENERGY_COEFF, EQ_ENERGY_DIST
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-12 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -59,7 +65,7 @@ function coeff = point_set_energy_coeff(points,s)
 %
 % Check number of arguments
 %
-error(nargchk(1,2,nargin));
+narginchk(1,2);
 %
 % dim is the dimension of S^dim as a manifold.
 %

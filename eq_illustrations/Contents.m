@@ -1,7 +1,7 @@
 %Recursive Zonal Equal Area Sphere Partitioning: Illustrations
 %
 % Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox.
-% Release 1.10 2005-06-01
+% Release 1.12 2024-10-16
 %
 %Functions by category
 %=====================
@@ -18,7 +18,12 @@
 %
 % Illustration options
 %  illustration_options   Options for illustrations of EQ partitions
+%
+% Illustration utilities
+%  haslight               Check if axis handle has a light attached
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-16 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

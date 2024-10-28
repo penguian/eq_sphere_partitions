@@ -6,7 +6,7 @@ function coeff = calc_energy_coeff(dim,N,s,energy)
 %
 %Description
 % COEFF = CALC_ENERGY_COEFF(dim,N,s,ENERGY) sets COEFF to be the coefficient of
-% the second term of an expansion of ENERGY with the same form as the expansion 
+% the second term of an expansion of ENERGY with the same form as the expansion
 % of E(dim,N,s), the minimum r^(-s) energy of a set of N points on S^dim.
 %
 % Specifically, for s not equal to 0, COEFF is the solution to
@@ -18,7 +18,7 @@ function coeff = calc_energy_coeff(dim,N,s,energy)
 % ENERGY == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N).
 %
 % The argument dim must be a positive integer.
-% The argument N must be a positive integer or an array of positive integers. 
+% The argument N must be a positive integer or an array of positive integers.
 % The argument ENERGY must an array of real numbers of the same array size as N.
 % The result COEFF will be an array of the same size as N.
 %
@@ -30,7 +30,7 @@ function coeff = calc_energy_coeff(dim,N,s,energy)
 % 2) For s > 0, [KuiS98 (1.6) p524] has
 %
 % E(dim,N,s) == (SPHERE_INT_ENERGY(dim,s)/2) N^2 + COEFF N^(1+s/dim) + ...
-% 
+%
 % where SPHERE_INT_ENERGY(dim,s) is the energy integral of the r^(-s) potential
 % on S^dim.
 %
@@ -47,7 +47,7 @@ function coeff = calc_energy_coeff(dim,N,s,energy)
 %
 % In general, for s == 0,
 %
-% E(dim,N,0) == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N) + ... 
+% E(dim,N,0) == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N) + ...
 %
 % with sphere_int_energy(1,0) == 0.
 %
@@ -56,21 +56,30 @@ function coeff = calc_energy_coeff(dim,N,s,energy)
 % non-zero term.
 %
 %Examples
-% > N=2:6
+%
+% >> N = 2:6
+%
 %  N =
+%
 %       2     3     4     5     6
-%  
-% > energy=eq_energy_dist(2,N,0)
+%
+% >> energy = eq_energy_dist(2,N,0)
+%
 %  energy =
+%
 %     -0.6931   -1.3863   -2.7726   -4.4205   -6.2383
-%  
-% > calc_energy_coeff(2,N,0,energy)
-%  ans =
+%
+% >> coeff = calc_energy_coeff(2,N,0,energy)
+%
+%  coeff =
+%
 %     -0.2213   -0.1569   -0.2213   -0.2493   -0.2569
 %
 %See also
 % EQ_ENERGY_DIST, EQ_ENERGY_COEFF
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -99,7 +108,7 @@ else
     n_partitions = prod(shape);
     N = reshape(N,1,n_partitions);
     %
-    % Refs for s==0, dim == 2: 
+    % Refs for s==0, dim == 2:
     % [SafK97 (4) p. 7] [Zho95 (5.6) p. 68, 3.11 - corrected) p. 42]
     %
     first_term = (sphere_int_energy(dim,s)/2) * N.^2;
@@ -125,11 +134,11 @@ function energy = sphere_int_energy(dim,s)
 % energy = sphere_int_energy(d,s);
 %
 %Description
-% ENERGY = SPHERE_INT_ENERGY(dim,s) sets ENERGY to be the energy integral 
+% ENERGY = SPHERE_INT_ENERGY(dim,s) sets ENERGY to be the energy integral
 % on S^dim of the r^(-s) potential, defined using normalized Lebesgue measure.
 %
 % Ref for s > 0: [KuiS98 (1.6) p524]
-% Ref for s == 0 and dim == 2: SafK97 (4) p. 7] 
+% Ref for s == 0 and dim == 2: SafK97 (4) p. 7]
 % For s == 0 and dim >= 2, integral was obtained using Maple:
 %     energy = (1/2)*(omega(dim)/omega(dim+1)* ...
 %          int(-log(2*sin(theta/2)*(sin(theta))^(dim-1),theta=0..Pi),
@@ -140,7 +149,7 @@ if s ~= 0
 elseif dim ~= 1
     energy = (psi(dim)-psi(dim/2)-log(4))/2;
 else
-    energy = 0;    
+    energy = 0;
 end
 %
 % end function

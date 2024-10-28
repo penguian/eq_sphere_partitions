@@ -6,7 +6,7 @@ function [energy,min_dist] = point_set_energy_dist(points,s)
 %
 %Description
 % [ENERGY,MIN_DIST] = POINT_SET_ENERGY_DIST(POINTS,s) sets ENERGY to be the
-% energy of the r^(-s) potential on the point set POINTS, and sets MIN_DIST 
+% energy of the r^(-s) potential on the point set POINTS, and sets MIN_DIST
 % to be the minimum Euclidean distance between points of POINTS.
 %
 % POINTS must be an array of real numbers of size (M by N), where M and N
@@ -23,22 +23,30 @@ function [energy,min_dist] = point_set_energy_dist(points,s)
 % the value of MIN_DIST for a single point is defined to be 2.
 %
 %Examples
-% > x
-% x =
-%          0         0    0.0000         0
-%          0         0         0         0
-%          0    1.0000   -1.0000    0.0000
-%     1.0000    0.0000    0.0000   -1.0000
 %
-% > [e,d]=point_set_energy_dist(x)
-% e =
+% >> x = [[0 0 1]' [0 1 0]' [0 -1 0]' [0 0 -1]']
+%
+% x =
+%
+%      0     0     0     0
+%      0     1    -1     0
+%      1     0     0    -1
+%
+% >> [energy,min_dist] = point_set_energy_dist(x)
+%
+% energy =
+%
 %     2.5000
-% d =
+%
+% min_dist =
+%
 %     1.4142
 %
 %See also
 % EUCLIDEAN_DIST, EQ_ENERGY_DIST, POINT_SET_MIN_DIST
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-12 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-22 $
 % Documentation files renamed

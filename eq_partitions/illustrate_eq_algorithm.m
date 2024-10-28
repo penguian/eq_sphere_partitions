@@ -6,7 +6,7 @@ function illustrate_eq_algorithm(dim,N,varargin)
 %
 %Description
 % ILLUSTRATE_EQ_ALGORITHM(dim,N) illustrates the recursive zonal equal area
-% sphere partitioning algorithm, which partitions S^dim (the unit sphere in 
+% sphere partitioning algorithm, which partitions S^dim (the unit sphere in
 % dim+1 dimensional space) into N regions of equal area and small diameter.
 %
 % The illustration consists of four subplots:
@@ -45,7 +45,7 @@ function illustrate_eq_algorithm(dim,N,varargin)
 %
 %Notes
 % The step numbers refer to the following steps of the the recursive zonal
-% equal area sphere partitioning algorithm, which partition the sphere into 
+% equal area sphere partitioning algorithm, which partition the sphere into
 % zones.
 %
 % 1. Determine the colatitudes of the North and South polar caps.
@@ -63,13 +63,16 @@ function illustrate_eq_algorithm(dim,N,varargin)
 %    and the colatitudes of the polar caps.
 %
 %Examples
-% > illustrate_eq_algorithm(3,99)
-% > illustrate_eq_algorithm(3,99,'offset','extra','proj','eqarea')
-% > illustrate_eq_algorithm(3,99,'proj','eqarea','points','hide')
+%
+% >> illustrate_eq_algorithm(3,99)
+% >> illustrate_eq_algorithm(3,99,'offset','extra','proj','eqarea')
+% >> illustrate_eq_algorithm(3,99,'proj','eqarea','points','hide')
 %
 %See also
 % PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, SUBPLOT
 
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
@@ -111,7 +114,7 @@ case 2
     project_s2_partition(N,opt_args{:});
 case 3
     opt_args = option_arguments(popt,gopt);
-    [s,m] = eq_caps(dim,N);
+    [~,m] = eq_caps(dim,N);
     max_collar = min(4,size(m,2)-2);
     for k = 1:max_collar
         subn = 9+2*k-mod(k-1,2);
@@ -132,7 +135,7 @@ gdefault.show_title =    true;
 gdefault.long_title =    false;
 
 gopt = illustration_options(gdefault, varargin{:});
-h = [0:1/90:1];
+h = 0:1/90:1;
 % Plot a circle to represent dth coordinate of S^d
 Phi = h*2*pi;
 plot(sin(Phi),cos(Phi),'k','LineWidth',1)
@@ -140,7 +143,7 @@ axis equal;axis off;hold on
 
 c_polar = polar_colat(dim,N);
 
-k = [-1:1/20:1];
+k = -1:1/20:1;
 j = ones(size(k));
 
 % Plot the bounding parallels of the polar caps
@@ -193,7 +196,7 @@ gdefault.long_title =    false;
 
 gopt = illustration_options(gdefault, varargin{:});
 
-h = [0:1/90:1];
+h = 0:1/90:1;
 Phi = h*2*pi;
 plot(sin(Phi),cos(Phi),'k','LineWidth',1)
 axis equal;axis off;hold on
@@ -203,7 +206,7 @@ n_collars = num_collars(N,c_polar,ideal_collar_angle(dim,N));
 r_regions = ideal_region_list(dim,N,c_polar,n_collars);
 s_cap = cap_colats(dim,N,c_polar,r_regions);
 
-k = [-1:1/20:1];
+k = -1:1/20:1;
 j = ones(size(k));
 plot(sin(c_polar)*k, cos(c_polar)*j,'r','LineWidth',2);
 
@@ -245,7 +248,7 @@ gdefault.long_title =    false;
 
 gopt = illustration_options(gdefault, varargin{:});
 
-h = [0:1/90:1];
+h = 0:1/90:1;
 Phi = h*2*pi;
 plot(sin(Phi),cos(Phi),'k','LineWidth',1)
 axis equal;axis off;hold on
@@ -256,7 +259,7 @@ r_regions = ideal_region_list(dim,N,c_polar,n_collars);
 n_regions = round_to_naturals(N,r_regions);
 s_cap = cap_colats(dim,N,c_polar,n_regions);
 
-k = [-1:1/20:1];
+k = -1:1/20:1;
 j = ones(size(k));
 plot(sin(c_polar)*k, cos(c_polar)*j,'r','LineWidth',2);
 
@@ -315,7 +318,7 @@ if isfield(gopt,'stereo')
         arg{k+1} = 'eqarea';
     end
     k = k+2;
-end    
+end
 
 if isfield(gopt,'show_title')
     arg{k} = 'title';
@@ -361,6 +364,6 @@ if isfield(gopt,'show_surfaces')
     else
         arg{k+1} = 'hide';
     end
-    k = k+2;
-end    
+    % k = k+2;
+end
 
