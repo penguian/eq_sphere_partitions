@@ -262,7 +262,7 @@ result =
   2) sets S_CAP to be an array of size (1 by N_COLLARS+2),
      containing increasing colatitudes of caps, and
   3) sets N_REGIONS to be an array of size (1 by N_COLLARS+2),
-     containing the intger number of regions in each corresponding zone of 
+     containing the integer number of regions in each corresponding zone of
      S^dim.
  
   The argument N is assumed to be a positive integer.
@@ -464,25 +464,25 @@ ans =
   coordinates. The pair of vertex points regions(:,1,n) and regions(:,2,n) give
   the lower and upper limits of each interval.
  
-  REGIONS = EQ_REGIONS(dim,N,'offset','extra') uses experimental extra 
-  offsets for S^2 and S^3 to try to minimize energy. If dim > 3, extra offsets 
-  are not used. 
+  REGIONS = EQ_REGIONS(dim,N,'offset','extra') uses experimental extra
+  offsets for S^2 and S^3 to try to minimize energy. If dim > 3, extra offsets
+  are not used.
  
-  REGIONS = EQ_REGIONS(dim,N,extra_offset) uses experimental extra offsets 
+  REGIONS = EQ_REGIONS(dim,N,extra_offset) uses experimental extra offsets
   if extra_offset is true or non-zero.
  
-  [REGIONS,DIM_1_ROT] = EQ_REGIONS(dim,N) also returns DIM_1_ROT, a cell 
+  [REGIONS,DIM_1_ROT] = EQ_REGIONS(dim,N) also returns DIM_1_ROT, a cell
   array containing N rotation matrices, one per region, each of size dim by dim.
-  These describe the R^dim rotation needed to place the region in its final 
+  These describe the R^dim rotation needed to place the region in its final
   position.
  
-  [REGIONS,DIM_1_ROT] = EQ_REGIONS(dim,N,'offset','extra') partitions S^dim 
+  [REGIONS,DIM_1_ROT] = EQ_REGIONS(dim,N,'offset','extra') partitions S^dim
   into N regions, using extra offsets, and also returning DIM_1_ROT, as above.
  
  Notes
   The output argument DIM_1_ROT is the only way to track the effect of the extra
-  offset when dim == 3, because the R^3 rotation means that the boundary of a 
-  region generally no longer coincides with hyperplanes of colatitude and 
+  offset when dim == 3, because the R^3 rotation means that the boundary of a
+  region generally no longer coincides with hyperplanes of colatitude and
   longitude. The function ILLUSTRATE_S3_PARTITION uses DIM_1_ROT.
  
   For more details on options, see HELP PARTITION_OPTIONS.
@@ -615,13 +615,13 @@ popt =
      MIN_EUCLIDEAN_DIST >= COEFF N^(-1/dim).
  
   The argument dim must be a positive integer.
-  The argument N must be a positive integer or an array of positive integers. 
+  The argument N must be a positive integer or an array of positive integers.
   The argument MIN_EUCLIDEAN_DIST must be an array of real nubers of the same array size as N.
   The result COEFF will be an array of the same size as N.
  
  Notes
   The expression for the lower bound on minimum distance of a minimum r^(-s)
-  energy point set on S^dim was given by [RakSZ95] for s == 0 and dim = 2, 
+  energy point set on S^dim was given by [RakSZ95] for s == 0 and dim = 2,
   [Dahl78] for s == dim-1, [KuiSS04 Theorem 8] for dim-1 <= s < dim and
   [KuiS98 (1.12) p. 525] for s > dim.
  
@@ -669,7 +669,7 @@ ans =
  
  Description
   COEFF = CALC_ENERGY_COEFF(dim,N,s,ENERGY) sets COEFF to be the coefficient of
-  the second term of an expansion of ENERGY with the same form as the expansion 
+  the second term of an expansion of ENERGY with the same form as the expansion
   of E(dim,N,s), the minimum r^(-s) energy of a set of N points on S^dim.
  
   Specifically, for s not equal to 0, COEFF is the solution to
@@ -681,7 +681,7 @@ ans =
   ENERGY == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N).
  
   The argument dim must be a positive integer.
-  The argument N must be a positive integer or an array of positive integers. 
+  The argument N must be a positive integer or an array of positive integers.
   The argument ENERGY must an array of real numbers of the same array size as N.
   The result COEFF will be an array of the same size as N.
  
@@ -693,7 +693,7 @@ ans =
   2) For s > 0, [KuiS98 (1.6) p524] has
  
   E(dim,N,s) == (SPHERE_INT_ENERGY(dim,s)/2) N^2 + COEFF N^(1+s/dim) + ...
-  
+ 
   where SPHERE_INT_ENERGY(dim,s) is the energy integral of the r^(-s) potential
   on S^dim.
  
@@ -710,7 +710,7 @@ ans =
  
   In general, for s == 0,
  
-  E(dim,N,0) == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N) + ... 
+  E(dim,N,0) == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N) + ...
  
   with sphere_int_energy(1,0) == 0.
  
@@ -822,7 +822,7 @@ density =
  
  Description
   COEFF = EQ_DIST_COEFF(dim,N) does the following:
-  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+  1) uses the recursive zonal equal area sphere partitioning algorithm to
      partition the unit sphere S^dim into N regions,
   2) finds the EQ point set, the set of center points of each region,
   3) finds the minimum Euclidean distance between points of the EQ point set,
@@ -832,20 +832,20 @@ density =
      DIST >= COEFF N^(-1/dim).
  
   The argument dim must be a positive integer.
-  The argument N must be a positive integer or an array of positive integers. 
+  The argument N must be a positive integer or an array of positive integers.
   The result COEFF will be an array of the same size as N.
  
   COEFF = EQ_DIST_COEFF(dim,N,'offset','extra'), for dim == 2 or dim == 3, uses
-  experimental extra rotation offsets to try to maximize the minimum distance. 
+  experimental extra rotation offsets to try to maximize the minimum distance.
   For dim > 3, extra offsets are not used.
  
  Notes
   The expression for the lower bound on minimum distance of a minimum r^(-s)
-  energy point set on S^dim was given by [RakSZ95] for s == 0 and dim = 2, 
+  energy point set on S^dim was given by [RakSZ95] for s == 0 and dim = 2,
   [Dahl78] for s == dim-1, [KuiSS04 Theorem 8] for dim-1 <= s < dim and
   [KuiS98 (1.12) p. 525] for s > dim.
  
-  Ideally eq_dist_coeff(dim,N) should tend to area_of_sphere(dim)^(1/dim) as 
+  Ideally eq_dist_coeff(dim,N) should tend to area_of_sphere(dim)^(1/dim) as
   N goes to infinity.
  
  Examples
@@ -882,12 +882,12 @@ coeff =
  
  Description
   COEFF = EQ_ENERGY_COEFF(dim,N,s)  does the following:
-  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+  1) uses the recursive zonal equal area sphere partitioning algorithm to
      partition the unit sphere S^dim into N regions,
   2) finds the EQ point set, the set of center points of each region,
   3) finds the r^(-s) energy of the EQ point set, and
   4) sets COEFF to be the coefficient of the second term of the expansion of
-     the energy, having the same form as the expansion of E(dim,N,s), 
+     the energy, having the same form as the expansion of E(dim,N,s),
      the minimum r^(-s) energy of a set of N points on S^dim.
  
   Specifically, for s not equal to 0, COEFF is the solution to
@@ -899,7 +899,7 @@ coeff =
   energy == (SPHERE_INT_ENERGY(dim,0)/2) N^2 + COEFF N LOG(N).
  
   The argument dim must be a positive integer.
-  The argument N must be a positive integer or an array of positive integers. 
+  The argument N must be a positive integer or an array of positive integers.
   The result COEFF will be an array of the same size as N.
  
   COEFF = EQ_ENERGY_COEFF(dim,N) uses the default value dim-1 for s.
@@ -913,7 +913,7 @@ coeff =
  
   EQ_ENERGY_COEFF(dim,N,0) := 0.
  
-  2) For details of calculation of the energy coefficient, 
+  2) For details of calculation of the energy coefficient,
   see HELP CALC_ENERGY_COEFF
  
  Examples
@@ -961,22 +961,22 @@ coeff =
  
  Description
   [ENERGY,DIST] = EQ_ENERGY_DIST(dim,N,s) does the following:
-  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+  1) uses the recursive zonal equal area sphere partitioning algorithm to
      partition the unit sphere S^dim into N regions,
   2) finds the EQ point set, the set of center points of each region,
   3) sets ENERGY to be the r^(-s) energy of the EQ point set, and
-  4) optionally, sets DIST to be the minimum Euclidean distance between 
+  4) optionally, sets DIST to be the minimum Euclidean distance between
      points of the EQ point set.
  
   The argument dim must be a positive integer.
-  The argument N must be a positive integer or an array of positive integers. 
+  The argument N must be a positive integer or an array of positive integers.
   The results ENERGY and DIST will be arrays of the same size as N.
   The result DIST is optional.
  
   [ENERGY,DIST] = EQ_ENERGY_DIST(dim,N) uses the default value dim-1 for s.
  
   [ENERGY,DIST] = EQ_ENERGY_DIST(dim,N,s,'offset','extra') uses experimental
-  extra offsets for S^2 and S^3 to try to minimize energy. 
+  extra offsets for S^2 and S^3 to try to minimize energy.
   For dim > 3, extra offsets are not used.
  
  Examples
@@ -1003,7 +1003,7 @@ coeff =
        0.6545
  
  See also
-  EQ_POINT_SET, PARTITION_OPTIONS, POINT_SET_ENERGY_DIST, EUCLIDEAN_DIST, 
+  EQ_POINT_SET, PARTITION_OPTIONS, POINT_SET_ENERGY_DIST, EUCLIDEAN_DIST,
   MIN_DIST
 
 
@@ -1038,18 +1038,18 @@ dist =
  
  Description
   DIST = EQ_MIN_DIST(dim,N) does the following:
-  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+  1) uses the recursive zonal equal area sphere partitioning algorithm to
      partition the unit sphere S^dim into N regions,
   2) finds the EQ point set, the set of center points of each region, and
-  3) sets DIST to be the minimum Euclidean distance between points of 
+  3) sets DIST to be the minimum Euclidean distance between points of
      the EQ point set.
  
   The argument dim must be a positive integer.
-  The argument N must be a positive integer or an array of positive integers. 
+  The argument N must be a positive integer or an array of positive integers.
   The result DIST will be an array of the same size as N.
  
-  DIST = EQ_MIN_DIST(dim,N,'offset','extra'), for dim == 2 or dim == 3, 
-  uses exerimental extra rotation offsets to try to maximize the minimum 
+  DIST = EQ_MIN_DIST(dim,N,'offset','extra'), for dim == 2 or dim == 3,
+  uses exerimental extra rotation offsets to try to maximize the minimum
   distance. For dim > 3, extra offsets are not used.
  
  Examples
@@ -1084,27 +1084,27 @@ dist =
  
  Description
   DENSITY = EQ_PACKING_DENSITY(dim,N) does the following:
-  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+  1) uses the recursive zonal equal area sphere partitioning algorithm to
      partition the unit sphere S^dim into N regions,
   2) finds the EQ point set, the set of center points of each region,
   3) finds the minimum Euclidean distance between points of the EQ point set,
-  4) sets DENSITY to be the maximum density of a packing of S^dim by equal 
+  4) sets DENSITY to be the maximum density of a packing of S^dim by equal
      spherical caps with centers at the EQ point set.
  
   The argument dim must be a positive integer.
-  The argument N must be a positive integer or an array of positive integers. 
+  The argument N must be a positive integer or an array of positive integers.
   The result DENSITY will be an array of the same size as N.
  
-  DENSITY = EQ_PACKING_DENSITY(dim,N,'offset','extra'), for dim == 2 or dim == 3, 
-  uses experimental extra rotation offsets to try to maximize the minimum 
+  DENSITY = EQ_PACKING_DENSITY(dim,N,'offset','extra'), for dim == 2 or dim == 3,
+  uses experimental extra rotation offsets to try to maximize the minimum
   distance. For dim > 3, extra offsets are not used.
  
  Notes
-  The packing density is defined to be the sum of the areas of the spherical 
+  The packing density is defined to be the sum of the areas of the spherical
   caps of the packing, divided by the area of the unit sphere S^dim.
  
   The spherical radius of the caps in the packing is half the minimum spherical
-  distance between center points. The spherical radius for N == 1 is a special 
+  distance between center points. The spherical radius for N == 1 is a special
   case. It is defined to be pi.
  
  Examples
@@ -1135,28 +1135,28 @@ density =
     1.0000    1.0000    0.2725    0.3634    0.4542    0.5451
 
  EQ_POINT_SET_PROPERTY Property of an EQ point set
-  
+ 
  Syntax
   property = eq_point_set_property(fhandle,dim,N,options);
  
  Description
   PROPERTY = EQ_POINT_SET_PROPERTY(FHANDLE,dim,N) does the following:
-  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+  1) uses the recursive zonal equal area sphere partitioning algorithm to
      partition the unit sphere S^dim into N regions,
   2) finds the EQ point set, the set of center points of each region,
-  3) calls the function defined by FHANDLE which is expected to use the 
+  3) calls the function defined by FHANDLE which is expected to use the
      EQ point set to calculate the value of the result, PROPERTY.
  
   The argument FHANDLE must be a function handle. The function specified by
-  FHANDLE must take as its argument a single (dim+1 by N) array, representing 
+  FHANDLE must take as its argument a single (dim+1 by N) array, representing
   N points of S^dim, in Cartesian coordinates, and must return a single value
   based on these points.
   The argument dim must be a positive integer.
-  The argument N must be a positive integer or an array of positive integers. 
+  The argument N must be a positive integer or an array of positive integers.
   The result PROPERTY will be an array of the same size as N.
  
-  PROPERTY = EQ_POINT_SET_PROPERTY(FHANDLE,dim,N,'offset','extra'), 
-  for dim == 2 or dim == 3, uses exerimental extra rotation offsets to try to 
+  PROPERTY = EQ_POINT_SET_PROPERTY(FHANDLE,dim,N,'offset','extra'),
+  for dim == 2 or dim == 3, uses exerimental extra rotation offsets to try to
   maximize the minimum distance between points of the EQ point set.
   For dim > 3, extra offsets are not used.
  
@@ -1524,14 +1524,14 @@ total_error =
 
    1.0e-14 *
 
-    0.3553    0.3553         0    0.3553    0.3553         0
+    0.3553    0.3553    0.7105    0.3553    0.3553         0
 
 
 max_error =
 
-   1.0e-13 *
+   1.0e-14 *
 
-    0.0355    0.0178    0.0977    0.2043    0.4396    0.4752
+    0.3553    0.1776    0.1776    0.2665    0.1332    0.2665
 
  EQ_DIAM_BOUND Maximum per-region diameter bound of EQ partition
  
@@ -1540,13 +1540,13 @@ max_error =
  
  Description
   DIAM_BOUND = EQ_DIAM_BOUND(dim,N) does the following:
-  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+  1) uses the recursive zonal equal area sphere partitioning algorithm to
      partition the unit sphere S^dim into N regions,
   2) sets DIAM_BOUND to be the maximum of the per-region diameter bound over
      all the regions of the partition.
  
   The argument dim must be a positive integer.
-  The argument N must be a positive integer or an array of positive integers. 
+  The argument N must be a positive integer or an array of positive integers.
   The result DIAM_BOUND will an array of the same size as N.
  
  Examples
@@ -1583,24 +1583,24 @@ diam_bound =
  
  Description
   [BOUND_COEFF,VERTEX_COEFF] = EQ_DIAM_COEFF(dim,N) does the following:
-  1) uses the recursive zonal equal area sphere partitioning algorithm to 
+  1) uses the recursive zonal equal area sphere partitioning algorithm to
      partition the unit sphere S^dim into N regions,
-  2) finds the maximum of the per-region diameter bound over all the regions 
+  2) finds the maximum of the per-region diameter bound over all the regions
      of the partition,
   3) sets BOUND_COEFF to be the diameter bound coefficient, defined as the
      solution to
-  
+ 
      max_diam_bound == BOUND_COEFF N^(-1/dim),
  
   4) optionally finds the maximum vertex diameter over all the regions of the
      partition, and
   5) optionally sets VERTEX_COEFF to be the vertex diameter coefficient,
      defined as the solution to
-  
+ 
      max_vertex_diam == VERTEX_COEFF N^(-1/dim).
  
   The argument dim must be a positive integer.
-  The argument N must be a positive integer or an array of positive integers. 
+  The argument N must be a positive integer or an array of positive integers.
   The result BOUND_COEFF and the optional result VERTEX_COEFF will be arrays of
   the same size as N.
  
@@ -1622,7 +1622,7 @@ diam_bound =
  
        2.0000    2.5198    2.8845    3.1748    3.4200    3.6342
  
- See also 
+ See also
   EQ_DIAM_BOUND, EQ_VERTEX_DIAM, EQ_REGIONS, EQ_VERTEX_DIAM_COEFF
 
 
@@ -1754,7 +1754,7 @@ vertex_diam =
 
 vertex_diam =
 
-    2.0000    2.0000    2.0000    2.0000    2.0000    2.0000
+     2     2     2     2     2     2
 
  AREA_OF_CAP Area of spherical cap
  
