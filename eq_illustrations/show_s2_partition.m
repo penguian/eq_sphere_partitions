@@ -54,6 +54,8 @@ function [movie_frame] = show_s2_partition(N,varargin)
 %See also
 % MOVIE, PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, PROJECT_S2_PARTITION
 
+% Copyright 2025 Paul Leopardi.
+% $Revision 1.12.1 $ $Date 2025-08-09 $
 % Copyright 2024 Paul Leopardi.
 % $Revision 1.12 $ $Date 2024-10-16 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
@@ -122,7 +124,6 @@ if gopt.show_points
     hold on
     if nargout > 0
         movie_frame(frame_no) = getframe(gcf);
-        % frame_no = frame_no + 1;
     end
 end
 
@@ -157,7 +158,6 @@ n = 21;
 delta = 1/(n-1);
 h = 0:delta:1;
 t_to_b = zeros(dim,n);
-% b_to_t = t_to_b;
 r = sqrt(1/N)/12;
 j = zeros(1,dim);
 for k = 1:dim
