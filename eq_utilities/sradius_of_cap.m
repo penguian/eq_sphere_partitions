@@ -38,6 +38,8 @@ function s_cap = sradius_of_cap(dim, area)
 %See also
 % FZERO, AREA_OF_CAP
 
+% Copyright 2025 Paul Leopardi.
+% $Revision 1.12.1 $ $Date 2025-08-09 $
 % Copyright 2024 Paul Leopardi.
 % $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
@@ -78,7 +80,7 @@ otherwise
             else
                 flipped = false;
             end
-            area_diff = @(s) eval(sprintf('area_of_cap(%d,s)-%21.14g',dim,ak));
+            area_diff = @(s) area_of_cap(dim, s) - ak;
             sk = fzero(area_diff,[0,pi]);
 
             if flipped
