@@ -31,6 +31,6 @@ for zone_n = 1:size(r_regions,2)
     n_regions(zone_n) = round(r_regions(zone_n)+discrepancy);
     discrepancy = discrepancy+r_regions(zone_n)-n_regions(zone_n);
 end
-assert(sum(n_regions)==N,'Sum of result n_regions does not equal N==%d',N)
+assert(sum(n_regions)==N,'Sum of result n_regions does not equal N==%g',N)
 %
 % end function
