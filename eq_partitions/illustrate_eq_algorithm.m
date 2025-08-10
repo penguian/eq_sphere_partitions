@@ -71,6 +71,8 @@ function illustrate_eq_algorithm(dim,N,varargin)
 %See also
 % PARTITION_OPTIONS, ILLUSTRATION_OPTIONS, SUBPLOT
 
+% Copyright 2025 Paul Leopardi.
+% $Revision 1.12.1 $ $Date 2025-08-09 $
 % Copyright 2024 Paul Leopardi.
 % $Revision 1.12 $ $Date 2024-10-13 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
@@ -364,6 +366,5 @@ if isfield(gopt,'show_surfaces')
     else
         arg{k+1} = 'hide';
     end
-    % k = k+2;
 end
 
