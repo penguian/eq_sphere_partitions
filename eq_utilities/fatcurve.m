@@ -53,6 +53,8 @@ function [X,Y,Z] = fatcurve(c,r)
 %     0.8910    0.9513    0.9763    0.9513    0.8910    0.8307    0.8057    0.8307    0.8910
 %     0.8090    0.8693    0.8943    0.8693    0.8090    0.7487    0.7238    0.7487    0.8090
 
+% Copyright 2025 Paul Leopardi.
+% $Revision 1.12.1 $ $Date 2025-08-09 $
 % Copyright 2024 Paul Leopardi.
 % $Revision 1.12 $ $Date 2024-10-14 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
@@ -67,7 +69,7 @@ function [X,Y,Z] = fatcurve(c,r)
 
 dim = size(c,1);
 if dim ~= 3
-    fprintf('Error: dim == %d but should be 3.\n', dim)
+    error('Function fatcurve called with dim == %d but dim must be 3.', dim)
 end
 n = size(c,2);
 m = 8;

@@ -1,4 +1,4 @@
-function n_regions = round_to_naturals(~,r_regions)
+function n_regions = round_to_naturals(N,r_regions)
 %ROUND_TO_NATURALS Round off a given list of numbers of regions
 %
 % Given N and r_regions, determine n_regions,
@@ -11,6 +11,9 @@ function n_regions = round_to_naturals(~,r_regions)
 %
 % n_regions = round_to_naturals(N,r_regions);
 
+% Copyright 2025 Paul Leopardi.
+% $Revision 1.12.1 $ $Date 2025-08-09 $
+% Add an assertion.
 % Copyright 2024 Paul Leopardi.
 % $Revision 1.12 $ $Date 2024-05-05 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
@@ -28,5 +31,6 @@ for zone_n = 1:size(r_regions,2)
     n_regions(zone_n) = round(r_regions(zone_n)+discrepancy);
     discrepancy = discrepancy+r_regions(zone_n)-n_regions(zone_n);
 end
+assert(sum(n_regions)==N,'Sum of result n_regions does not equal N==%g',N)
 %
 % end function
