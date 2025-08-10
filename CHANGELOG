@@ -1,12 +1,17 @@
 Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox.
-Release 1.12 2024-10-20
-Copyright 2024 Paul Leopardi
+Release 1.12.1 2025-08-09
+Copyright 2024-2025 Paul Leopardi
 Release 1.10 2005-06-26
 Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 CHANGELOG
 
 For licensing, see COPYING
 For references, see AUTHORS
+
+Changes between Release 1.12 and Release 1.12.1 as at 2025-08-09
+================================================================
+
+1) Make minor changes as suggested by GitHub Copilot.
 
 Changes between Release 1.10 and Release 1.12 as at 2024-10-20
 ==============================================================
