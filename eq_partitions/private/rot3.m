@@ -12,24 +12,30 @@ function R = rot3(axis, angle)
 % ANGLE must be a real number.
 %
 %Examples
-% > r=rot3(1,pi/6)
+%
+% >> r = rot3(1,pi/6)
+%
 % r =
 %     1.0000         0         0
 %          0    0.8660   -0.5000
 %          0    0.5000    0.8660
 %
-% > r=rot3(2,pi/6)
+% >> r = rot3(2, pi/6)
+%
 % r =
 %     0.8660         0   -0.5000
 %          0    1.0000         0
 %     0.5000         0    0.8660
 %
-% > r=rot3(3,pi/6)
+% >> r = rot3(3, pi/6)
+%
 % r =
 %     0.8660   -0.5000         0
 %     0.5000    0.8660         0
 %          0         0    1.0000
 
+% Copyright 2025 Paul Leopardi
+% $Revision 1.12.2 $ $Date 2025-08-16 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed

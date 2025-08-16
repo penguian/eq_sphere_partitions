@@ -1,19 +1,59 @@
 function n_regions = round_to_naturals(N,r_regions)
 %ROUND_TO_NATURALS Round off a given list of numbers of regions
 %
-% Given N and r_regions, determine n_regions,
-% a list of the natural number of regions in each collar and the polar caps.
-% This list is as close as possible to r_regions, using rounding.
-% The number of elements is n_collars+2.
-% n_regions[1] is 1.
-% n_regions[n_collars+2] is 1.
-% The sum of n_regions is N.
-%
+%Syntax
 % n_regions = round_to_naturals(N,r_regions);
+%
+%Description
+% N_REGIONS = ROUND_TO_NATURALS(N,R_REGIONS) determines N_REGIONS,
+% a list of the natural number of regions in each collar and the polar caps,
+% given N, the number of regions in a sphere partion, and R_REGIONS, an
+% array representing the ideal number of regions in each collar and the caps.
+% The result N_REGIONS is as close as possible to R_REGIONS, using rounding.
+%
+%Notes
+% The sum of both R_REGIONS and N_REGIONS is N. The length of both R_REGIONS
+% and N_REGIONS is N_COLLARS+2, where N_COLLARS is the number of collars.
+% N_REGIONS[1] is 1. N_REGIONS[N_COLLARS+2] is 1.
+%
+%Examples
+%
+% >> dim = 2; N = 4;
+% >> c_polar = polar_colat(dim,N);
+% >> n_collars = num_collars(N,c_polar,ideal_collar_angle(dim,N));
+% >> r_regions = ideal_region_list(dim,N,c_polar,n_collars);
+% >> n_regions = round_to_naturals(N,r_regions)
+%
+% n_regions =
+%
+%      1     2     1
+%
+% >> dim = 2; N = 10;
+% >> c_polar = polar_colat(dim,N);
+% >> n_collars = num_collars(N,c_polar,ideal_collar_angle(dim,N));
+% >> r_regions = ideal_region_list(dim,N,c_polar,n_collars);
+% >> n_regions = round_to_naturals(N,r_regions)
+%
+% n_regions =
+%
+%      1     4     4     1
+%
+% >> dim = 3; N = 6;
+% >> c_polar = polar_colat(dim,N);
+% >> n_collars = num_collars(N,c_polar,ideal_collar_angle(dim,N));
+% >> r_regions = ideal_region_list(dim,N,c_polar,n_collars);
+% >> n_regions = round_to_naturals(N,r_regions)
+%
+% n_regions =
+%
+%      1     4     1
 
 % Copyright 2025 Paul Leopardi.
+% $Revision 1.12.2 $ $Date 2025-08-16 $
+% Added examples
+% Copyright 2025 Paul Leopardi.
 % $Revision 1.12.1 $ $Date 2025-08-09 $
-% Add an assertion.
+% Added an assertion.
 % Copyright 2024 Paul Leopardi.
 % $Revision 1.12 $ $Date 2024-05-05 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
