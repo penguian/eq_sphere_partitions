@@ -9,6 +9,7 @@ function c_polar = polar_colat(dim, N)
 % spherical cap of the partition of the sphere S^DIM into N equal regions.
 %
 %Examples
+%
 % >> c_polar = polar_colat(2, 4)
 %
 % c_polar =
@@ -26,9 +27,12 @@ function c_polar = polar_colat(dim, N)
 % c_polar =
 %
 %     0.9845
+%
+%See also
+% IDEAL_COLLAR_ANGLE, IDEAL_REGION_LIST, NUM_COLLARS
 
 % Copyright 2025 Paul Leopardi
-% $Revision 1.12.2 $ $Date 2025-08-16 $
+% $Revision 1.12.2 $ $Date 2025-08-17 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
