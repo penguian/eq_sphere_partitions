@@ -1,8 +1,8 @@
 function test_x2eqarea
 %TEST_X2EQAREA Test the x2eqarea function
 
-% Copyright 2024 Paul Leopardi.
-% $Revision $ 1.12 $ $Date 2025-08-16 $
+% Copyright 2025 Paul Leopardi.
+% $Revision $ 1.12.2 $ $Date 2025-08-17 $
 %
 % For licensing, see COPYING.
 % For references, see AUTHORS.

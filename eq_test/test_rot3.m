@@ -1,8 +1,8 @@
 function test_rot3
 %TEST_ROT3 Test the rot3 function
 
-% Copyright 2024 Paul Leopardi.
-% $Revision $ 1.12 $ $Date 2025-08-16 $
+% Copyright 2025 Paul Leopardi.
+% $Revision $ 1.12.2 $ $Date 2025-08-17 $
 %
 % For licensing, see COPYING.
 % For references, see AUTHORS.

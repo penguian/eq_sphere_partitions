@@ -1,8 +1,8 @@
 function test_cap_colats
 %TEST_CAP_COLATS Test the cap_colats function
 
-% Copyright 2024 Paul Leopardi.
-% $Revision $ 1.12 $ $Date 2025-08-16 $
+% Copyright 2025 Paul Leopardi.
+% $Revision $ 1.12.2 $ $Date 2025-08-17 $
 %
 % For licensing, see COPYING.
 % For references, see AUTHORS.
