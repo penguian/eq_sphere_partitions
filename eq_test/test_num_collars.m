@@ -2,7 +2,7 @@ function test_num_collars
 %TEST_NUM_COLLARS Test the num_collars function
 
 % Copyright 2025 Paul Leopardi.
-% $Revision $ 1.12.2 $ $Date 2025-08-17 $
+% $Revision $ 1.12.2 $ $Date 2025-09-20 $
 %
 % For licensing, see COPYING.
 % For references, see AUTHORS.

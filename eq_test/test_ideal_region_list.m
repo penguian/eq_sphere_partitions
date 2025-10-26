@@ -2,7 +2,7 @@ function test_ideal_region_list
 %TEST_IDEAL_REGION_LIST Test the ideal_region_list function
 
 % Copyright 2025 Paul Leopardi.
-% $Revision $ 1.12.2 $ $Date 2025-08-17 $
+% $Revision $ 1.12.2 $ $Date 2025-09-20 $
 %
 % For licensing, see COPYING.
 % For references, see AUTHORS.
