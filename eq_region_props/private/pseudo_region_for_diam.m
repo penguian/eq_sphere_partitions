@@ -1,8 +1,31 @@
 function pseudo_region = pseudo_region_for_diam(region)
 %PSEUDO_REGION_FOR_DIAM Two points which maximize the vertex diameter of a region
 %
+%Syntax
 % pseudo_region = pseudo_region_for_diam(region)
+%
+%Examples
+%
+% >> regions = eq_regions(2,10);
+% >> region = regions(:,:,2)
+%
+% region =
+%
+%          0    1.5708
+%     0.6435    1.5708
+%
+% >> pseudo_region = pseudo_region_for_diam(region)
+%
+% pseudo_region =
+%
+%          0    1.5708
+%     0.6435    1.5708
+%
+%See also
+% EXPAND_REGION_FOR_DIAM, MAX_VERTEX_DIAM_OF_REGIONS, EQ_VERTEX_DIAM
 
+% Copyright 2025 Paul Leopardi.
+% $Revision 1.12.2 $ $Date 2025-10-29 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
