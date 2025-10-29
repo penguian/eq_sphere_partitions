@@ -1,8 +1,23 @@
 function diam_bound = max_diam_bound_of_regions(regions)
 %MAX_DIAM_BOUND_OF_REGIONS The maximum diameter bound in an array of regions
 %
+%Syntax
 % diam_bound = max_diam_bound_of_regions(regions);
+%
+%Examples
+%
+% >> regions = eq_regions(2,10);
+% >> max_diam_bound_of_regions(regions)
+%
+% ans =
+%
+%     1.6733
+%
+%See also
+% MAX_VERTEX_DIAM_OF_REGIONS, EQ_DIAM_BOUND
 
+% Copyright 2025 Paul Leopardi.
+% $Revision 1.12.2 $ $Date 2025-10-29 $
 % Copyright 2024 Paul Leopardi.
 % $Revision 1.12 $ $Date 2024-04-28 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.

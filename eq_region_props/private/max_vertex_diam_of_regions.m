@@ -1,8 +1,23 @@
 function vertex_diam = max_vertex_diam_of_regions(regions)
 %MAX_VERTEX_DIAM_OF_REGIONS The max vertex diameter in a cell array of regions
 %
+%Syntax
 % vertex_diam = max_vertex_diam_of_regions(regions);
+%
+%Examples
+%
+% >> regions = eq_regions(2,10);
+% >> max_vertex_diam_of_regions(regions)
+%
+% ans =
+%
+%     1.4142
+%
+%See also
+% MAX_DIAM_BOUND_OF_REGIONS, EQ_VERTEX_DIAM
 
+% Copyright 2025 Paul Leopardi.
+% $Revision 1.12.2 $ $Date 2025-10-29 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Function changed name from s2x to polar2cart

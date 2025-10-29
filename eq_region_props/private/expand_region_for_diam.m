@@ -5,8 +5,31 @@ function expanded_region = expand_region_for_diam(region)
 % of the pseudo-region of a region, so that the Euclidean diameter of a region
 % is approximated by the diameter of this set.
 %
+%Syntax
 % expanded_region = expand_region_for_diam(region);
+%
+%Examples
+%
+% >> regions = eq_regions(2,10);
+% >> region = regions(:,:,2)
+%
+% region =
+%
+%          0    1.5708
+%     0.6435    1.5708
+%
+% >> expanded_region = expand_region_for_diam(region)
+%
+% expanded_region =
+%
+%          0    1.5708         0    1.5708
+%     0.6435    0.6435    1.5708    1.5708
+%
+%See also
+% PSEUDO_REGION_FOR_DIAM, MAX_VERTEX_DIAM_OF_REGIONS, EQ_VERTEX_DIAM
 
+% Copyright 2025 Paul Leopardi.
+% $Revision 1.12.2 $ $Date 2025-10-29 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
