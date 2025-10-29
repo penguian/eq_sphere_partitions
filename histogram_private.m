@@ -1,0 +1,170 @@
+function r_idx = lookup_s2_region(s_point, s_regions, s_cap, c_regions)
+%LOOKUP_S2_REGION For S^2, given sequences of points, regions, and cap colatitudes,
+%find the index of the region containing each point.
+%
+%Syntax
+% r_idx = lookup_s2_region(s_point,s_regions,s_cap,c_regions)
+%
+%Description
+% r_idx = lookup_s2_region(s_point,s_regions,s_cap,c_regions) does the following:
+% 1) for each point in s_point, determines which region of s_regions contains the point;
+% 2) sets r_idx to be an array of length size(s_point,2) containing the index of
+%    the region of s_regions corresponding to each point.
+%
+%Arguments
+% s_point   Sequence of points on S^2, as a 2 x n_points array in spherical polar coordinates,
+%           with longitude 0 <= s(1,p_idx) <= 2*pi, colatitude 0 <= s(2,p_idx) <= pi.
+% s_regions Sequence of regions of S^2 as per eq_regions(2,N) where N == size(s_regions,2).
+% s_cap     Sequence of cap colatitudes as per eq_caps(2,N) for the same N.
+% c_regions Sequence of the cumulative number of regions of s_regions within each cap of c_cap.
+%
+%Examples
+% > cd eq_histogram/private
+% > points_s = eq_point_set_polar(2,8)
+% points_s =
+%          0    0.5236    1.5708    2.6180    3.6652    4.7124    5.7596         0
+%          0    1.5708    1.5708    1.5708    1.5708    1.5708    1.5708    3.1416
+%
+% > N = 8;
+% > s_regions = eq_regions(2, N);
+% > [s_cap, n_regions] = eq_caps(2, N);
+% > c_regions = cumsum(n_regions);
+% > r_idx = lookup_s2_region(points_s, s_regions, s_cap, c_regions)
+% r_idx =
+%      1     2     3     4     5     6     7     8
+%
+% > N = 5;
+% > s_regions = eq_regions(2, N);
+% > [s_cap, n_regions] = eq_caps(2, N);
+% > c_regions = cumsum(n_regions);
+% > r_idx = lookup_s2_region(points_s, s_regions, s_cap, c_regions)
+% r_idx =
+%      1     2     2     3     3     4     4     5
+%
+%See also
+% EQ_REGIONS, EQ_CAPS, CUMSUM, LOOKUP_TABLE
+
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-09-18 $
+% Copyright 2012 Paul Leopardi
+% $Revision 1.11 $ $Date 2012-01-20 $
+%
+% For licensing, see COPYING.
+% For references, see AUTHORS.
+% For revision history, see CHANGELOG.
+
+n_caps = length(s_cap);
+if n_caps ~= length(c_regions)
+    msg = 'LOOKUP_S2_REGION: Mismatch between length of s_cap (==%d) and length of c_regions (==%d)\n';
+    fprintf(msg, n_caps, length(c_regions))
+    r_idx = 0;
+    return
+end
+n_regions = size(s_regions, 3);
+if c_regions(n_caps) ~= n_regions
+    msg = 'LOOKUP_S2_REGION: Mismatch between c_regions(end) (==%d) and length of s_regions (==%d)\n';
+    fprintf(msg, c_regions(n_caps), n_regions)
+    r_idx = 0;
+    return
+end
+n_points = size(s_point, 2);
+r_idx = zeros(1, n_points);
+for p_idx = 1:n_points
+    % Lookup by colatitude.
+    c_idx = lookup_table(s_cap, s_point(2, p_idx));
+    if c_idx > 0 && c_idx < n_caps - 1
+        min_r_idx = c_regions(c_idx) + 1;
+        max_r_idx = c_regions(c_idx + 1);
+        s_longs = squeeze(s_regions(1, :, min_r_idx:max_r_idx));
+        if s_longs(:, 1) >= 2*pi
+            s_longs(:, 1) = s_longs(:, 1) - 2*pi;
+        end
+        n_longs = size(s_longs, 2);
+	% Lookup by longitude.
+        l_idx = mod(lookup_table(s_longs(2, :), s_point(1, p_idx)), n_longs);
+        if s_point(1, p_idx) < s_longs(1, 1)
+            l_idx = n_longs - 1;
+        end
+        r_idx(p_idx) = min_r_idx + l_idx;
+    elseif c_idx == 0
+        r_idx(p_idx) = 1;
+    elseif c_idx >= n_caps - 1
+        r_idx(p_idx) = n_regions;
+    else
+        r_idx(p_idx) = 0;
+    end
+end
+
+function idx = lookup_table(table, y, opt)
+%LOOKUP_TABLE Lookup values in a sorted table.
+%
+%Syntax
+% idx = lookup_table(table, y, opt)
+%
+%Description
+% Lookup values in a sorted table. Usually used as a prelude to interpolation.
+%
+% If table is strictly increasing and `idx = lookup (table, y)', then
+% `table(idx(i)) <= y(i) < table(idx(i)+1)' for all `y(i)' within the interval
+% with minimum table(1) and maximum table(end). If `y(i) < table(1)' then
+% `idx(i)' is 0. If `y(i) >= table(end)' then `idx(i)' is `end'.
+%
+% If the table is strictly decreasing, then the tests are reversed. (NOT YET IMPLEMENTED).
+% There are no guarantees for tables which are non-monotonic or are not strictly monotonic.
+%
+%Arguments
+% table    Sequence of real values, assumed to be strictly increasing or decreasing.
+% y        Sequence of real values to be looked up in table.
+% opt      Options to be passed to Octave lookup, if we are in Octave, otherwise ignored.
+%
+%Examples
+%  > table = [-100.0, -70, 2.5, 75, 125.7]
+%  table =
+%
+%    -100.0000  -70.0000    2.5000   75.0000  125.7000
+%
+%  > y = [-1, 3, 1000, -197]
+%  y =
+%
+%           -1           3        1000        -197
+%
+%  > idx = lookup_table(table, y)
+%  idx =
+%
+%       2     3     5     0
+
+% Copyright 2024 Paul Leopardi
+% $Revision 1.12 $ $Date 2024-09-06 $
+% Copyright 2013 Paul Leopardi
+% $Revision 1.11 $ $Date 2013-04-18 $
+%
+% For licensing, see COPYING.
+% For references, see AUTHORS.
+% For revision history, see CHANGELOG.
+
+if is_octave
+    if nargin == 3
+        idx = lookup(table, y, opt);
+    else
+        idx = lookup(table, y);
+    end
+else
+    if table(end) >= table(1)
+        % We have an nondecreasing table.
+        maximum = max([table, y]) + 1;
+        idx = arrayfun(@(x) find(x < [table, maximum], 1) - 1, y);
+    else
+        fprintf('LOOKUP_TABLE: Decreasing case is not yet implemented\n');
+    end
+end
+
+% Subfunction that checks if we are in Octave
+function r = is_octave ()
+    persistent x;
+    if (isempty (x))
+        x = exist ('OCTAVE_VERSION', 'builtin');
+    end
+    r = x;
+    end
+end
+
