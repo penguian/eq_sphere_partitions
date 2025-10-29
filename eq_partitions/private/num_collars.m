@@ -7,7 +7,7 @@ function n_collars = num_collars(N,c_polar,a_ideal)
 %Description
 % N_COLLARS = NUM_COLLARS(N,C_POLAR,A_IDEAL) determines N_COLLARS, the number
 % of collars between the polar caps of an equal area partition of the sphere
-% into N regions, given the North polar colatitude C_POLA, and the ideal
+% into N regions, given the North polar colatitude C_POLAR, and the ideal
 % collar angle A_IDEAL.
 %
 %Examples
@@ -44,7 +44,7 @@ function n_collars = num_collars(N,c_polar,a_ideal)
 
 % Copyright 2025 Paul Leopardi
 % $Revision 1.12.2 $ $Date 2025-08-17 $
-% $% Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
+% Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-01 $
 % Documentation files renamed
 % $Revision 1.00 $ $Date 2005-02-12 $

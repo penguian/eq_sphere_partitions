@@ -7,7 +7,7 @@ function n_regions = round_to_naturals(N,r_regions)
 %Description
 % N_REGIONS = ROUND_TO_NATURALS(N,R_REGIONS) determines N_REGIONS,
 % a list of the natural number of regions in each collar and the polar caps,
-% given N, the number of regions in a sphere partion, and R_REGIONS, an
+% given N, the number of regions in a sphere partition, and R_REGIONS, an
 % array representing the ideal number of regions in each collar and the caps.
 % The result N_REGIONS is as close as possible to R_REGIONS, using rounding.
 %

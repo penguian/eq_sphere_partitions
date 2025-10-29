@@ -11,7 +11,7 @@ function offset = circle_offset(n_top,n_bot,extra_twist)
 %
 %Notes
 % The values N_TOP and N_BOT represent the numbers of points in each of two
-% equally speced sets on the unit circle. The offset is given in multiples of
+% equally spaced sets on the unit circle. The offset is given in multiples of
 % whole rotations, and consists of three parts:
 % 1) Half the difference between a twist of one sector on each of bottom and top.
 % This brings the centre points into alignment.
