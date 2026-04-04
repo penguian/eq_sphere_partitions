@@ -44,6 +44,8 @@ function r_idx = lookup_s2_region(s_point, s_regions, s_cap, c_regions)
 %See also
 % EQ_REGIONS, EQ_CAPS, CUMSUM, LOOKUP_TABLE
 
+% Copyright 2026 Paul Leopardi.
+% $Revision 1.12.2 $ $Date 2026-04-05 $
 % Copyright 2024 Paul Leopardi.
 % $Revision 1.12 $ $Date 2024-09-18 $
 % Copyright 2012 Paul Leopardi
@@ -76,15 +78,32 @@ for p_idx = 1:n_points
         min_r_idx = c_regions(c_idx) + 1;
         max_r_idx = c_regions(c_idx + 1);
         s_longs = squeeze(s_regions(1, :, min_r_idx:max_r_idx));
-        if s_longs(:, 1) >= 2*pi
-            s_longs(:, 1) = s_longs(:, 1) - 2*pi;
-        end
         n_longs = size(s_longs, 2);
-	% Lookup by longitude.
-        l_idx = mod(lookup_table(s_longs(2, :), s_point(1, p_idx)), n_longs);
-        if s_point(1, p_idx) < s_longs(1, 1)
-            l_idx = n_longs - 1;
+
+        % Rotate around the wrap-around point to ensure monotonicity
+        ends = s_longs(2, :);
+        k = find(ends(1:end-1) > ends(2:end), 1);
+        if isempty(k), k = n_longs; end
+
+        rotated_table = circshift(ends, [0, -k]);
+
+        % Defensive check: after rotation, table must be strictly monotonic
+        if rotated_table(end) < rotated_table(1) || any(diff(rotated_table) < 0)
+            error('lookup_s2_region: Multiple non-monotonic boundaries detected in collar');
         end
+
+        % Find the lower boundary of the "new" first region for wrap check
+        rotated_starts = circshift(s_longs(1, :), [0, -k]);
+        first_start = rotated_starts(1);
+
+	    % Lookup by longitude on rotated table.
+        l_idx_rot = lookup_table(rotated_table, s_point(1, p_idx));
+        if s_point(1, p_idx) < first_start
+            l_idx_rot = n_longs - 1;
+        end
+
+        % Restore global index in collar
+        l_idx = mod(l_idx_rot + k, n_longs);
         r_idx(p_idx) = min_r_idx + l_idx;
     elseif c_idx == 0
         r_idx(p_idx) = 1;
