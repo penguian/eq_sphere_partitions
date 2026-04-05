@@ -15,17 +15,18 @@ function benchmark_eq_regions(varargin)
 % For revision history, see CHANGELOG.
 
     p = inputParser;
+    addParameter(p, 'min_d', 2);
     addParameter(p, 'max_d', 4);
-    addParameter(p, 'max_k', 18);
-    addParameter(p, 'iterations', 3);
+    addParameter(p, 'max_k', 22);
+    addParameter(p, 'iterations', 1);
     addParameter(p, 'show_progress', false);
     addParameter(p, 'extra_offset', false);
     parse(p, varargin{:});
 
     args = p.Results;
 
-    fprintf('Running Thesis Benchmark for eq_regions: d=[1..%d], N=2^[1..%d]\n', ...
-        args.max_d, args.max_k);
+    fprintf('Running Thesis Benchmark for eq_regions: d=[%d..%d], N=2^[1..%d]\n', ...
+        args.min_d, args.max_d, args.max_k);
     fprintf('Iterations per point: %d\n', args.iterations);
 
     if args.show_progress
@@ -37,7 +38,7 @@ function benchmark_eq_regions(varargin)
     if args.show_progress
         fprintf('Warming up...\n');
     end
-    for d = 1:args.max_d
+    for d = args.min_d:args.max_d
         eq_regions(d, 2^8, args.extra_offset);
     end
 
@@ -45,7 +46,7 @@ function benchmark_eq_regions(varargin)
 
     start_total = tic;
 
-    for d = 1:args.max_d
+    for d = args.min_d:args.max_d
         for k = 1:args.max_k
             N = 2^k;
             times = zeros(1, args.iterations);
@@ -58,7 +59,7 @@ function benchmark_eq_regions(varargin)
             mean_time = mean(times);
             results = [results; d, k, N, mean_time]; %#ok<AGROW>
 
-            if args.show_progress
+            if args.show_progress && N >= 100
                 fprintf('%-3d | %-3d | %-10d | %15.6f\n', d, k, N, mean_time);
             end
         end
@@ -66,8 +67,8 @@ function benchmark_eq_regions(varargin)
 
     end_total = toc(start_total);
 
-    % Analyze scaling for k >= 10 to capture asymptotic behavior
-    analyze_scaling(results(results(:,2) >= 10, :));
+    % Analyze scaling for N >= 100 to capture asymptotic behavior
+    analyze_scaling(results(results(:,3) >= 100, :));
 
     fprintf('\nTotal benchmark wall time: %.2f seconds\n', end_total);
 end
@@ -93,6 +94,10 @@ function analyze_scaling(results)
         p = polyfit(log_n, log_t, 1);
         x = p(1);
 
-        fprintf('Dimension %-2d: x = %.4f (Thesis baseline: ~0.60)\n', d, x);
+        if d >= 2
+            fprintf('Dimension %-2d: x = %.4f (Thesis baseline: ~0.60)\n', d, x);
+        else
+            fprintf('Dimension %-2d: x = %.4f\n', d, x);
+        end
     end
 end

@@ -18,23 +18,20 @@ function benchmark_sradius(varargin)
 
     args = p.Results;
 
-    fprintf('Testing sradius_of_cap: dim=%d, %g calls\n', args.dim, args.n_max);
+    fprintf('%-10s | %10s\n', 'Size', 'Time (s)');
+    fprintf('%s\n', repmat('-', 1, 23));
 
-    n_test = 10000;
+    % Warm-up to absorb startup overhead
+    areas_warmup = linspace(0.1, area_of_sphere(args.dim) - 0.1, 100);
+    sradius_of_cap(args.dim, areas_warmup);
 
-    % Warm-up
-    sradius_of_cap(args.dim, 1/100);
+    chunk_size = max(1, floor(args.n_max / 5));
+    for current_size = max(100, chunk_size):chunk_size:args.n_max
+        areas = linspace(0.1, area_of_sphere(args.dim) - 0.1, current_size);
+        t0 = tic;
+        sradius_of_cap(args.dim, areas);
+        t_elapsed = toc(t0);
 
-    t0 = tic;
-    for i = 1:n_test
-        sradius_of_cap(args.dim, 1/i);
+        fprintf('%-10d | %10.4f\n', current_size, t_elapsed);
     end
-    t_elapsed = toc(t0);
-
-    % Scaling to n_max
-    total_time = t_elapsed * (args.n_max / n_test);
-
-    fprintf('Processed %d calls in %.4f seconds (scaled to %g calls: %.4f seconds)\n', ...
-        n_test, t_elapsed, args.n_max, total_time);
-    fprintf('Throughput: %g calls/sec\n', n_test / t_elapsed);
 end

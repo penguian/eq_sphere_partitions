@@ -22,10 +22,16 @@ function benchmark_area_error(varargin)
     fprintf('%-15s | %10s\n', 'N range', 'Time (s)');
     fprintf('%s\n', repmat('-', 1, 28));
 
+    % Warm-up from N=10 to 99 to absorb startup overhead
+    for N = 10:99
+        regions = eq_regions(args.dim, N, args.extra_offset);
+        size(regions);
+    end
+
     chunk_size = max(1, floor(args.n_max / 5));
 
     for i = 0:chunk_size:args.n_max-1
-        start_n = i + 1;
+        start_n = max(100, i + 1);
         end_n = min(i + chunk_size, args.n_max);
 
         if start_n > end_n

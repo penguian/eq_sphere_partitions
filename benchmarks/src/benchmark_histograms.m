@@ -18,31 +18,22 @@ function benchmark_histograms(varargin)
 
     args = p.Results;
 
-    fprintf('Testing eq_find_s2_region: %d regions, %g points\n', ...
-        args.regions, args.n_max);
+    fprintf('%-10s | %10s\n', 'Points', 'Time (s)');
+    fprintf('%s\n', repmat('-', 1, 23));
 
-    % Generate random points as test data on S^2
-    % eq_find_s2_region expects (2 x n_points) in polar coordinates
-    n_test = 1e6;
-    fprintf('Generating %d test points...\n', n_test);
-    test_points = [2*pi*rand(1, n_test); pi*rand(1, n_test)];
+    % Warm-up to absorb startup overhead
+    test_points_warmup = [2*pi*rand(1, 100); pi*rand(1, 100)];
+    eq_find_s2_region(test_points_warmup, args.regions);
 
-    % Warm-up
-    eq_find_s2_region([0; 0], args.regions);
+    chunk_size = max(1, floor(args.n_max / 5));
+    for current_size = max(100, chunk_size):chunk_size:args.n_max
+        % Generate random points as test data on S^2
+        test_points = [2*pi*rand(1, current_size); pi*rand(1, current_size)];
 
-    t0 = tic;
-    r_idx = eq_find_s2_region(test_points, args.regions);
-    t_elapsed = toc(t0);
+        t0 = tic;
+        eq_find_s2_region(test_points, args.regions);
+        t_elapsed = toc(t0);
 
-    % Scaling to n_max
-    total_time = t_elapsed * (args.n_max / n_test);
-
-    fprintf('Processed %d points in %.4f seconds (scaled to %g points: %.4f seconds)\n', ...
-        n_test, t_elapsed, args.n_max, total_time);
-    fprintf('Throughput: %g points/sec\n', n_test / t_elapsed);
-
-    % Verify result size
-    if length(r_idx) ~= n_test
-        warning('Unexpected result size: %d', length(r_idx));
+        fprintf('%-10d | %10.4f\n', current_size, t_elapsed);
     end
 end
