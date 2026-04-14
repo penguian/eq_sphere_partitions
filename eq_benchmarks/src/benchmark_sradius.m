@@ -2,7 +2,7 @@ function benchmark_sradius(varargin)
 %BENCHMARK_SRADIUS Benchmark for sradius_of_cap performance.
 %
 % Usage:
-%   benchmark_sradius('n_max', 1e7, 'dim', 3)
+%   benchmark_sradius('n_max', 5e5, 'dim', 3)
 
 % Copyright 2026 Paul Leopardi.
 % $Revision 1.12.3 $ $Date 2026-04-14 $
@@ -14,7 +14,7 @@ function benchmark_sradius(varargin)
 % For revision history, see CHANGELOG.
 
     p = inputParser;
-    addParameter(p, 'n_max', 1e7);
+    addParameter(p, 'n_max', 5e5);
     addParameter(p, 'dim', 3);
     parse(p, varargin{:});
 
