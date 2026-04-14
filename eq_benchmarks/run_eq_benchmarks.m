@@ -16,7 +16,7 @@ function run_benchmarks(varargin)
     addParameter(p, 'dim', 2);
     addParameter(p, 'n_max_regions', 1e8);
     addParameter(p, 'n_max_hist', 2e6);
-    addParameter(p, 'n_max_srad', 1e6);
+    addParameter(p, 'n_max_srad', 5e5);
     addParameter(p, 'n_max_area', 5e7);
     addParameter(p, 'n_max_energy', 5e4);
     addParameter(p, 'n_max_mindist', 5e4);
@@ -25,11 +25,11 @@ function run_benchmarks(varargin)
     args = p.Results;
 
     % Ensure results directory exists
-    if ~exist('benchmarks/results', 'dir')
-        mkdir('benchmarks/results');
+    if ~exist('eq_benchmarks/results', 'dir')
+        mkdir('eq_benchmarks/results');
     end
 
-    main_log_file = fullfile('benchmarks', 'results', 'run_benchmarks.log');
+    main_log_file = fullfile('eq_benchmarks', 'results', 'run_eq_benchmarks.log');
 
     % Start logging to file (diary)
     if exist(main_log_file, 'file')
