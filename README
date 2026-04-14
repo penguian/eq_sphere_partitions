@@ -1,5 +1,5 @@
 Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox.
-Release 1.12.3 2026-04-05
+Release 1.12.3 2026-04-14
 Release 1.12.1 2025-08-10
 Release 1.12 2024-10-20
 Copyright 2024-2026 Paul Leopardi
@@ -255,12 +255,12 @@ These benchmarks are intended to demonstrate the scaling behavior of the algorit
 >> Benchmark Results
 
 Key toolbox functions demonstrate the following computational scaling:
-- eq_area_error: O(N^0.72)
+- eq_area_error: O(N^0.74)
 - eq_regions: O(N^0.84)
-- eq_find_s2_region: O(N^0.94)
-- sradius_of_cap: O(N^0.98)
-- eq_min_dist: O(N^1.75)
-- point_set_energy_dist: O(N^1.68)
+- eq_find_s2_region: O(N^0.90)
+- sradius_of_cap: O(N^0.99)
+- eq_min_dist: O(N^1.76)
+- point_set_energy_dist: O(N^1.69)
 
-The benchmarks show near-linear or better scaling for core functions, with near-quadratic scaling for distance and energy calculations. For detailed timing and hardware configuration, see benchmarks/results/run_benchmarks.log.
+The benchmarks show near-linear or better scaling for core functions, with near-quadratic scaling for distance and energy calculations. For detailed timing and hardware configuration, see eq_benchmarks/results/run_eq_benchmarks.log.
 

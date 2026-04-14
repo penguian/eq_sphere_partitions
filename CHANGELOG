@@ -1,7 +1,9 @@
 Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox.
+Release 1.12.3 2026-04-14
+Release 1.12.2 2025-10-29
 Release 1.12.1 2025-08-10
 Release 1.12 2024-10-20
-Copyright 2024-2025 Paul Leopardi
+Copyright 2024-2026 Paul Leopardi
 Release 1.10 2005-06-26
 Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 
@@ -9,6 +11,32 @@ CHANGELOG
 
 For licensing, see COPYING
 For references, see AUTHORS
+
+Changes between Release 1.12.2 and Release 1.12.3 as at 2026-04-14
+================================================================
+
+1) Rename benchmarks/ to eq_benchmarks/ and run_benchmarks.m to
+   run_eq_benchmarks.m.
+
+2) Standardize on 1-2-5 logarithmic sampling across all benchmark scripts.
+
+3) Add O(N^k) scaling analysis to each benchmark script.
+
+4) Updated benchmark results in README and documentation.
+
+Changes between Release 1.12.1 and Release 1.12.2 as at 2025-10-29
+================================================================
+
+1) Update revision number to 1.12.2 and copyright year to 2025.
+
+2) Add comprehensive help text (syntax, description, examples, and
+   "See also" sections) to 20+ functions (closes Issue #10).
+
+3) Add 23 new test scripts to ensure better coverage of existing
+   functions.
+
+4) Fix various typos in code comments.
+
 
 Changes between Release 1.12 and Release 1.12.1 as at 2025-08-09
 ================================================================
