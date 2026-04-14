@@ -1,11 +1,11 @@
-function run_benchmarks(varargin)
-%RUN_BENCHMARKS Run all performance benchmarks and log results.
+function run_eq_benchmarks(varargin)
+%RUN_EQ_BENCHMARKS Run all performance benchmarks and log results.
 %
 % This script runs a subset of benchmark points using logarithmic sampling
 % (powers of 10) to verify asymptotic behavior and find the runtime order.
 %
 % Usage:
-%   run_benchmarks('n_max_regions', 1e8)
+%   run_eq_benchmarks('n_max_regions', 1e8)
 
 % Copyright 2026 Paul Leopardi.
 % $Revision 1.12.3 $ $Date 2026-04-05 $
@@ -15,9 +15,9 @@ function run_benchmarks(varargin)
     p = inputParser;
     addParameter(p, 'dim', 2);
     addParameter(p, 'n_max_regions', 1e8);
-    addParameter(p, 'n_max_hist', 2e6);
+    addParameter(p, 'n_max_hist', 5e6);
     addParameter(p, 'n_max_srad', 5e5);
-    addParameter(p, 'n_max_area', 5e7);
+    addParameter(p, 'n_max_area', 1e7);
     addParameter(p, 'n_max_energy', 5e4);
     addParameter(p, 'n_max_mindist', 5e4);
     addParameter(p, 'extra_offset', false);
@@ -50,7 +50,7 @@ function run_benchmarks(varargin)
     % 1. eq_area_error
     fprintf('\nRunning benchmark: eq_area_error\n');
     n_values = generate_sequence(args.n_max_area);
-    run_sampled_task(@(N) benchmark_area_error_point(args.dim, N, args.extra_offset), n_values, 'N');
+    run_sampled_task(@(N) benchmark_area_error(args.dim, N), n_values, 'N');
 
     % 2. eq_regions
     fprintf('\nRunning benchmark: eq_regions\n');
@@ -60,12 +60,12 @@ function run_benchmarks(varargin)
     % 3. eq_find_s2_region
     fprintf('\nRunning benchmark: eq_find_s2_region\n');
     n_values = generate_sequence(args.n_max_hist);
-    run_sampled_task(@(N) benchmark_histograms_point(N, 1000), n_values, 'Points');
+    run_sampled_task(@(N) benchmark_histograms(N, 1000), n_values, 'Points');
 
     % 4. sradius_of_cap
     fprintf('\nRunning benchmark: sradius_of_cap\n');
     n_values = generate_sequence(args.n_max_srad);
-    run_sampled_task(@(N) benchmark_sradius_point(args.dim + 1, N), n_values, 'Size');
+    run_sampled_task(@(N) benchmark_sradius(args.dim + 1, N), n_values, 'Size');
 
     % 5. eq_min_dist
     fprintf('\nRunning benchmark: eq_min_dist\n');
@@ -129,18 +129,20 @@ function n_values = generate_sequence(n_max)
     n_values = n_values(n_values >= 10 & n_values <= n_max);
 end
 
-function benchmark_area_error_point(dim, N, extra_offset)
-    regions = eq_regions(dim, N, extra_offset);
-    % Simulate some work with the regions to avoid optimization skipping
-    size(regions);
+function benchmark_area_error(dim, N)
+    [total_error, max_error] = eq_area_error(dim, N);
+    % We use the output values to prevent the MATLAB JIT from optimizing away the call
+    if isnan(total_error) || isnan(max_error)
+        warning('eq_area_error returned NaN');
+    end
 end
 
-function benchmark_histograms_point(n_points, regions)
+function benchmark_histograms(n_points, regions)
     test_points = [2*pi*rand(1, n_points); pi*rand(1, n_points)];
     eq_find_s2_region(test_points, regions);
 end
 
-function benchmark_sradius_point(dim, n_areas)
+function benchmark_sradius(dim, n_areas)
     areas = linspace(0.1, area_of_sphere(dim) - 0.1, n_areas);
     sradius_of_cap(dim, areas);
 end
