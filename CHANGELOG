@@ -22,7 +22,15 @@ Changes between Release 1.12.2 and Release 1.12.3 as at 2026-04-14
 
 3) Add O(N^k) scaling analysis to each benchmark script.
 
-4) Updated benchmark results in README and documentation.
+4) Update benchmark results in README and documentation.
+
+5) Refactor lookup_s2_region.m to correct lookup logic and improve
+   performance.
+
+6) Improve histogram testing with new robust correctness tests in
+   test_histogram_correctness.m and enhancements to existing test
+   scripts.
+
 
 Changes between Release 1.12.1 and Release 1.12.2 as at 2025-10-29
 ================================================================
