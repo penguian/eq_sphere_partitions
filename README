@@ -255,9 +255,9 @@ These benchmarks are intended to demonstrate the scaling behavior of the algorit
 >> Benchmark Results
 
 Key toolbox functions demonstrate the following computational scaling:
-- eq_area_error: O(N^0.74)
-- eq_regions: O(N^0.84)
-- eq_find_s2_region: O(N^0.90)
+- eq_area_error: O(N^0.85)
+- eq_regions: O(N^0.83)
+- eq_find_s2_region: O(N^0.91)
 - sradius_of_cap: O(N^0.99)
 - eq_min_dist: O(N^1.76)
 - point_set_energy_dist: O(N^1.69)
