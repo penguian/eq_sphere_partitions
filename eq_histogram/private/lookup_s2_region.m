@@ -16,7 +16,7 @@ function r_idx = lookup_s2_region(s_point, s_regions, s_cap, c_regions)
 %           with longitude 0 <= s(1,p_idx) <= 2*pi, colatitude 0 <= s(2,p_idx) <= pi.
 % s_regions Sequence of regions of S^2 as per eq_regions(2,N) where N == size(s_regions,2).
 % s_cap     Sequence of cap colatitudes as per eq_caps(2,N) for the same N.
-% c_regions Sequence of the cumulative number of regions of s_regions within each cap of c_cap.
+% c_regions Sequence of the cumulative number of regions of s_regions within each cap of s_cap.
 %
 %Examples
 % > cd eq_histogram/private
@@ -45,7 +45,7 @@ function r_idx = lookup_s2_region(s_point, s_regions, s_cap, c_regions)
 % EQ_REGIONS, EQ_CAPS, CUMSUM, LOOKUP_TABLE
 
 % Copyright 2026 Paul Leopardi.
-% $Revision 1.12.2 $ $Date 2026-04-05 $
+% $Revision 1.12.3 $ $Date 2026-04-14 $
 % Copyright 2024 Paul Leopardi.
 % $Revision 1.12 $ $Date 2024-09-18 $
 % Copyright 2012 Paul Leopardi
@@ -58,59 +58,74 @@ function r_idx = lookup_s2_region(s_point, s_regions, s_cap, c_regions)
 n_caps = length(s_cap);
 if n_caps ~= length(c_regions)
     msg = 'LOOKUP_S2_REGION: Mismatch between length of s_cap (==%d) and length of c_regions (==%d)\n';
-    fprintf(msg, n_caps, length(c_regions))
-    r_idx = 0;
-    return
+    error(msg, n_caps, length(c_regions))
 end
 n_regions = size(s_regions, 3);
 if c_regions(n_caps) ~= n_regions
     msg = 'LOOKUP_S2_REGION: Mismatch between c_regions(end) (==%d) and length of s_regions (==%d)\n';
-    fprintf(msg, c_regions(n_caps), n_regions)
-    r_idx = 0;
-    return
+    error(msg, c_regions(n_caps), n_regions)
 end
+
+tol = eps * 2^5;
 n_points = size(s_point, 2);
 r_idx = zeros(1, n_points);
-for p_idx = 1:n_points
-    % Lookup by colatitude.
-    c_idx = lookup_table(s_cap, s_point(2, p_idx));
-    if c_idx > 0 && c_idx < n_caps - 1
-        min_r_idx = c_regions(c_idx) + 1;
-        max_r_idx = c_regions(c_idx + 1);
-        s_longs = squeeze(s_regions(1, :, min_r_idx:max_r_idx));
-        n_longs = size(s_longs, 2);
 
-        % Rotate around the wrap-around point to ensure monotonicity
-        ends = s_longs(2, :);
-        k = find(ends(1:end-1) > ends(2:end), 1);
-        if isempty(k), k = n_longs; end
-
-        rotated_table = circshift(ends, [0, -k]);
-
-        % Defensive check: after rotation, table must be strictly monotonic
-        if rotated_table(end) < rotated_table(1) || any(diff(rotated_table) < 0)
-            error('lookup_s2_region: Multiple non-monotonic boundaries detected in collar');
-        end
-
-        % Find the lower boundary of the "new" first region for wrap check
-        rotated_starts = circshift(s_longs(1, :), [0, -k]);
-        first_start = rotated_starts(1);
-
-	    % Lookup by longitude on rotated table.
-        l_idx_rot = lookup_table(rotated_table, s_point(1, p_idx));
-        if s_point(1, p_idx) < first_start
-            l_idx_rot = n_longs - 1;
-        end
-
-        % Restore global index in collar
-        l_idx = mod(l_idx_rot + k, n_longs);
-        r_idx(p_idx) = min_r_idx + l_idx;
-    elseif c_idx == 0
-        r_idx(p_idx) = 1;
-    elseif c_idx >= n_caps - 1
-        r_idx(p_idx) = n_regions;
-    else
-        r_idx(p_idx) = 0;
-    end
+if n_points == 0
+    return
 end
 
+for p_idx = 1:n_points
+    lat = s_point(2, p_idx);
+    % Find cap index: first cap boundary >= lat - tol
+    c_idx = find(s_cap >= lat - tol, 1);
+    if isempty(c_idx)
+        c_idx = n_caps;
+    end
+
+    % min_r_idx: index of first region in this cap band
+    if c_idx == 1
+        min_r_idx = 1;
+        n_longs = c_regions(1);
+    else
+        min_r_idx = c_regions(c_idx-1) + 1;
+        n_longs = c_regions(c_idx) - (min_r_idx - 1);
+    end
+
+    if n_longs > 1
+        start_off = min_r_idx - 1;
+        % s_regions is (2, 2, N). Longitude is dimension 1.
+        % regions(1, 1, :) are starts, regions(1, 2, :) are ends.
+        phi0 = s_regions(1, 1, start_off + 1);
+        ends = squeeze(s_regions(1, 2, start_off + 1 : start_off + n_longs))';
+
+        % Translate point longitude to [0, 2*pi) relative to first region start
+        pts_long_translated = mod(s_point(1, p_idx) - phi0, 2*pi);
+        % Boundary policy: longitude 0 (relative) is treated as 2*pi
+        % to fall into the last region of the collar.
+        if pts_long_translated <= tol
+            pts_long_translated = 2*pi;
+        end
+
+        % Translate boundaries (ends) to [0, 2*pi)
+        ends_translated = mod(ends - phi0, 2*pi);
+
+        % The ends are monotonically increasing in [0, 2*pi) EXCEPT for the last one
+        % which wraps exactly to 0. Set it to 2*pi for monotonicity.
+        if ends_translated(end) <= tol
+            ends_translated(end) = 2*pi;
+        end
+
+        % Find sector index in collar: first end >= pts_long_translated - tol
+        l_idx = find(ends_translated >= pts_long_translated - tol, 1);
+
+        % Overshoot protection
+        if isempty(l_idx) || l_idx > n_longs
+            l_idx = 1;
+        end
+
+        r_idx(p_idx) = min_r_idx + l_idx - 1;
+    else
+        % Pole cap logic
+        r_idx(p_idx) = min_r_idx;
+    end
+end
