@@ -2,10 +2,12 @@ function benchmark_area_error(varargin)
 %BENCHMARK_AREA_ERROR Benchmark for eq_area_error (Redundant area calculation).
 %
 % Usage:
-%   benchmark_area_error('n_max', 15000, 'dim', 2, 'extra_offset', false)
+%   benchmark_area_error('n_max', 15000, 'dim', 2)
 
 % Copyright 2026 Paul Leopardi.
-% $Revision 1.12.2 $ $Date 2026-04-05 $
+% $Revision 1.12.3 $ $Date 2026-04-14 $
+% Copyright 2024 Paul Leopardi.
+% $Revision 1.12 $ $Date 2024-10-13 $
 %
 % For licensing, see COPYING.
 % For references, see AUTHORS.
@@ -14,42 +16,54 @@ function benchmark_area_error(varargin)
     p = inputParser;
     addParameter(p, 'n_max', 15000);
     addParameter(p, 'dim', 2);
-    addParameter(p, 'extra_offset', false);
     parse(p, varargin{:});
 
     args = p.Results;
 
-    fprintf('%-15s | %10s\n', 'N range', 'Time (s)');
+    fprintf('%-15s | %10s\n', 'N', 'Time (s)');
     fprintf('%s\n', repmat('-', 1, 28));
 
-    % Warm-up from N=10 to 99 to absorb startup overhead
-    for N = 10:99
-        regions = eq_regions(args.dim, N, args.extra_offset);
-        size(regions);
+    n_values = generate_125_sequence(args.n_max);
+
+    % Warm-up from N=10 to 50 to absorb startup overhead
+    for n_warm = [10, 20, 50]
+        eq_area_error(args.dim, n_warm);
     end
 
-    chunk_size = max(1, floor(args.n_max / 5));
-
-    for i = 0:chunk_size:args.n_max-1
-        start_n = max(100, i + 1);
-        end_n = min(i + chunk_size, args.n_max);
-
-        if start_n > end_n
-            continue;
-        end
-
+    results = [];
+    for N = n_values
         t0 = tic;
-        for N = start_n:end_n
-            % In MATLAB, we don't have a direct equivalent of 'eq_area_error'
-            % as a standalone prop function in the same way, but we can
-            % benchmark the region generation and property calculation.
-            % Here we simulate the workload of checking regions.
-            regions = eq_regions(args.dim, N, args.extra_offset);
-            % Dummy calculation to simulate area verification
-            size(regions);
-        end
+        eq_area_error(args.dim, N);
         t_elapsed = toc(t0);
 
-        fprintf('%-15s | %10.4f\n', sprintf('%d-%d', start_n, end_n), t_elapsed);
+        results = [results; N, t_elapsed];
+        if N >= 100
+            fprintf('%-15d | %10.4f\n', N, t_elapsed);
+        end
     end
+
+    % Scaling Analysis
+    if size(results, 1) >= 2
+        mask = (results(:, 1) >= 100) & (results(:, 2) > 0.0001);
+        if sum(mask) >= 2
+            log_n = log(results(mask, 1));
+            log_t = log(results(mask, 2));
+            p_fit = polyfit(log_n, log_t, 1);
+            fprintf('%s\n', repmat('-', 1, 28));
+            fprintf('Best fitting order: O(N^%.2f)\n', p_fit(1));
+        end
+    end
+end
+
+function vals = generate_125_sequence(n_max)
+    % Generate 1-2-5 logarithmic sequence: 10, 20, 50, 100...
+    if n_max < 10
+        vals = max(1, floor(n_max));
+        return;
+    end
+    v = [1, 2, 5];
+    p = 0:ceil(log10(n_max));
+    [V, P] = meshgrid(v, p);
+    vals = sort(reshape(V .* (10.^P), 1, []));
+    vals = vals(vals >= 10 & vals <= n_max);
 end
