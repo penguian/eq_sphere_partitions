@@ -15,22 +15,19 @@ For references, see AUTHORS
 Changes between Release 1.12.2 and Release 1.12.3 as at 2026-04-14
 ================================================================
 
-1) Rename benchmarks/ to eq_benchmarks/ and run_benchmarks.m to
-   run_eq_benchmarks.m.
+1) Fix the histogram functions.
+   o Refactor lookup_s2_region.m to correct lookup logic and improve
+     performance.
+   o Improve histogram testing with new robust correctness tests in
+     test_histogram_correctness.m and enhancements to existing test
+     scripts.
 
-2) Standardize on 1-2-5 logarithmic sampling across all benchmark scripts.
-
-3) Add O(N^k) scaling analysis to each benchmark script.
-
-4) Update benchmark results in README and documentation.
-
-5) Refactor lookup_s2_region.m to correct lookup logic and improve
-   performance.
-
-6) Improve histogram testing with new robust correctness tests in
-   test_histogram_correctness.m and enhancements to existing test
-   scripts.
-
+2) Add benchmarks.
+   o Rename benchmarks/ to eq_benchmarks/ and run_benchmarks.m to
+     run_eq_benchmarks.m.
+   o Standardize on 1-2-5 logarithmic sampling across all benchmark scripts.
+   o Add O(N^k) scaling analysis to each benchmark script.
+   o Update benchmark results in README and documentation.
 
 Changes between Release 1.12.1 and Release 1.12.2 as at 2025-10-29
 ================================================================
@@ -44,7 +41,6 @@ Changes between Release 1.12.1 and Release 1.12.2 as at 2025-10-29
    functions.
 
 4) Fix various typos in code comments.
-
 
 Changes between Release 1.12 and Release 1.12.1 as at 2025-08-09
 ================================================================
