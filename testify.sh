@@ -14,7 +14,7 @@ function $t
 %$T Test the $f function
 
 % Copyright 2025-2026 Paul Leopardi.
-% \$Revision \$ $Revision \$ \$Date $Date \$
+% \$Revision $Revision \$ \$Date $Date \$
 %
 % For licensing, see COPYING.
 % For references, see AUTHORS.
