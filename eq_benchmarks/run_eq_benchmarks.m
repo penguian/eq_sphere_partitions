@@ -24,12 +24,14 @@ function run_eq_benchmarks(varargin)
     parse(p, varargin{:});
     args = p.Results;
 
-    % Ensure results directory exists
-    if ~exist('eq_benchmarks/results', 'dir')
-        mkdir('eq_benchmarks/results');
+    % Ensure results directory exists relative to this script's location
+    benchmark_dir = fileparts(mfilename('fullpath'));
+    results_dir = fullfile(benchmark_dir, 'results');
+    if ~exist(results_dir, 'dir')
+        mkdir(results_dir);
     end
 
-    main_log_file = fullfile('eq_benchmarks', 'results', 'run_eq_benchmarks.log');
+    main_log_file = fullfile(results_dir, 'run_eq_benchmarks.log');
 
     % Start logging to file (diary)
     if exist(main_log_file, 'file')
@@ -64,8 +66,14 @@ function run_eq_benchmarks(varargin)
 
     % 4. sradius_of_cap
     fprintf('\nRunning benchmark: sradius_of_cap\n');
+    % To realistically benchmark the root-finding overhead (fzero), we avoid dim <= 2
+    % where sradius_of_cap uses a fast analytical formula.
+    sradius_dim = args.dim;
+    if sradius_dim <= 2
+        sradius_dim = 3;
+    end
     n_values = generate_sequence(args.n_max_srad);
-    run_sampled_task(@(N) benchmark_sradius(args.dim + 1, N), n_values, 'Size');
+    run_sampled_task(@(N) benchmark_sradius(sradius_dim, N), n_values, 'Size');
 
     % 5. eq_min_dist
     fprintf('\nRunning benchmark: eq_min_dist\n');

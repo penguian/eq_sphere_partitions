@@ -17,7 +17,7 @@ region = s_regions(:, :, 3);
 result = in_s2_region(points_s, region);
 
 % Expected: points 4 and 5 (from eq_find_s2_region logic)
-expected = [false, false, false, true, true, false, false, false];
+expected = [0, 0, 0, 1, 1, 0, 0, 0];
 assert(isequal(result, expected), 'in_s2_region mismatch for region 3');
 
 fprintf('test_in_s2_region: PASS\n');
