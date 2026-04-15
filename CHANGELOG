@@ -18,9 +18,13 @@ Changes between Release 1.12.2 and Release 1.12.3 as at 2026-04-14
 1) Fix the histogram functions.
    o Refactor lookup_s2_region.m to correct lookup logic and improve
      performance.
+   o Fix documentation bug: s_regions argument description now correctly
+     states N == size(s_regions, 3) instead of size(s_regions, 2).
    o Improve histogram testing with new robust correctness tests in
      test_histogram_correctness.m and enhancements to existing test
      scripts.
+   o Fix global RNG state pollution in test_histogram_correctness.m by
+     saving and restoring state around rng(42).
 
 2) Add benchmarks.
    o Rename benchmarks/ to eq_benchmarks/ and run_benchmarks.m to
@@ -28,6 +32,19 @@ Changes between Release 1.12.2 and Release 1.12.3 as at 2026-04-14
    o Standardize on 1-2-5 logarithmic sampling across all benchmark scripts.
    o Add O(N^k) scaling analysis to each benchmark script.
    o Update benchmark results in README and documentation.
+   o Preallocate results arrays in benchmark scripts to reduce overhead.
+
+3) Fix malformed $Revision tags in all eq_test/*.m files, and correct
+   testify.sh which was the root cause of the malformed tags.
+
+4) Fix test documentation and minor numerical discrepancies.
+   o Consolidate dual copyright/revision blocks into a single block with a
+     year range in eq_test/*.m files.
+   o Update stale point_set_energy_dist.m help text to correct expected energy
+     for a 3x4 point set example (2.5000 to 3.8284).
+   o Update stale eq_energy_dist.m help text extra-offset example to match
+     modern MATLAB minimum distance evaluation (0.6545 to 0.4733).
+
 
 Changes between Release 1.12.1 and Release 1.12.2 as at 2025-10-29
 ================================================================
