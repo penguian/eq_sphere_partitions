@@ -1,9 +1,8 @@
 function test_eq_find_s2_region
 %TEST_EQ_FIND_S2_REGION Test the eq_find_s2_region function
 
-% Copyright 2026 Paul Leopardi.
+% Copyright 2024-2026 Paul Leopardi.
 % $Revision 1.12.3 $ $Date 2026-04-14 $
-% Copyright 2024 Paul Leopardi.
 % $Revision 1.12 $ $Date 2024-10-14 $
 %
 % For licensing, see COPYING.
