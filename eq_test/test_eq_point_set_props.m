@@ -2,7 +2,7 @@ function test_eq_point_set_props
 %TEST_EQ_POINT_SET_PROPS Test the functions in the eq_point_set_props directory
 
 % Copyright 2024 Paul Leopardi.
-% $Revision $ 1.12 $ $Date 2024-10-14 $
+% $Revision 1.12 $ $Date 2024-10-14 $
 %
 % For licensing, see COPYING.
 % For references, see AUTHORS.
