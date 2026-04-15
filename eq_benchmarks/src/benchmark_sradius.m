@@ -31,7 +31,8 @@ function benchmark_sradius(varargin)
         sradius_of_cap(args.dim, areas_warmup);
     end
 
-    results = [];
+    results = zeros(numel(n_values), 2);
+    result_idx = 0;
     for current_size = n_values
         areas = linspace(0.1, area_of_sphere(args.dim) - 0.1, current_size);
 
@@ -39,7 +40,8 @@ function benchmark_sradius(varargin)
         sradius_of_cap(args.dim, areas);
         t_elapsed = toc(t0);
 
-        results = [results; current_size, t_elapsed];
+        result_idx = result_idx + 1;
+        results(result_idx, :) = [current_size, t_elapsed];
         if current_size >= 100
             fprintf('%-10d | %10.4f\n', current_size, t_elapsed);
         end

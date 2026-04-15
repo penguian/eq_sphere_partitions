@@ -8,7 +8,7 @@ function run_eq_benchmarks(varargin)
 %   run_eq_benchmarks('n_max_regions', 1e8)
 
 % Copyright 2026 Paul Leopardi.
-% $Revision 1.12.3 $ $Date 2026-04-05 $
+% $Revision 1.12.3 $ $Date 2026-04-15 $
 %
 % For licensing, see COPYING.
 
@@ -121,7 +121,7 @@ function run_sampled_task(task_func, n_values, label)
 end
 
 function n_values = generate_sequence(n_max)
-    % Generate 1-2-5 sequence: 5, 10, 20, 50, 100, 200, 500, ...
+    % Generate 1-2-5 sequence: 10, 20, 50, 100, 200, 500, ...
     v = [1, 2, 5]';
     p = 0:ceil(log10(n_max));
     vals = v * 10.^p;

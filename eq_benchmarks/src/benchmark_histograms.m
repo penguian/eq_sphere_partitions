@@ -31,7 +31,8 @@ function benchmark_histograms(varargin)
         eq_find_s2_region(test_points_warmup, args.regions);
     end
 
-    results = [];
+    results = zeros(numel(n_values), 2);
+    result_idx = 0;
     for current_size = n_values
         % Generate random points as test data on S^2
         test_points = [2*pi*rand(1, current_size); pi*rand(1, current_size)];
@@ -40,7 +41,8 @@ function benchmark_histograms(varargin)
         eq_find_s2_region(test_points, args.regions);
         t_elapsed = toc(t0);
 
-        results = [results; current_size, t_elapsed];
+        result_idx = result_idx + 1;
+        results(result_idx, :) = [current_size, t_elapsed];
         if current_size >= 100
             fprintf('%-10d | %10.4f\n', current_size, t_elapsed);
         end

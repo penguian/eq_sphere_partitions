@@ -20,10 +20,12 @@ function test_consistency
     N = 10;
     num_points = 50;
     % Generate random points on S^2 (seeded for determinism)
+    rng_state = rng;
     rng(42);
     points_s = zeros(2, num_points);
     points_s(1, :) = rand(1, num_points) * 2 * pi; % Longitude
     points_s(2, :) = acos(rand(1, num_points) * 2 - 1); % Colatitude
+    rng(rng_state);
 
     region_indices = eq_find_s2_region(points_s, N);
     regions = eq_regions(2, N);

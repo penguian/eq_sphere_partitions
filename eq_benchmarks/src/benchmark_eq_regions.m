@@ -33,13 +33,15 @@ function benchmark_eq_regions(varargin)
         eq_regions(args.dim, n_warm);
     end
 
-    results = [];
+    results = zeros(numel(n_values), 2);
+    result_idx = 0;
     for N = n_values
         t0 = tic;
         eq_regions(args.dim, N);
         t_elapsed = toc(t0);
 
-        results = [results; N, t_elapsed];
+        result_idx = result_idx + 1;
+        results(result_idx, :) = [N, t_elapsed];
         if N >= 100
             fprintf('%-10d | %10.4f\n', N, t_elapsed);
         end

@@ -14,7 +14,7 @@ function r_idx = lookup_s2_region(s_point, s_regions, s_cap, c_regions)
 %Arguments
 % s_point   Sequence of points on S^2, as a 2 x n_points array in spherical polar coordinates,
 %           with longitude 0 <= s(1,p_idx) <= 2*pi, colatitude 0 <= s(2,p_idx) <= pi.
-% s_regions Sequence of regions of S^2 as per eq_regions(2,N) where N == size(s_regions,2).
+% s_regions Sequence of regions of S^2 as per eq_regions(2,N) where N == size(s_regions,3).
 % s_cap     Sequence of cap colatitudes as per eq_caps(2,N) for the same N.
 % c_regions Sequence of the cumulative number of regions of s_regions within each cap of s_cap.
 %
