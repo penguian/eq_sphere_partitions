@@ -45,7 +45,7 @@ function [energy,dist] = eq_energy_dist(dim,N,s,varargin)
 %     4.0042e+03
 %
 %  dist =
-%      0.6545
+%      0.4733
 %
 %See also
 % EQ_POINT_SET, PARTITION_OPTIONS, POINT_SET_ENERGY_DIST, EUCLIDEAN_DIST,

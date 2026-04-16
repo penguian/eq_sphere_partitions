@@ -53,11 +53,12 @@ if is_octave
     end
 else
     if table(end) >= table(1)
-        % We have an nondecreasing table.
-        maximum = max([table, y]) + 1;
-        idx = arrayfun(@(x) find(x < [table, maximum], 1) - 1, y);
+        % We have a nondecreasing table.
+        maximum = max([table(:)', y(:)']) + 1;
+        idx = arrayfun(@(x) find(x < [table(:)', maximum], 1) - 1, y);
     else
-        fprintf('LOOKUP_TABLE: Decreasing case is not yet implemented\n');
+        % Strictly decreasing table is NOT YET IMPLEMENTED.
+        error('lookup_table: Decreasing table NOT YET IMPLEMENTED');
     end
 end
 

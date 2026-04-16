@@ -36,7 +36,7 @@ function [energy,min_dist] = point_set_energy_dist(points,s)
 %
 % energy =
 %
-%     2.5000
+%     3.8284
 %
 % min_dist =
 %

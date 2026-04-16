@@ -1,7 +1,9 @@
 Recursive Zonal Equal Area (EQ) Sphere Partitioning Toolbox.
+Release 1.12.3 2026-04-14
+Release 1.12.2 2025-10-29
 Release 1.12.1 2025-08-10
 Release 1.12 2024-10-20
-Copyright 2024-2025 Paul Leopardi
+Copyright 2024-2026 Paul Leopardi
 Release 1.10 2005-06-26
 Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 
@@ -9,6 +11,53 @@ CHANGELOG
 
 For licensing, see COPYING
 For references, see AUTHORS
+
+Changes between Release 1.12.2 and Release 1.12.3 as at 2026-04-14
+================================================================
+
+1) Fix the histogram functions.
+   o Refactor lookup_s2_region.m to correct lookup logic and improve
+     performance.
+   o Fix documentation bug: s_regions argument description now correctly
+     states N == size(s_regions, 3) instead of size(s_regions, 2).
+   o Improve histogram testing with new robust correctness tests in
+     test_histogram_correctness.m and enhancements to existing test
+     scripts.
+   o Fix global RNG state pollution in test_histogram_correctness.m by
+     saving and restoring state around rng(42).
+
+2) Add benchmarks.
+   o Rename benchmarks/ to eq_benchmarks/ and run_benchmarks.m to
+     run_eq_benchmarks.m.
+   o Standardize on 1-2-5 logarithmic sampling across all benchmark scripts.
+   o Add O(N^k) scaling analysis to each benchmark script.
+   o Update benchmark results in README and documentation.
+   o Preallocate results arrays in benchmark scripts to reduce overhead.
+
+3) Fix malformed $Revision tags in all eq_test/*.m files, and correct
+   testify.sh which was the root cause of the malformed tags.
+
+4) Fix test documentation and minor numerical discrepancies.
+   o Consolidate dual copyright/revision blocks into a single block with a
+     year range in eq_test/*.m files.
+   o Update stale point_set_energy_dist.m help text to correct expected energy
+     for a 3x4 point set example (2.5000 to 3.8284).
+   o Update stale eq_energy_dist.m help text extra-offset example to match
+     modern MATLAB minimum distance evaluation (0.6545 to 0.4733).
+
+
+Changes between Release 1.12.1 and Release 1.12.2 as at 2025-10-29
+================================================================
+
+1) Update revision number to 1.12.2 and copyright year to 2025.
+
+2) Add comprehensive help text (syntax, description, examples, and
+   "See also" sections) to 20+ functions (closes Issue #10).
+
+3) Add 23 new test scripts to ensure better coverage of existing
+   functions.
+
+4) Fix various typos in code comments.
 
 Changes between Release 1.12 and Release 1.12.1 as at 2025-08-09
 ================================================================

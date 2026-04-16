@@ -2,7 +2,7 @@ function test_eq_illustrations
 %TEST_EQ_ILLUSTRATIONS Test the functions in the eq_illustrations directory
 
 % Copyright 2024 Paul Leopardi.
-% $Revision $ 1.12 $ $Date 2024-10-16 $
+% $Revision 1.12 $ $Date 2024-10-16 $
 %
 % For licensing, see COPYING.
 % For references, see AUTHORS.

@@ -2,7 +2,7 @@ function test_project_s2_partition
 %TEST_PROJECT_S2_PARTITION Test the project_s2_partition function
 
 % Copyright 2024 Paul Leopardi.
-% $Revision $ 1.12 $ $Date 2024-10-14 $
+% $Revision 1.12 $ $Date 2024-10-14 $
 %
 % For licensing, see COPYING.
 % For references, see AUTHORS.

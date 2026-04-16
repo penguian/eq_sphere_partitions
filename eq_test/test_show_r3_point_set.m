@@ -2,7 +2,7 @@ function test_show_r3_point_set
 %TEST_SHOW_R3_POINT_SET Test the show_r3_point_set function
 
 % Copyright 2024 Paul Leopardi.
-% $Revision $ 1.12 $ $Date 2024-10-14 $
+% $Revision 1.12 $ $Date 2024-10-14 $
 %
 % For licensing, see COPYING.
 % For references, see AUTHORS.

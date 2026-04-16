@@ -1,5 +1,5 @@
 % Recursive Zonal Equal Area Sphere Partitioning Toolbox.
-% Release 1.12 2024-10-14
+% Release 1.12.3 2026-04-14
 %
 %Functions by category
 %=====================
@@ -125,6 +125,11 @@
 %  sradius_of_cap         Spherical radius of spherical cap of given area
 %  volume_of_ball         Volume of the unit ball
 %
+%Benchmarks
+%----------
+%
+%  run_eq_benchmarks      Run all performance benchmarks and log results
+%
 %Tests
 %-----
 %
@@ -133,8 +138,8 @@
 % If the previous text scrolled off the screen, try
 % more on; help eq_sphere_partitions; more off;
 
-% Copyright 2024 Paul Leopardi
-% $Revision 1.12 $ $Date 2024-10-14 $
+% Copyright 2026 Paul Leopardi.
+% $Revision 1.12.3 $ $Date 2026-04-14 $
 % Copyright 2004-2005 Paul Leopardi for the University of New South Wales.
 % $Revision 1.10 $ $Date 2005-06-26 $
 % Function changed name from e2s to euc2sph_dist
